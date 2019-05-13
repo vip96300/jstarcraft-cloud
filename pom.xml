@@ -15,8 +15,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>jstarcraft-cloud-discovery</module>
-        <module>jstarcraft-cloud-route</module>
+        <module>jstarcraft-cloud-configuration</module>
+        <module>jstarcraft-cloud-registration</module>
     </modules>
 
     <properties>
