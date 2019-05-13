@@ -1,0 +1,23 @@
+深入理解SpringCloud之分布式配置:
+https://www.cnblogs.com/niechen/p/9068479.html
+
+Spring Boot自定义配置属性源(PropertySource):
+http://www.cppcns.com/ruanjian/java/230185.html
+
+Spring Boot自定义配置源:
+https://www.cnblogs.com/lizo/p/7683300.html
+
+聊聊Spring Cloud Config:
+https://blog.coding.net/blog/spring-cloud-config
+
+Spring Cloud 配置服务:
+https://www.cnblogs.com/dragonfei/p/6083193.html
+
+Spring Cloud Config 流程源码详解:
+https://www.jianshu.com/p/cd27dac270a2
+
+Apollo 2 如何支持 @Value 注解自动更新:
+https://www.cnblogs.com/stateis0/p/9247967.html
+
+@RefreshScope那些事:
+https://www.jianshu.com/p/188013dd3d02
