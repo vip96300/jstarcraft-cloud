@@ -33,17 +33,17 @@ JStarCraft Cloud框架各个模块之间的关系:
 
 ## JStarCraft Cloud教程
 
-* 节点管理(cloud-discovery)
-    * Consul
-    * Eureka
-    * Nacos
-    * Redis
-    * Zookeeper
 * 配置管理(cloud-configuration)
     * Apollo
     * Config
     * Nacos
     * Redis
+* 注册管理(cloud-registration)
+    * Consul
+    * Eureka
+    * Nacos
+    * Redis
+    * Zookeeper
 * 节流(throttle)
 * 路由(route)
 * 统计(statistics)
