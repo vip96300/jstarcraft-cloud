@@ -30,6 +30,9 @@ import org.springframework.core.env.PropertySource;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.web.context.support.StandardServletEnvironment;
 
+import com.jstarcraft.cloud.configuration.ConfigurationManager;
+import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
+
 /**
  * Spring Cloud Config适配器
  * 
@@ -41,7 +44,7 @@ import org.springframework.web.context.support.StandardServletEnvironment;
  * @author Birdy
  *
  */
-public class ConfigAdapter extends ContextRefresher {
+public class ConfigManager extends ContextRefresher implements ConfigurationManager {
 
     private static final String REFRESH_ARGS_PROPERTY_SOURCE = "refreshArgs";
 
@@ -53,7 +56,7 @@ public class ConfigAdapter extends ContextRefresher {
 
     private Map<String, Object> properties;
 
-    public ConfigAdapter(ConfigurableApplicationContext context, RefreshScope scope) {
+    public ConfigManager(ConfigurableApplicationContext context, RefreshScope scope) {
         super(context, scope);
         properties = getProperties(context.getEnvironment().getPropertySources());
     }
@@ -219,6 +222,23 @@ public class ConfigAdapter extends ContextRefresher {
                 properties.put(key, source.getProperty(key));
             }
         }
+    }
+
+    @Override
+    public String getString(String name) {
+        return (String) properties.get(name);
+    }
+
+    @Override
+    public void registerMonitor(ConfigurationMonitor monitor, boolean synchronous) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void unregisterMonitor(ConfigurationMonitor monitor) {
+        // TODO Auto-generated method stub
+
     }
 
 }
