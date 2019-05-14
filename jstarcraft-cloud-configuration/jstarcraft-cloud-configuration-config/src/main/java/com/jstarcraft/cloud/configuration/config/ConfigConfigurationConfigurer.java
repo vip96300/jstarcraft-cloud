@@ -14,11 +14,11 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(RefreshScope.class)
 @ConditionalOnProperty(name = RefreshAutoConfiguration.REFRESH_SCOPE_ENABLED, matchIfMissing = true)
 @AutoConfigureBefore(HibernateJpaAutoConfiguration.class)
-public class ConfigConfigurer {
+public class ConfigConfigurationConfigurer {
 
     @Bean
-    public ConfigManager contextRefresher(ConfigurableApplicationContext context, RefreshScope scope) {
-        return new ConfigManager(context, scope);
+    public ConfigConfigurationManager contextRefresher(ConfigurableApplicationContext context, RefreshScope scope) {
+        return new ConfigConfigurationManager(context, scope);
     }
 
 }

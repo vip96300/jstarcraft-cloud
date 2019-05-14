@@ -44,7 +44,7 @@ import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
  * @author Birdy
  *
  */
-public class ConfigManager extends ContextRefresher implements ConfigurationManager {
+public class ConfigConfigurationManager extends ContextRefresher implements ConfigurationManager {
 
     private static final String REFRESH_ARGS_PROPERTY_SOURCE = "refreshArgs";
 
@@ -56,7 +56,7 @@ public class ConfigManager extends ContextRefresher implements ConfigurationMana
 
     private Map<String, Object> properties;
 
-    public ConfigManager(ConfigurableApplicationContext context, RefreshScope scope) {
+    public ConfigConfigurationManager(ConfigurableApplicationContext context, RefreshScope scope) {
         super(context, scope);
         properties = getProperties(context.getEnvironment().getPropertySources());
     }
