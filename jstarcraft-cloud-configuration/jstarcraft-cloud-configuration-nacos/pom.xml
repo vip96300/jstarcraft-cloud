@@ -13,6 +13,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.jstarcraft</groupId>
+            <artifactId>jstarcraft-cloud-configuration-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.alibaba.nacos</groupId>
             <artifactId>nacos-client</artifactId>
         </dependency>
