@@ -17,5 +17,6 @@
         <module>jstarcraft-cloud-configuration-config</module>
         <module>jstarcraft-cloud-configuration-nacos</module>
         <module>jstarcraft-cloud-configuration-redis</module>
+        <module>jstarcraft-cloud-configuration-zookeeper</module>
     </modules>
 </project>
