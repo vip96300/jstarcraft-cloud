@@ -5,7 +5,7 @@ JStarCraft Cloud
 
 ****
 
-**JStarCraft Cloud是一个面向云的轻量级框架,遵循Apache 2.0协议.**
+**JStarCraft Cloud是一个面向中间件(配置中心与注册中心)的轻量级框架,遵循Apache 2.0协议.**
 
 |作者|洪钊桦|
 |---|---
