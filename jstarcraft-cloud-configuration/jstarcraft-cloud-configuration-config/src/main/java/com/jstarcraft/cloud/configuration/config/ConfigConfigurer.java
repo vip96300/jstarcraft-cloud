@@ -1,4 +1,4 @@
-package com.jstarcraft.cloud.configuration.config.context;
+package com.jstarcraft.cloud.configuration.config;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
