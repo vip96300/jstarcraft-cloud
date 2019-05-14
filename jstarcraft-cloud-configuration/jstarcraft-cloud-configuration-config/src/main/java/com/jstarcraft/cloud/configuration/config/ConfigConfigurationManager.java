@@ -34,7 +34,7 @@ import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
 
 /**
- * Spring Cloud Config适配器
+ * Spring Cloud Config配置管理器
  * 
  * <pre>
  * PropertySourceLocator用于引导配置
