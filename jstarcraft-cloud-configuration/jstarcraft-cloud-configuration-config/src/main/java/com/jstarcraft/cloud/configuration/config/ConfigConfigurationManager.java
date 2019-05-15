@@ -16,6 +16,7 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.config.ConfigFileApplicationListener;
 import org.springframework.cloud.bootstrap.BootstrapApplicationListener;
+import org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration;
 import org.springframework.cloud.context.environment.EnvironmentChangeEvent;
 import org.springframework.cloud.context.refresh.ContextRefresher;
 import org.springframework.cloud.context.scope.refresh.RefreshScope;
@@ -30,6 +31,7 @@ import org.springframework.core.env.PropertySource;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.web.context.support.StandardServletEnvironment;
 
+import com.jstarcraft.cloud.configuration.Configuration;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
 
@@ -75,6 +77,21 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
         }
     }
 
+    private PropertySource getConfigPropertySource(MutablePropertySources propertySources) {
+        PropertySource propertySource = propertySources.get(PropertySourceBootstrapConfiguration.BOOTSTRAP_PROPERTY_SOURCE_NAME);
+        if (propertySource == null) {
+            return null;
+        }
+        if (propertySource instanceof CompositePropertySource) {
+            for (PropertySource<?> source : ((CompositePropertySource) propertySource).getPropertySources()) {
+                if (source.getName().equals("configService")) {
+                    return source;
+                }
+            }
+        }
+        return null;
+    }
+
     @Override
     public Set<String> refreshEnvironment() {
         Lock write = lock.writeLock();
@@ -84,6 +101,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
             Map<String, Object> before = getProperties(context.getEnvironment().getPropertySources());
             buildEnvironment();
             Map<String, Object> after = getProperties(context.getEnvironment().getPropertySources());
+            PropertySource propertySource = getConfigPropertySource(context.getEnvironment().getPropertySources());
             properties = after;
             Set<String> changes = changes(before, after).keySet();
             context.publishEvent(new EnvironmentChangeEvent(context, changes));
@@ -225,8 +243,9 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
     }
 
     @Override
-    public String getString(String name) {
-        return (String) properties.get(name);
+    public Configuration getConfiguration(String name) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override

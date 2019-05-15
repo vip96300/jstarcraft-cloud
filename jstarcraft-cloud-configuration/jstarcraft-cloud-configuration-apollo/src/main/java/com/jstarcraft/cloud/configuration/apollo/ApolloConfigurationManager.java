@@ -1,5 +1,12 @@
 package com.jstarcraft.cloud.configuration.apollo;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.ctrip.framework.apollo.Config;
+import com.ctrip.framework.apollo.ConfigChangeListener;
+import com.ctrip.framework.apollo.model.ConfigChangeEvent;
+import com.jstarcraft.cloud.configuration.Configuration;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
 
@@ -11,22 +18,39 @@ import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
  */
 public class ApolloConfigurationManager implements ConfigurationManager {
 
+    private Config apollo;
+
+    private Map<ConfigurationMonitor, ConfigChangeListener> monitors = new HashMap<>();
+
     @Override
-    public String getString(String name) {
+    public Configuration getConfiguration(String name) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void registerMonitor(ConfigurationMonitor monitor, boolean synchronous) {
-        // TODO Auto-generated method stub
+    public synchronized void registerMonitor(ConfigurationMonitor monitor, boolean synchronous) {
+        ConfigChangeListener listener = new ConfigChangeListener() {
 
+            @Override
+            public void onChange(ConfigChangeEvent event) {
+                String name = event.getNamespace();
+                // TODO 此处需要重构
+                monitor.change(null, name);
+            }
+
+        };
+        if (monitors.putIfAbsent(monitor, listener) == null) {
+            apollo.addChangeListener(listener);
+        }
     }
 
     @Override
-    public void unregisterMonitor(ConfigurationMonitor monitor) {
-        // TODO Auto-generated method stub
-
+    public synchronized void unregisterMonitor(ConfigurationMonitor monitor) {
+        ConfigChangeListener listener = monitors.remove(monitor);
+        if (listener != null) {
+            apollo.removeChangeListener(listener);
+        }
     }
 
 }

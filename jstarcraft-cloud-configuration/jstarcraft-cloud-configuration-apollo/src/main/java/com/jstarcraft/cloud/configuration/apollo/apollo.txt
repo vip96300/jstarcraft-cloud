@@ -1,2 +1,5 @@
 Apollo配置详细步骤(Windows环境):
 http://www.cnblogs.com/a-du/p/8353495.html
+
+Apollo 2 如何支持 @Value 注解自动更新:
+https://www.cnblogs.com/stateis0/p/9247967.html

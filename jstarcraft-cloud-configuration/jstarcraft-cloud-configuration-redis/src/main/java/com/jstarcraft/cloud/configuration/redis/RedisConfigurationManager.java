@@ -1,5 +1,8 @@
 package com.jstarcraft.cloud.configuration.redis;
 
+import org.redisson.Redisson;
+
+import com.jstarcraft.cloud.configuration.Configuration;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
 
@@ -11,8 +14,10 @@ import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
  */
 public class RedisConfigurationManager implements ConfigurationManager {
 
+    private Redisson redisson;
+
     @Override
-    public String getString(String name) {
+    public Configuration getConfiguration(String name) {
         // TODO Auto-generated method stub
         return null;
     }
