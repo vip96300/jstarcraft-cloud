@@ -16,7 +16,6 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.config.ConfigFileApplicationListener;
 import org.springframework.cloud.bootstrap.BootstrapApplicationListener;
-import org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration;
 import org.springframework.cloud.context.environment.EnvironmentChangeEvent;
 import org.springframework.cloud.context.refresh.ContextRefresher;
 import org.springframework.cloud.context.scope.refresh.RefreshScope;
@@ -62,91 +61,6 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
 
     public ConfigConfigurationManager(ConfigurableApplicationContext context, RefreshScope scope) {
         super(context, scope);
-    }
-
-    @Override
-    public Set<String> refresh() {
-        Lock write = lock.writeLock();
-        try {
-            write.lock();
-            Set<String> changes = refreshEnvironment();
-            RefreshScope scope = getScope();
-            scope.refreshAll();
-            return changes;
-        } finally {
-            write.unlock();
-        }
-    }
-
-    private PropertySource getConfigPropertySource(MutablePropertySources propertySources) {
-        PropertySource propertySource = propertySources.get(PropertySourceBootstrapConfiguration.BOOTSTRAP_PROPERTY_SOURCE_NAME);
-        if (propertySource == null) {
-            return null;
-        }
-        if (propertySource instanceof CompositePropertySource) {
-            for (PropertySource<?> source : ((CompositePropertySource) propertySource).getPropertySources()) {
-                if (source.getName().equals("configService")) {
-                    return source;
-                }
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public Set<String> refreshEnvironment() {
-        Lock write = lock.writeLock();
-        try {
-            write.lock();
-            ConfigurableApplicationContext context = getContext();
-            LinkedHashMap<String, HashMap<String, String>> befores = getProperties(context.getEnvironment().getPropertySources());
-            buildEnvironment();
-            LinkedHashMap<String, HashMap<String, String>> afters = getProperties(context.getEnvironment().getPropertySources());
-            HashMap<String, Object> left = new HashMap<>();
-            HashMap<String, Object> right = new HashMap<>();
-
-            for (Entry<String, HashMap<String, String>> term : befores.entrySet()) {
-                String key = term.getKey();
-                HashMap<String, String> before = term.getValue();
-                HashMap<String, String> after = afters.get(key);
-                if (after == null) {
-                    Configuration from = new Configuration(term.getValue());
-                    Configuration to = null;
-                    configurations.remove(key);
-                    for (ConfigurationMonitor monitor : monitors) {
-                        monitor.change(key, from, to);
-                    }
-                } else if (!equal(before, after)) {
-                    Configuration from = new Configuration(before);
-                    Configuration to = new Configuration(after);
-                    configurations.put(key, to);
-                    for (ConfigurationMonitor monitor : monitors) {
-                        monitor.change(key, from, to);
-                    }
-                }
-                left.putAll(before);
-            }
-            for (Entry<String, HashMap<String, String>> term : afters.entrySet()) {
-                String key = term.getKey();
-                HashMap<String, String> before = befores.get(key);
-                HashMap<String, String> after = term.getValue();
-                if (before == null) {
-                    Configuration from = null;
-                    Configuration to = new Configuration(after);
-                    configurations.put(key, to);
-                    for (ConfigurationMonitor monitor : monitors) {
-                        monitor.change(key, from, to);
-                    }
-                }
-                right.putAll(after);
-            }
-
-            Set<String> changes = changes(left, right).keySet();
-            context.publishEvent(new EnvironmentChangeEvent(context, changes));
-            return changes;
-        } finally {
-            write.unlock();
-        }
     }
 
     private ConfigurableApplicationContext buildEnvironment() {
@@ -284,18 +198,106 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
     }
 
     @Override
+    public Set<String> refreshEnvironment() {
+        Lock write = lock.writeLock();
+        try {
+            write.lock();
+            ConfigurableApplicationContext context = getContext();
+            LinkedHashMap<String, HashMap<String, String>> befores = getProperties(context.getEnvironment().getPropertySources());
+            buildEnvironment();
+            LinkedHashMap<String, HashMap<String, String>> afters = getProperties(context.getEnvironment().getPropertySources());
+            HashMap<String, Object> left = new HashMap<>();
+            HashMap<String, Object> right = new HashMap<>();
+
+            for (Entry<String, HashMap<String, String>> term : befores.entrySet()) {
+                String key = term.getKey();
+                HashMap<String, String> before = term.getValue();
+                HashMap<String, String> after = afters.get(key);
+                if (after == null) {
+                    Configuration from = new Configuration(term.getValue());
+                    Configuration to = null;
+                    configurations.remove(key);
+                    for (ConfigurationMonitor monitor : monitors) {
+                        monitor.change(key, from, to);
+                    }
+                } else if (!equal(before, after)) {
+                    Configuration from = new Configuration(before);
+                    Configuration to = new Configuration(after);
+                    configurations.put(key, to);
+                    for (ConfigurationMonitor monitor : monitors) {
+                        monitor.change(key, from, to);
+                    }
+                }
+                left.putAll(before);
+            }
+            for (Entry<String, HashMap<String, String>> term : afters.entrySet()) {
+                String key = term.getKey();
+                HashMap<String, String> before = befores.get(key);
+                HashMap<String, String> after = term.getValue();
+                if (before == null) {
+                    Configuration from = null;
+                    Configuration to = new Configuration(after);
+                    configurations.put(key, to);
+                    for (ConfigurationMonitor monitor : monitors) {
+                        monitor.change(key, from, to);
+                    }
+                }
+                right.putAll(after);
+            }
+
+            Set<String> changes = changes(left, right).keySet();
+            context.publishEvent(new EnvironmentChangeEvent(context, changes));
+            return changes;
+        } finally {
+            write.unlock();
+        }
+    }
+
+    @Override
+    public Set<String> refresh() {
+        Lock write = lock.writeLock();
+        try {
+            write.lock();
+            Set<String> changes = refreshEnvironment();
+            RefreshScope scope = getScope();
+            scope.refreshAll();
+            return changes;
+        } finally {
+            write.unlock();
+        }
+    }
+
+    @Override
     public Configuration getConfiguration(String name) {
-        return configurations.get(name);
+        Lock read = lock.readLock();
+        try {
+            read.lock();
+            return configurations.get(name);
+        } finally {
+            read.unlock();
+        }
     }
 
     @Override
     public void registerMonitor(ConfigurationMonitor monitor) {
-        monitors.add(monitor);
+        Lock write = lock.writeLock();
+        try {
+            write.lock();
+            monitors.add(monitor);
+        } finally {
+            write.unlock();
+        }
     }
 
     @Override
     public void unregisterMonitor(ConfigurationMonitor monitor) {
-        monitors.remove(monitor);
+        Lock write = lock.writeLock();
+        try {
+            write.lock();
+            monitors.remove(monitor);
+        } finally {
+            write.unlock();
+        }
     }
 
 }
