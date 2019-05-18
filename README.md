@@ -46,4 +46,9 @@ JStarCraft Cloud框架各个模块之间的关系:
     * Redis
     * ZooKeeper
 
+* 节流(throttle)
+* 路由(route)
+* 统计(statistics)
+* 追踪(trace)
+
 ****
