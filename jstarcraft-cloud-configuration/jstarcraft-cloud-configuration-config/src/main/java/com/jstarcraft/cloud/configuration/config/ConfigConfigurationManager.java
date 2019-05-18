@@ -233,6 +233,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
                     setProperties(element, properties);
                 }
             } catch (Exception exception) {
+                // TODO 此处需要记录日志
                 return;
             }
         } else if (source instanceof EnumerablePropertySource) {
