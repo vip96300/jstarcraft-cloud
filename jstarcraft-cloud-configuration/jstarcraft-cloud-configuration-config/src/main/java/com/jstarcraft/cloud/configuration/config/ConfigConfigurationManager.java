@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.springframework.boot.Banner.Mode;
@@ -53,9 +52,13 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
 
     private static final String[] DEFAULT_PROPERTY_SOURCES = new String[] { CommandLinePropertySource.COMMAND_LINE_PROPERTY_SOURCE_NAME, "defaultProperties" };
 
-    private static final Set<String> STANDARD_SOURCES = new HashSet<>(Arrays.asList(StandardEnvironment.SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME, StandardEnvironment.SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME, StandardServletEnvironment.JNDI_PROPERTY_SOURCE_NAME, StandardServletEnvironment.SERVLET_CONFIG_PROPERTY_SOURCE_NAME, StandardServletEnvironment.SERVLET_CONTEXT_PROPERTY_SOURCE_NAME, "configurationProperties"));
+    private static final HashSet<String> STANDARD_SOURCES = new HashSet<>(Arrays.asList(StandardEnvironment.SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME, StandardEnvironment.SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME, StandardServletEnvironment.JNDI_PROPERTY_SOURCE_NAME, StandardServletEnvironment.SERVLET_CONFIG_PROPERTY_SOURCE_NAME, StandardServletEnvironment.SERVLET_CONTEXT_PROPERTY_SOURCE_NAME, "configurationProperties"));
 
-    private ReadWriteLock lock = new ReentrantReadWriteLock();
+    private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+
+    private HashMap<String, Configuration> configurations = new HashMap<>();
+
+    private HashSet<ConfigurationMonitor> monitors = new HashSet<>();
 
     public ConfigConfigurationManager(ConfigurableApplicationContext context, RefreshScope scope) {
         super(context, scope);
@@ -109,9 +112,17 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
                 if (after == null) {
                     Configuration from = new Configuration(term.getValue());
                     Configuration to = null;
+                    configurations.remove(key);
+                    for (ConfigurationMonitor monitor : monitors) {
+                        monitor.change(key, from, to);
+                    }
                 } else if (!equal(before, after)) {
                     Configuration from = new Configuration(before);
                     Configuration to = new Configuration(after);
+                    configurations.put(key, to);
+                    for (ConfigurationMonitor monitor : monitors) {
+                        monitor.change(key, from, to);
+                    }
                 }
                 left.putAll(before);
             }
@@ -122,6 +133,10 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
                 if (before == null) {
                     Configuration from = null;
                     Configuration to = new Configuration(after);
+                    configurations.put(key, to);
+                    for (ConfigurationMonitor monitor : monitors) {
+                        monitor.change(key, from, to);
+                    }
                 }
                 right.putAll(after);
             }
@@ -171,7 +186,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
                 try {
                     current.close();
                 } catch (Exception exception) {
-                    // Ignore;
+                    // TODO Ignore;
                 }
                 if (current.getParent() instanceof ConfigurableApplicationContext) {
                     current = (ConfigurableApplicationContext) current.getParent();
@@ -270,20 +285,17 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
 
     @Override
     public Configuration getConfiguration(String name) {
-        // TODO Auto-generated method stub
-        return null;
+        return configurations.get(name);
     }
 
     @Override
-    public void registerMonitor(ConfigurationMonitor monitor, boolean synchronous) {
-        // TODO Auto-generated method stub
-
+    public void registerMonitor(ConfigurationMonitor monitor) {
+        monitors.add(monitor);
     }
 
     @Override
     public void unregisterMonitor(ConfigurationMonitor monitor) {
-        // TODO Auto-generated method stub
-
+        monitors.remove(monitor);
     }
 
 }

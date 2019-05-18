@@ -46,14 +46,14 @@ public class NacosConfigurationManager implements ConfigurationManager {
     }
 
     @Override
-    public synchronized void registerMonitor(ConfigurationMonitor monitor, boolean synchronous) {
+    public synchronized void registerMonitor(ConfigurationMonitor monitor) {
         try {
             Listener configListener = new Listener() {
 
                 @Override
                 public void receiveConfigInfo(String config) {
                     // TODO
-                    monitor.change(null, data);
+                    monitor.change(data, null, null);
                 }
 
                 @Override

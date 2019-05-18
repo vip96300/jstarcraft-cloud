@@ -22,7 +22,7 @@ public interface ConfigurationManager {
      * @param monitor
      * @param synchronous
      */
-    void registerMonitor(ConfigurationMonitor monitor, boolean synchronous);
+    void registerMonitor(ConfigurationMonitor monitor);
 
     /**
      * 注销监控器

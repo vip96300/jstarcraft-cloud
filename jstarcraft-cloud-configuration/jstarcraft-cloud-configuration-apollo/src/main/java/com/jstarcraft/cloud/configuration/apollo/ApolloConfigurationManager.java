@@ -29,14 +29,14 @@ public class ApolloConfigurationManager implements ConfigurationManager {
     }
 
     @Override
-    public synchronized void registerMonitor(ConfigurationMonitor monitor, boolean synchronous) {
+    public synchronized void registerMonitor(ConfigurationMonitor monitor) {
         ConfigChangeListener listener = new ConfigChangeListener() {
 
             @Override
             public void onChange(ConfigChangeEvent event) {
                 String name = event.getNamespace();
                 // TODO 此处需要重构
-                monitor.change(null, name);
+                monitor.change(name, null, null);
             }
 
         };

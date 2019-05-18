@@ -25,7 +25,7 @@ public class ZooKeeperConfigurationManager implements ConfigurationManager {
     }
 
     @Override
-    public void registerMonitor(ConfigurationMonitor monitor, boolean synchronous) {
+    public void registerMonitor(ConfigurationMonitor monitor) {
         // TODO Auto-generated method stub
 
     }

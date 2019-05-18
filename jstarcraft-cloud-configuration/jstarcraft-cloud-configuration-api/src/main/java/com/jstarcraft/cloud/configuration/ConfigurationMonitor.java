@@ -11,9 +11,10 @@ public interface ConfigurationMonitor {
     /**
      * 变更
      * 
-     * @param configuration
      * @param name
+     * @param from
+     * @param to
      */
-    void change(Configuration configuration, String name);
+    void change(String name, Configuration from, Configuration to);
 
 }
