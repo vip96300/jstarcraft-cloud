@@ -56,11 +56,8 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
 
     private ReadWriteLock lock = new ReentrantReadWriteLock();
 
-    private Map<String, Object> properties;
-
     public ConfigConfigurationManager(ConfigurableApplicationContext context, RefreshScope scope) {
         super(context, scope);
-        properties = getProperties(context.getEnvironment().getPropertySources());
     }
 
     @Override
@@ -102,7 +99,6 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
             buildEnvironment();
             Map<String, Object> after = getProperties(context.getEnvironment().getPropertySources());
             PropertySource propertySource = getConfigPropertySource(context.getEnvironment().getPropertySources());
-            properties = after;
             Set<String> changes = changes(before, after).keySet();
             context.publishEvent(new EnvironmentChangeEvent(context, changes));
             return changes;
