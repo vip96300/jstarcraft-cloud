@@ -12,5 +12,10 @@
     <packaging>jar</packaging>
 
     <dependencies>
+        <dependency>
+            <groupId>com.jstarcraft</groupId>
+            <artifactId>jstarcraft-cloud-registration-api</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>
