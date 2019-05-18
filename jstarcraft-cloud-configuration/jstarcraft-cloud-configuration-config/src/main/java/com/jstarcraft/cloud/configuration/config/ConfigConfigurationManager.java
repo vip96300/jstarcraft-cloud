@@ -59,8 +59,31 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
 
     private HashSet<ConfigurationMonitor> monitors = new HashSet<>();
 
+    private String getName(String path) {
+        int index = path.lastIndexOf('/');
+        if (index != -1) {
+            path = path.substring(index + 1);
+        }
+        index = path.lastIndexOf('.');
+        if (index != -1) {
+            path = path.substring(0, index);
+        }
+        index = path.lastIndexOf('-');
+        if (index != -1) {
+            path = path.substring(0, index);
+        }
+        return path;
+    }
+
     public ConfigConfigurationManager(ConfigurableApplicationContext context, RefreshScope scope) {
         super(context, scope);
+        LinkedHashMap<String, HashMap<String, String>> properties = getProperties(context.getEnvironment().getPropertySources());
+        for (Entry<String, HashMap<String, String>> term : properties.entrySet()) {
+            String key = term.getKey();
+            key = getName(key);
+            HashMap<String, String> value = term.getValue();
+            configurations.put(key, new Configuration(value));
+        }
     }
 
     private ConfigurableApplicationContext buildEnvironment() {
@@ -211,6 +234,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
 
             for (Entry<String, HashMap<String, String>> term : befores.entrySet()) {
                 String key = term.getKey();
+                key = getName(key);
                 HashMap<String, String> before = term.getValue();
                 HashMap<String, String> after = afters.get(key);
                 if (after == null) {
@@ -232,6 +256,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
             }
             for (Entry<String, HashMap<String, String>> term : afters.entrySet()) {
                 String key = term.getKey();
+                key = getName(key);
                 HashMap<String, String> before = befores.get(key);
                 HashMap<String, String> after = term.getValue();
                 if (before == null) {

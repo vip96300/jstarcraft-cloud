@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.jstarcraft.cloud.configuration.Configuration;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ConfigConfigurationManagerTestCase {
@@ -25,8 +27,11 @@ public class ConfigConfigurationManagerTestCase {
      */
     @Test
     public void testRefresh() {
-
         Assert.assertEquals("old-config", properties.getConfig());
+        {
+            Configuration configuration = configurationManager.getConfiguration("config");
+            Assert.assertEquals("old-config", configuration.getString("mock.config"));
+        }
 
         WebClient webClient = WebClient.create();
         {
@@ -43,6 +48,10 @@ public class ConfigConfigurationManagerTestCase {
         }
 
         Assert.assertEquals("new-config", properties.getConfig());
+        {
+            Configuration configuration = configurationManager.getConfiguration("config");
+            Assert.assertEquals("new-config", configuration.getString("mock.config"));
+        }
 
         {
             // 设置旧配置
