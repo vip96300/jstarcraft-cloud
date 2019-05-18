@@ -10,6 +10,10 @@ import com.netflix.loadbalancer.ServerList;
 /**
  * 抽象服务管理器
  * 
+ * <pre>
+ * 包装器模式
+ * </pre>
+ * 
  * @author Birdy
  *
  * @param <T>
