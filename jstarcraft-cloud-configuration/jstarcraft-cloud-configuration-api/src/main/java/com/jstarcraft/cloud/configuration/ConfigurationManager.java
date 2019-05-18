@@ -1,7 +1,5 @@
 package com.jstarcraft.cloud.configuration;
 
-import com.jstarcraft.core.utility.StringUtility;
-
 /**
  * 配置管理器
  * 
