@@ -3,8 +3,10 @@ package com.jstarcraft.cloud.configuration.config;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -94,11 +96,37 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
         try {
             write.lock();
             ConfigurableApplicationContext context = getContext();
-            Map<String, Object> before = getProperties(context.getEnvironment().getPropertySources());
+            LinkedHashMap<String, HashMap<String, String>> befores = getProperties(context.getEnvironment().getPropertySources());
             buildEnvironment();
-            Map<String, Object> after = getProperties(context.getEnvironment().getPropertySources());
-            PropertySource propertySource = getConfigPropertySource(context.getEnvironment().getPropertySources());
-            Set<String> changes = changes(before, after).keySet();
+            LinkedHashMap<String, HashMap<String, String>> afters = getProperties(context.getEnvironment().getPropertySources());
+            HashMap<String, Object> left = new HashMap<>();
+            HashMap<String, Object> right = new HashMap<>();
+
+            for (Entry<String, HashMap<String, String>> term : befores.entrySet()) {
+                String key = term.getKey();
+                HashMap<String, String> before = term.getValue();
+                HashMap<String, String> after = afters.get(key);
+                if (after == null) {
+                    Configuration from = new Configuration(term.getValue());
+                    Configuration to = null;
+                } else if (!equal(before, after)) {
+                    Configuration from = new Configuration(before);
+                    Configuration to = new Configuration(after);
+                }
+                left.putAll(before);
+            }
+            for (Entry<String, HashMap<String, String>> term : afters.entrySet()) {
+                String key = term.getKey();
+                HashMap<String, String> before = befores.get(key);
+                HashMap<String, String> after = term.getValue();
+                if (before == null) {
+                    Configuration from = null;
+                    Configuration to = new Configuration(after);
+                }
+                right.putAll(after);
+            }
+
+            Set<String> changes = changes(left, right).keySet();
             context.publishEvent(new EnvironmentChangeEvent(context, changes));
             return changes;
         } finally {
@@ -169,25 +197,25 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
         }
         copy.setActiveProfiles(environment.getActiveProfiles());
         copy.setDefaultProfiles(environment.getDefaultProfiles());
-        Map<String, Object> properties = new HashMap<String, Object>();
+        HashMap<String, Object> properties = new HashMap<>();
         properties.put("spring.jmx.enabled", false);
         properties.put("spring.main.sources", "");
         sources.addFirst(new MapPropertySource(REFRESH_ARGS_PROPERTY_SOURCE, properties));
         return copy;
     }
 
-    private Map<String, Object> changes(Map<String, Object> before, Map<String, Object> after) {
-        Map<String, Object> changes = new HashMap<String, Object>();
-        for (String key : before.keySet()) {
-            if (!after.containsKey(key)) {
+    private <T> Map<String, T> changes(Map<String, T> left, Map<String, T> right) {
+        HashMap<String, T> changes = new HashMap<>();
+        for (String key : left.keySet()) {
+            if (!right.containsKey(key)) {
                 changes.put(key, null);
-            } else if (!equal(before.get(key), after.get(key))) {
-                changes.put(key, after.get(key));
+            } else if (!equal(left.get(key), right.get(key))) {
+                changes.put(key, right.get(key));
             }
         }
-        for (String key : after.keySet()) {
-            if (!before.containsKey(key)) {
-                changes.put(key, after.get(key));
+        for (String key : right.keySet()) {
+            if (!left.containsKey(key)) {
+                changes.put(key, right.get(key));
             }
         }
         return changes;
@@ -203,37 +231,39 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
         return left.equals(right);
     }
 
-    private Map<String, Object> getProperties(MutablePropertySources sources) {
-        Map<String, Object> properties = new HashMap<String, Object>();
-        LinkedList<PropertySource<?>> elements = new LinkedList<PropertySource<?>>();
+    private LinkedHashMap<String, HashMap<String, String>> getProperties(MutablePropertySources sources) {
+        LinkedHashMap<String, HashMap<String, String>> properties = new LinkedHashMap<>();
+        LinkedList<PropertySource<?>> elements = new LinkedList<>();
         for (PropertySource<?> element : sources) {
             elements.addFirst(element);
         }
         for (PropertySource<?> element : elements) {
             if (!this.STANDARD_SOURCES.contains(element.getName())) {
-                setProperties(element, properties);
+                getProperties(element, properties);
             }
         }
         return properties;
     }
 
-    private void setProperties(PropertySource<?> source, Map<String, Object> properties) {
+    private void getProperties(PropertySource<?> source, LinkedHashMap<String, HashMap<String, String>> properties) {
         if (source instanceof CompositePropertySource) {
             try {
-                LinkedList<PropertySource<?>> elements = new LinkedList<PropertySource<?>>();
+                LinkedList<PropertySource<?>> elements = new LinkedList<>();
                 for (PropertySource<?> element : ((CompositePropertySource) source).getPropertySources()) {
                     elements.addFirst(element);
                 }
                 for (PropertySource<?> element : elements) {
-                    setProperties(element, properties);
+                    getProperties(element, properties);
                 }
             } catch (Exception exception) {
                 // TODO 此处需要记录日志
                 return;
             }
         } else if (source instanceof EnumerablePropertySource) {
+            HashMap<String, String> keyValue = new HashMap<>();
+            properties.put(source.getName(), keyValue);
             for (String key : ((EnumerablePropertySource<?>) source).getPropertyNames()) {
-                properties.put(key, source.getProperty(key));
+                keyValue.put(key, (String) source.getProperty(key));
             }
         }
     }
