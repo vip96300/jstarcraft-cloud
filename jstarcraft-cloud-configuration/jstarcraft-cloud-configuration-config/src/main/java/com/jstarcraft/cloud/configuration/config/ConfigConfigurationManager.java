@@ -1,9 +1,9 @@
 package com.jstarcraft.cloud.configuration.config;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -206,7 +206,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
 
     private Map<String, Object> getProperties(MutablePropertySources sources) {
         Map<String, Object> properties = new HashMap<String, Object>();
-        List<PropertySource<?>> elements = new ArrayList<PropertySource<?>>();
+        List<PropertySource<?>> elements = new LinkedList<PropertySource<?>>();
         for (PropertySource<?> element : sources) {
             elements.add(0, element);
         }
@@ -221,7 +221,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
     private void setProperties(PropertySource<?> source, Map<String, Object> properties) {
         if (source instanceof CompositePropertySource) {
             try {
-                List<PropertySource<?>> elements = new ArrayList<PropertySource<?>>();
+                List<PropertySource<?>> elements = new LinkedList<PropertySource<?>>();
                 for (PropertySource<?> element : ((CompositePropertySource) source).getPropertySources()) {
                     elements.add(0, element);
                 }

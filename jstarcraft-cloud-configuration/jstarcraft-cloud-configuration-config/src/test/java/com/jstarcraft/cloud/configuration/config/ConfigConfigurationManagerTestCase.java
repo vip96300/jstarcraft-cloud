@@ -1,5 +1,7 @@
 package com.jstarcraft.cloud.configuration.config;
 
+import java.util.Collection;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +38,8 @@ public class ConfigConfigurationManagerTestCase {
 
         {
             // 触发刷新配置
-            configurationManager.refresh();
+            Collection<String> changes = configurationManager.refresh();
+            Assert.assertTrue(changes.contains("mock.config"));
         }
 
         Assert.assertEquals("new-config", properties.getConfig());
