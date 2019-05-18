@@ -18,6 +18,7 @@ import com.netflix.loadbalancer.ServerList;
  *
  * @param <T>
  */
+// TODO 准备配合脚本引擎支持服务筛选
 public abstract class AbstractServerManager<T extends Server> implements ServerManager<T> {
 
     /** 服务标识 */
