@@ -10,10 +10,10 @@ import com.jstarcraft.cloud.registration.configurer.EurekaLoadBalanceConfigurer;
 @SpringBootApplication
 @EnableDiscoveryClient
 @RibbonClient(name = "demo", configuration = EurekaLoadBalanceConfigurer.class)
-public class MockApplication {
+public class MockEurekaApplication {
 
     public static void main(String[] arguments) {
-        SpringApplication.run(MockApplication.class, arguments);
+        SpringApplication.run(MockEurekaApplication.class, arguments);
     }
 
 }
