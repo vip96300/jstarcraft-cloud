@@ -1,4 +1,4 @@
-package com.jstarcraft.cloud.registration.eureka;
+package com.jstarcraft.cloud.registration.redis;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,19 +8,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
-import org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration;
-import org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class EurekaServerManagerTestCase {
+public class RedisServerManagerTestCase {
 
     @Autowired
-    private EurekaServiceRegistry registry;
+    private RedisServiceRegistry registry;
 
     @Autowired
-    private EurekaRegistration registration;
+    private RedisRegistration registration;
 
     @Autowired
     private LoadBalancerClient balancer;
@@ -31,6 +29,7 @@ public class EurekaServerManagerTestCase {
     @Test
     public void testChoose() throws Exception {
         String serviceId = "demo";
+
         // 服务注册
         registry.register(registration);
         // 服务发现
