@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigChangeListener;
+import com.ctrip.framework.apollo.ConfigService;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
@@ -18,18 +19,22 @@ import com.jstarcraft.core.utility.Configuration;
  */
 public class ApolloConfigurationManager implements ConfigurationManager {
 
-    private Config apollo;
-
     private Map<ConfigurationMonitor, ConfigChangeListener> monitors = new HashMap<>();
 
     @Override
     public Configuration getConfiguration(String name) {
-        // TODO Auto-generated method stub
-        return null;
+        Config apollo = ConfigService.getConfig(name);
+        HashMap<String, String> keyValues = new HashMap<>();
+        for (String key : apollo.getPropertyNames()) {
+            String value = apollo.getProperty(key, null);
+            keyValues.put(key, value);
+        }
+        Configuration configuration = new Configuration(keyValues);
+        return configuration;
     }
 
     @Override
-    public synchronized void registerMonitor(ConfigurationMonitor monitor) {
+    public synchronized void registerMonitor(String name, ConfigurationMonitor monitor) {
         ConfigChangeListener listener = new ConfigChangeListener() {
 
             @Override
@@ -41,15 +46,15 @@ public class ApolloConfigurationManager implements ConfigurationManager {
 
         };
         if (monitors.putIfAbsent(monitor, listener) == null) {
-            apollo.addChangeListener(listener);
+//            apollo.apollo.addChangeListener(listener);
         }
     }
 
     @Override
-    public synchronized void unregisterMonitor(ConfigurationMonitor monitor) {
+    public synchronized void unregisterMonitor(String name, ConfigurationMonitor monitor) {
         ConfigChangeListener listener = monitors.remove(monitor);
         if (listener != null) {
-            apollo.removeChangeListener(listener);
+//            apollo.removeChangeListener(listener);
         }
     }
 

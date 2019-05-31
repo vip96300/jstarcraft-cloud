@@ -46,7 +46,7 @@ public class NacosConfigurationManager implements ConfigurationManager {
     }
 
     @Override
-    public synchronized void registerMonitor(ConfigurationMonitor monitor) {
+    public synchronized void registerMonitor(String name, ConfigurationMonitor monitor) {
         try {
             Listener configListener = new Listener() {
 
@@ -69,7 +69,7 @@ public class NacosConfigurationManager implements ConfigurationManager {
     }
 
     @Override
-    public synchronized void unregisterMonitor(ConfigurationMonitor monitor) {
+    public synchronized void unregisterMonitor(String name, ConfigurationMonitor monitor) {
         Listener listener = monitors.remove(monitor);
         if (listener != null) {
             nacos.removeListener(data, group, listener);

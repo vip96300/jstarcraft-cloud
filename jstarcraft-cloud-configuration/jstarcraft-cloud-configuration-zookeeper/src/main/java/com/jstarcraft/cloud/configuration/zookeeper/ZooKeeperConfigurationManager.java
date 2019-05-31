@@ -25,13 +25,13 @@ public class ZooKeeperConfigurationManager implements ConfigurationManager {
     }
 
     @Override
-    public void registerMonitor(ConfigurationMonitor monitor) {
+    public void registerMonitor(String name, ConfigurationMonitor monitor) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void unregisterMonitor(ConfigurationMonitor monitor) {
+    public void unregisterMonitor(String name, ConfigurationMonitor monitor) {
         // TODO Auto-generated method stub
 
     }

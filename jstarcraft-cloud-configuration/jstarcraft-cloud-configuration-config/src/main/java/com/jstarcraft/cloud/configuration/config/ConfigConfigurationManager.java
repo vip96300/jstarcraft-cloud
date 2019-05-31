@@ -304,7 +304,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
     }
 
     @Override
-    public void registerMonitor(ConfigurationMonitor monitor) {
+    public void registerMonitor(String name, ConfigurationMonitor monitor) {
         Lock write = lock.writeLock();
         try {
             write.lock();
@@ -315,7 +315,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
     }
 
     @Override
-    public void unregisterMonitor(ConfigurationMonitor monitor) {
+    public void unregisterMonitor(String name, ConfigurationMonitor monitor) {
         Lock write = lock.writeLock();
         try {
             write.lock();

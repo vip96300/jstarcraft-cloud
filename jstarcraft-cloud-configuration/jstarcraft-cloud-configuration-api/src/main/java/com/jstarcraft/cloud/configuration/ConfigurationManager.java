@@ -21,16 +21,17 @@ public interface ConfigurationManager {
     /**
      * 注册监控器
      * 
+     * @param name
      * @param monitor
-     * @param synchronous
      */
-    void registerMonitor(ConfigurationMonitor monitor);
+    void registerMonitor(String name, ConfigurationMonitor monitor);
 
     /**
      * 注销监控器
      * 
+     * @param name
      * @param monitor
      */
-    void unregisterMonitor(ConfigurationMonitor monitor);
+    void unregisterMonitor(String name, ConfigurationMonitor monitor);
 
 }
