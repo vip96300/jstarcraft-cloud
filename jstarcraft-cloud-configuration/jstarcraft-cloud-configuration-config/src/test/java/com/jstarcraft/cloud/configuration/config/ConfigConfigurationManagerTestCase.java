@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.jstarcraft.cloud.configuration.Configuration;
+import com.jstarcraft.core.utility.Configuration;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

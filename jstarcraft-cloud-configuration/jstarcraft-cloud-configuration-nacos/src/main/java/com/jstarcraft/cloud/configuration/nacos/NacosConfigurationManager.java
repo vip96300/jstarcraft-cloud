@@ -9,9 +9,9 @@ import java.util.concurrent.Executors;
 import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
-import com.jstarcraft.cloud.configuration.Configuration;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
+import com.jstarcraft.core.utility.Configuration;
 
 /**
  * Nacos配置管理器

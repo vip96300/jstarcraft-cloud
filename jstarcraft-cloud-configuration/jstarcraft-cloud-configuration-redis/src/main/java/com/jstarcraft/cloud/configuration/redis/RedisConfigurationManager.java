@@ -2,9 +2,9 @@ package com.jstarcraft.cloud.configuration.redis;
 
 import org.redisson.Redisson;
 
-import com.jstarcraft.cloud.configuration.Configuration;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
+import com.jstarcraft.core.utility.Configuration;
 
 /**
  * Redis配置管理器

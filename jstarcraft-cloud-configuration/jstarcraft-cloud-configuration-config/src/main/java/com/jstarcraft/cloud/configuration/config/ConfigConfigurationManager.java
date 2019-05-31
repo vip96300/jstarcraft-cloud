@@ -30,9 +30,9 @@ import org.springframework.core.env.PropertySource;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.web.context.support.StandardServletEnvironment;
 
-import com.jstarcraft.cloud.configuration.Configuration;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
+import com.jstarcraft.core.utility.Configuration;
 
 /**
  * Spring Cloud Config配置管理器

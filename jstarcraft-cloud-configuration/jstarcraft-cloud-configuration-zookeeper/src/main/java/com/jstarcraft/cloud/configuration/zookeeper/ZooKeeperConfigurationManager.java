@@ -2,9 +2,9 @@ package com.jstarcraft.cloud.configuration.zookeeper;
 
 import org.apache.curator.framework.CuratorFramework;
 
-import com.jstarcraft.cloud.configuration.Configuration;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
+import com.jstarcraft.core.utility.Configuration;
 
 /**
  * ZooKeeper配置管理器

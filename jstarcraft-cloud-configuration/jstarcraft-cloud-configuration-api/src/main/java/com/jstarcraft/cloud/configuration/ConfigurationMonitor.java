@@ -1,5 +1,7 @@
 package com.jstarcraft.cloud.configuration;
 
+import com.jstarcraft.core.utility.Configuration;
+
 /**
  * 配置监控器
  * 
