@@ -14,6 +14,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
  * 
  * <pre>
  * 包装器模式
+ * 支持自定义筛选{@link ServiceInstance}
  * </pre>
  * 
  * @author Birdy
