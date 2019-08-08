@@ -11,7 +11,7 @@ import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
-import com.jstarcraft.core.utility.Configuration;
+import com.jstarcraft.core.utility.Configurator;
 
 /**
  * Nacos配置管理器
@@ -40,7 +40,7 @@ public class NacosConfigurationManager implements ConfigurationManager {
     }
 
     @Override
-    public Configuration getConfiguration(String name) {
+    public Configurator getConfiguration(String name) {
         // TODO Auto-generated method stub
         return null;
     }

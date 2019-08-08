@@ -4,7 +4,7 @@ import org.redisson.Redisson;
 
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
-import com.jstarcraft.core.utility.Configuration;
+import com.jstarcraft.core.utility.Configurator;
 
 /**
  * Redis配置管理器
@@ -17,7 +17,7 @@ public class RedisConfigurationManager implements ConfigurationManager {
     private Redisson redisson;
 
     @Override
-    public Configuration getConfiguration(String name) {
+    public Configurator getConfiguration(String name) {
         // TODO Auto-generated method stub
         return null;
     }

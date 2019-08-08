@@ -9,7 +9,7 @@ import com.ctrip.framework.apollo.ConfigService;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
-import com.jstarcraft.core.utility.Configuration;
+import com.jstarcraft.core.utility.Configurator;
 
 /**
  * Apollo配置管理器
@@ -22,14 +22,14 @@ public class ApolloConfigurationManager implements ConfigurationManager {
     private Map<ConfigurationMonitor, ConfigChangeListener> monitors = new HashMap<>();
 
     @Override
-    public Configuration getConfiguration(String name) {
+    public Configurator getConfiguration(String name) {
         Config apollo = ConfigService.getConfig(name);
         HashMap<String, String> keyValues = new HashMap<>();
         for (String key : apollo.getPropertyNames()) {
             String value = apollo.getProperty(key, null);
             keyValues.put(key, value);
         }
-        Configuration configuration = new Configuration(keyValues);
+        Configurator configuration = new Configurator(keyValues);
         return configuration;
     }
 

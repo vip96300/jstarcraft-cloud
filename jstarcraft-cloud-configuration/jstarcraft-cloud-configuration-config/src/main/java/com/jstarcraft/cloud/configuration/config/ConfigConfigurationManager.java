@@ -32,7 +32,7 @@ import org.springframework.web.context.support.StandardServletEnvironment;
 
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
-import com.jstarcraft.core.utility.Configuration;
+import com.jstarcraft.core.utility.Configurator;
 
 /**
  * Spring Cloud Config配置管理器
@@ -55,7 +55,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
 
     private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
-    private HashMap<String, Configuration> configurations = new HashMap<>();
+    private HashMap<String, Configurator> configurations = new HashMap<>();
 
     private HashSet<ConfigurationMonitor> monitors = new HashSet<>();
 
@@ -82,7 +82,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
             String key = term.getKey();
             key = getName(key);
             HashMap<String, String> value = term.getValue();
-            configurations.put(key, new Configuration(value));
+            configurations.put(key, new Configurator(value));
         }
     }
 
@@ -238,15 +238,15 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
                 HashMap<String, String> before = term.getValue();
                 HashMap<String, String> after = afters.get(key);
                 if (after == null) {
-                    Configuration from = new Configuration(term.getValue());
-                    Configuration to = null;
+                    Configurator from = new Configurator(term.getValue());
+                    Configurator to = null;
                     configurations.remove(key);
                     for (ConfigurationMonitor monitor : monitors) {
                         monitor.change(key, from, to);
                     }
                 } else if (!equal(before, after)) {
-                    Configuration from = new Configuration(before);
-                    Configuration to = new Configuration(after);
+                    Configurator from = new Configurator(before);
+                    Configurator to = new Configurator(after);
                     configurations.put(key, to);
                     for (ConfigurationMonitor monitor : monitors) {
                         monitor.change(key, from, to);
@@ -260,8 +260,8 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
                 HashMap<String, String> before = befores.get(key);
                 HashMap<String, String> after = term.getValue();
                 if (before == null) {
-                    Configuration from = null;
-                    Configuration to = new Configuration(after);
+                    Configurator from = null;
+                    Configurator to = new Configurator(after);
                     configurations.put(key, to);
                     for (ConfigurationMonitor monitor : monitors) {
                         monitor.change(key, from, to);
@@ -293,7 +293,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
     }
 
     @Override
-    public Configuration getConfiguration(String name) {
+    public Configurator getConfiguration(String name) {
         Lock read = lock.readLock();
         try {
             read.lock();

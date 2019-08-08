@@ -1,6 +1,6 @@
 package com.jstarcraft.cloud.configuration;
 
-import com.jstarcraft.core.utility.Configuration;
+import com.jstarcraft.core.utility.Configurator;
 
 /**
  * 配置管理器
@@ -16,7 +16,7 @@ public interface ConfigurationManager {
      * @param name
      * @return
      */
-    Configuration getConfiguration(String name);
+    Configurator getConfiguration(String name);
 
     /**
      * 注册监控器
