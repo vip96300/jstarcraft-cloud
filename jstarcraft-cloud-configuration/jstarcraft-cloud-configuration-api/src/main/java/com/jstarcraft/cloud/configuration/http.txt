@@ -1,3 +1,6 @@
+Spring WebClient vs. RestTemplate:
+https://www.cnblogs.com/liululee/p/11275427.html
+
 Spring 中 UriComponentsBuilder 类示例:
 https://blog.csdn.net/neweastsun/article/details/80821524
 
