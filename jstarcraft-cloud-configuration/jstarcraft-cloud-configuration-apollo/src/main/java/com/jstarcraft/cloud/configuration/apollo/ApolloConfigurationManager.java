@@ -9,7 +9,7 @@ import com.ctrip.framework.apollo.ConfigService;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
-import com.jstarcraft.core.utility.Configurator;
+import com.jstarcraft.core.common.configuration.Configurator;
 
 /**
  * Apollo配置管理器

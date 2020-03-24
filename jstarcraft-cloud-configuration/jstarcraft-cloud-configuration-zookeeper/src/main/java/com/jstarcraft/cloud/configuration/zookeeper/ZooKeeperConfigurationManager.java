@@ -4,7 +4,7 @@ import org.apache.curator.framework.CuratorFramework;
 
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
-import com.jstarcraft.core.utility.Configurator;
+import com.jstarcraft.core.common.configuration.Configurator;
 
 /**
  * ZooKeeper配置管理器

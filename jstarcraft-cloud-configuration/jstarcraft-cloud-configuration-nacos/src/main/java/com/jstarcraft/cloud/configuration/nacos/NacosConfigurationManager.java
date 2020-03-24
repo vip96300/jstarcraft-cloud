@@ -11,7 +11,7 @@ import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
-import com.jstarcraft.core.utility.Configurator;
+import com.jstarcraft.core.common.configuration.Configurator;
 
 /**
  * Nacos配置管理器

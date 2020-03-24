@@ -1,6 +1,6 @@
 package com.jstarcraft.cloud.configuration;
 
-import com.jstarcraft.core.utility.Configurator;
+import com.jstarcraft.core.common.configuration.Configurator;
 
 /**
  * 配置监控器
