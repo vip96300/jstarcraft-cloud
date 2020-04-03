@@ -33,6 +33,7 @@ import org.springframework.web.context.support.StandardServletEnvironment;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
 import com.jstarcraft.core.common.configuration.Configurator;
+import com.jstarcraft.core.common.configuration.MapConfigurator;
 
 /**
  * Spring Cloud Config配置管理器
@@ -82,7 +83,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
             String key = term.getKey();
             key = getName(key);
             HashMap<String, String> value = term.getValue();
-            configurations.put(key, new Configurator(value));
+            configurations.put(key, new MapConfigurator(value));
         }
     }
 
@@ -238,15 +239,15 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
                 HashMap<String, String> before = term.getValue();
                 HashMap<String, String> after = afters.get(key);
                 if (after == null) {
-                    Configurator from = new Configurator(term.getValue());
+                    Configurator from = new MapConfigurator(term.getValue());
                     Configurator to = null;
                     configurations.remove(key);
                     for (ConfigurationMonitor monitor : monitors) {
                         monitor.change(key, from, to);
                     }
                 } else if (!equal(before, after)) {
-                    Configurator from = new Configurator(before);
-                    Configurator to = new Configurator(after);
+                    Configurator from = new MapConfigurator(before);
+                    Configurator to = new MapConfigurator(after);
                     configurations.put(key, to);
                     for (ConfigurationMonitor monitor : monitors) {
                         monitor.change(key, from, to);
@@ -261,7 +262,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
                 HashMap<String, String> after = term.getValue();
                 if (before == null) {
                     Configurator from = null;
-                    Configurator to = new Configurator(after);
+                    Configurator to = new MapConfigurator(after);
                     configurations.put(key, to);
                     for (ConfigurationMonitor monitor : monitors) {
                         monitor.change(key, from, to);

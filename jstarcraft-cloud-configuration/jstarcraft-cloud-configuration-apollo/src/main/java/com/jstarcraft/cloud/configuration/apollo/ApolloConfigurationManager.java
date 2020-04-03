@@ -10,6 +10,7 @@ import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
 import com.jstarcraft.core.common.configuration.Configurator;
+import com.jstarcraft.core.common.configuration.MapConfigurator;
 
 /**
  * Apollo配置管理器
@@ -29,7 +30,7 @@ public class ApolloConfigurationManager implements ConfigurationManager {
             String value = apollo.getProperty(key, null);
             keyValues.put(key, value);
         }
-        Configurator configuration = new Configurator(keyValues);
+        Configurator configuration = new MapConfigurator(keyValues);
         return configuration;
     }
 
