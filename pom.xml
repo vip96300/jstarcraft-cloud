@@ -16,6 +16,7 @@
 
     <modules>
         <module>jstarcraft-cloud-configuration</module>
+        <module>jstarcraft-cloud-gate</module>
         <module>jstarcraft-cloud-registration</module>
     </modules>
 
