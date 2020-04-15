@@ -15,6 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>jstarcraft-cloud-api</module>
         <module>jstarcraft-cloud-configuration</module>
         <module>jstarcraft-cloud-gate</module>
         <module>jstarcraft-cloud-registration</module>
