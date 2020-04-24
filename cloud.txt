@@ -1,38 +1,51 @@
-΢����ܹ�ģʽϵ������:
+微服务架构模式系列文章:
 https://blog.csdn.net/xn_sung/category_6385510.html
  
-΢����ܹ��еķ�����:
+微服务架构中的服务发现:
 http://blog.leanote.com/post/proyang/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0
 
-�������Spark�ֲ�ʽִ��ԭ��:
+深度剖析Spark分布式执行原理:
 https://zhuanlan.zhihu.com/p/25772054
 
-Nepxion������ҵ��΢����Ŀ�Դ��ܺ����:
+Nepxion面向企业级微服务的开源框架和组件:
 https://github.com/Nepxion
 
-����API���ػ��ܣ�NGINX vs. ZUUL vs. Spring Cloud Gateway vs. Linkerd vs. Kong:
+常见API网关汇总：NGINX vs. ZUUL vs. Spring Cloud Gateway vs. Linkerd vs. Kong:
 https://blog.csdn.net/qq_29281307/article/details/90235261
 
 Nepxion Discovery is an enhancement for Spring Cloud Discovery with gray release, router, weight, limitation, circuit breaker, degrade, isolation, monitor, tracing:
 https://github.com/Nepxion/Discovery
 
-ʷ����ȫ�����ϵ�������¼�Ŀ�Դ��:
+***** 认证 *****
+
+史上最全的整合第三方登录的开源库:
 https://github.com/justauth/JustAuth
 
-IJPay ��֧�����ֿɼ�����װ��΢��֧����QQ֧����֧����֧��������֧��������֧�����õ�֧����ʽ�Լ����ֳ��õĽӿ�:
+***** 支付 *****
+
+IJPay 让支付触手可及，封装了微信支付、QQ支付、支付宝支付、京东支付、银联支付常用的支付方式以及各种常用的接口:
 https://github.com/Javen205/IJPay
 
-��Դ���� (Multi-source Translation, MTrans)���ṩ�˼����������� ���߷��� �� TTS ������һ��������������:
+***** 翻译 *****
+
+多源翻译 (Multi-source Translation, MTrans)，提供了集多种主流的 在线翻译 及 TTS 功能于一身的轻量级服务:
 https://github.com/hujingshuang/MTrans
 
-���ɰ���Google���룬�ٶȷ��룬�е����룬��Ӧ���룬�ѹ�����:
+集成包括Google翻译，百度翻译，有道翻译，必应翻译，搜狗翻译:
 https://github.com/jtsinghua/multitranslation
 
-ȫ�ƣ�minsx-common-cloud-storge �����ƴ洢����Ҫ����ͳһ�����ơ��ٶ��ơ���Ѷ�ơ���ţ�Ƶ��ƴ洢�����ش洢���ṩһ�׼�ͨ�õı�׼:
+***** 存储 *****
+
+全称：minsx-common-cloud-storge 公共云存储，主要用于统一阿里云、百度云、腾讯云、七牛云等云存储及本地存储，提供一套简单通用的标准:
 https://github.com/MinsxCloud/minsx-ccs
 
-��ţ�ơ������ơ������ƶ���洢OSS����Ѷ�ƶ���洢����COS - Java�ͻ���:
+七牛云、又拍云、阿里云对象存储OSS、腾讯云对象存储服务COS - Java客户端:
 https://github.com/wucao/java-cloud-storage-service
 
-�ٶ�BOS������OSS����ѶCOS������OSS����ΪOBS�������ơ���ţ�Ƶ�����Ǩ�ƹ���:
+百度BOS、阿里OSS、腾讯COS、京东OSS、华为OBS、又拍云、七牛云的数据迁移工具:
 https://github.com/chocotan/osm
+
+***** 通知 *****
+
+专注批量推送的小而美的工具，目前支持：模板消息-公众号、模板消息-小程序、微信客服消息、微信企业号/企业微信消息、阿里云短信、阿里大于模板短信 、腾讯云短信、云片网短信、E-Mail、HTTP请求、钉钉、华为云短信、百度云短信、又拍云短信、七牛云短信:
+https://github.com/rememberber/WePush
