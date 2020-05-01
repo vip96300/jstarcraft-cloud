@@ -16,6 +16,9 @@ https://blog.csdn.net/qq_29281307/article/details/90235261
 Nepxion Discovery is an enhancement for Spring Cloud Discovery with gray release, router, weight, limitation, circuit breaker, degrade, isolation, monitor, tracing:
 https://github.com/Nepxion/Discovery
 
+iBase4J:
+https://github.com/iBase4J/iBase4J
+
 ***** 认证 *****
 
 史上最全的整合第三方登录的开源库:
