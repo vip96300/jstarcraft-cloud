@@ -1,6 +1,9 @@
 深入理解SpringCloud之分布式配置:
 https://www.cnblogs.com/niechen/p/9068479.html
 
+使用Redis实现Spring Cloud配置中心:
+https://zhuanlan.zhihu.com/p/60545030
+
 SpringCloud-Config 配置中心原理（以 ZK 作为配置中心）
 https://blog.csdn.net/sinat_25518349/article/details/86323476
 
