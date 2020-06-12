@@ -9,6 +9,10 @@ import com.netflix.loadbalancer.Server;
 /**
  * 实例服务
  * 
+ * <pre>
+ * 用于将ServiceInstance适配到Ribbon
+ * </pre>
+ * 
  * @author Birdy
  *
  */

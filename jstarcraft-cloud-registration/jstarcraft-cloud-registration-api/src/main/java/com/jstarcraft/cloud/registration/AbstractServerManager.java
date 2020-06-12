@@ -49,6 +49,7 @@ public abstract class AbstractServerManager<T extends Server> implements ServerM
     public List<T> getInitialListOfServers() {
         List<T> servers = serverList.getInitialListOfServers();
         for (T server : servers) {
+            // TODO 获取指定服务元数据,用于服务筛选
             Map<String, String> metadata = getMatadata(server);
         }
         return servers;
@@ -58,6 +59,7 @@ public abstract class AbstractServerManager<T extends Server> implements ServerM
     public List<T> getUpdatedListOfServers() {
         List<T> servers = serverList.getUpdatedListOfServers();
         for (T server : servers) {
+            // TODO 获取指定服务元数据,用于服务筛选
             Map<String, String> metadata = getMatadata(server);
         }
         return servers;
