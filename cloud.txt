@@ -48,6 +48,9 @@ https://github.com/wucao/java-cloud-storage-service
 百度BOS、阿里OSS、腾讯COS、京东OSS、华为OBS、又拍云、七牛云的数据迁移工具:
 https://github.com/chocotan/osm
 
+文件服务(七牛、阿里云OSS、fastDFS):
+https://gitee.com/vakinge/jeesuite-libs
+
 ***** 通知 *****
 
 专注批量推送的小而美的工具，目前支持：模板消息-公众号、模板消息-小程序、微信客服消息、微信企业号/企业微信消息、阿里云短信、阿里大于模板短信 、腾讯云短信、云片网短信、E-Mail、HTTP请求、钉钉、华为云短信、百度云短信、又拍云短信、七牛云短信:
