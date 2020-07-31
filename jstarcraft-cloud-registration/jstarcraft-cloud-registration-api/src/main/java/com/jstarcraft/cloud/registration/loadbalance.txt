@@ -1,2 +1,5 @@
+Feign client 负载均衡:
+https://my.oschina.net/wecanweup/blog/3238261
+
 深入理解Ribbon之源码解析:
 https://blog.csdn.net/forezp/article/details/74820899
