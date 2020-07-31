@@ -1,2 +1,5 @@
 Windows下搭建Nacos及Seata:
 https://www.cnblogs.com/isunsine/p/11951247.html
+
+Nacos配置管理:
+https://blog.csdn.net/u010634066/category_9300707.html
