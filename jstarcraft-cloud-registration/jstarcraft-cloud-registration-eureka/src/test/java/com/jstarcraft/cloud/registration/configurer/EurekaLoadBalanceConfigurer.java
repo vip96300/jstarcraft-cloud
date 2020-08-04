@@ -18,6 +18,7 @@ import com.netflix.niws.loadbalancer.DiscoveryEnabledServer;
 
 @Configuration
 @AutoConfigureAfter(EurekaRibbonClientConfiguration.class)
+// 此类是为了演示如何覆盖Spring Cloud的自动装配
 public class EurekaLoadBalanceConfigurer {
 
     @Value("${ribbon.eureka.approximateZoneFromHostname:false}")
