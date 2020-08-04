@@ -6,3 +6,6 @@ https://blog.csdn.net/forezp/article/details/74820899
 
 Spring Cloud Ribbon 客户端配置详解:
 https://www.cnblogs.com/li3807/p/7469024.html
+
+Ribbon如何自定义客户端配置和全局配置:
+https://blog.csdn.net/Trust_FreeDom/article/details/103094726
