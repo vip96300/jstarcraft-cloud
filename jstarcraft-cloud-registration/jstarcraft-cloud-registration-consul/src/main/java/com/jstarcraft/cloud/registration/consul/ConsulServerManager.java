@@ -16,7 +16,7 @@ import com.netflix.loadbalancer.ServerList;
  */
 public class ConsulServerManager extends AbstractServerManager<ConsulServer> {
 
-    protected ConsulServerManager(IClientConfig clientConfig, ServerList<ConsulServer> serverList) {
+    public ConsulServerManager(IClientConfig clientConfig, ServerList<ConsulServer> serverList) {
         super(clientConfig, serverList);
     }
 
