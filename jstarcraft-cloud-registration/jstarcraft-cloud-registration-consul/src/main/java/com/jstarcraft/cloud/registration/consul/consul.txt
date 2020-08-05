@@ -1,2 +1,5 @@
 Windows下安装Consul:
 https://blog.csdn.net/qq_769932247/article/details/87270502
+
+服务注册发现、配置中心集一体的 Spring Cloud Consul:
+https://www.cnblogs.com/fengzheng/p/11421110.html
