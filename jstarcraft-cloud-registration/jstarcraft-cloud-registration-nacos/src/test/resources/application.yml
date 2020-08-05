@@ -4,6 +4,7 @@ server:
 spring:
   application:
     name: demo
+
   cloud:
     nacos:
       discovery:
