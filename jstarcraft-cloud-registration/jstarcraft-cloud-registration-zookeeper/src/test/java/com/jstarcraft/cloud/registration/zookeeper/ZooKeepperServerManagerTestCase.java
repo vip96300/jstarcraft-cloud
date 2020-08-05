@@ -1,4 +1,4 @@
-package com.jstarcraft.cloud.registration.nacos;
+package com.jstarcraft.cloud.registration.zookeeper;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,21 +8,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.zookeeper.serviceregistry.ZookeeperRegistration;
+import org.springframework.cloud.zookeeper.serviceregistry.ZookeeperServiceRegistry;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
-import com.alibaba.cloud.nacos.registry.NacosRegistration;
-import com.alibaba.cloud.nacos.registry.NacosServiceRegistry;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class NacosServerManagerTestCase {
+public class ZooKeepperServerManagerTestCase {
 
     @Autowired
-    private NacosServiceRegistry registry;
+    private ZookeeperServiceRegistry registry;
 
     @Autowired
-    private NacosRegistration registration;
+    private ZookeeperRegistration registration;
 
     @Autowired
     private LoadBalancerClient balancer;
@@ -34,9 +32,8 @@ public class NacosServerManagerTestCase {
     public void testChoose() throws Exception {
         String serviceId = "demo";
 
-        // 单元测试时,由于不会触发WebServerStartStopLifecycle,导致NacosDiscoveryProperties的port永远为-1
-        // 所以会导致instance format invalid: Your IP address is spelled incorrectly
-        registration.setPort(8080);
+        // 单元测试时,需要设置端口
+        registration.setPort(8888);
         // 服务注册
         registry.register(registration);
         // 服务发现
