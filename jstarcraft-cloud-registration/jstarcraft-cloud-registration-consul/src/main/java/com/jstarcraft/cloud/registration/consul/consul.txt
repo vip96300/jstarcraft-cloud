@@ -1,0 +1,2 @@
+Windows下安装Consul:
+https://blog.csdn.net/qq_769932247/article/details/87270502

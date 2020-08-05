@@ -1,3 +1,6 @@
+Windows下安装Nacos:
+https://blog.csdn.net/q15102780705/article/details/102571353
+
 Windows下搭建Nacos及Seata:
 https://www.cnblogs.com/isunsine/p/11951247.html
 
