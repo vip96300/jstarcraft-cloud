@@ -16,7 +16,7 @@
 
 使得研发人员能够在各种实现层(配置中心/注册中心/任务调度/网关/云服务)之间无缝切换.
 
-涵盖了配置管理,注册管理,灰度隔离,链路追踪,任务调度,网关和云服务7个方面
+涵盖了配置管理,注册管理,灰度隔离,链路追踪,任务调度,网关和云服务7个方面.
 
 |作者|洪钊桦|
 |---|---
@@ -47,12 +47,14 @@ JStarCraft Cloud框架各个模块之间的关系:
 * 配置管理(cloud-configuration)
     * Apollo
     * Config
+    * Consul
     * Nacos
     * Redis
     * ZooKeeper
 * 注册管理(cloud-registration)
     * Consul
     * Eureka
+    * Kubernetes
     * Nacos
     * Redis
     * ZooKeeper
