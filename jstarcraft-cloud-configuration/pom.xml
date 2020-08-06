@@ -15,6 +15,7 @@
         <module>jstarcraft-cloud-configuration-api</module>
         <module>jstarcraft-cloud-configuration-apollo</module>
         <module>jstarcraft-cloud-configuration-config</module>
+        <module>jstarcraft-cloud-configuration-consul</module>
         <module>jstarcraft-cloud-configuration-nacos</module>
         <module>jstarcraft-cloud-configuration-redis</module>
         <module>jstarcraft-cloud-configuration-zookeeper</module>

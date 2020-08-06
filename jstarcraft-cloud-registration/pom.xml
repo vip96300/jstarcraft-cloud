@@ -15,6 +15,7 @@
         <module>jstarcraft-cloud-registration-api</module>
         <module>jstarcraft-cloud-registration-consul</module>
         <module>jstarcraft-cloud-registration-eureka</module>
+        <module>jstarcraft-cloud-registration-kubernetes</module>
         <module>jstarcraft-cloud-registration-nacos</module>
         <module>jstarcraft-cloud-registration-redis</module>
         <module>jstarcraft-cloud-registration-zookeeper</module>
