@@ -7,13 +7,12 @@ import org.springframework.cloud.zookeeper.discovery.ZookeeperRibbonClientConfig
 import org.springframework.cloud.zookeeper.discovery.ZookeeperServerList;
 import org.springframework.cloud.zookeeper.discovery.dependency.ZookeeperDependencies;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import com.jstarcraft.cloud.registration.zookeeper.ZooKeeperServerManager;
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.ServerList;
 
-@Configuration
+// 注释@Configuration,不能被@ComponentScan自动扫描,但能被@RibbonClients或者@RibbonClient手动扫描
 @AutoConfigureAfter(ZookeeperRibbonClientConfiguration.class)
 // 此类是为了演示如何覆盖Spring Cloud的自动装配
 public class ZooKeeperLoadBalanceConfigurer {
@@ -25,7 +24,7 @@ public class ZooKeeperLoadBalanceConfigurer {
         ZooKeeperServerManager manager = new ZooKeeperServerManager(config, serverList);
         return manager;
     }
-    
+
     @Bean
     public ZookeeperDependencies zookeeperDependencies() {
         return new ZookeeperDependencies();

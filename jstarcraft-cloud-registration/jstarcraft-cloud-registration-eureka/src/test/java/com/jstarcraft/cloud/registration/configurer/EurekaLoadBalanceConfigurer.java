@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.cloud.netflix.ribbon.eureka.DomainExtractingServerList;
 import org.springframework.cloud.netflix.ribbon.eureka.EurekaRibbonClientConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import com.jstarcraft.cloud.registration.eureka.EurekaServerManager;
 import com.netflix.client.config.IClientConfig;
@@ -16,7 +15,7 @@ import com.netflix.loadbalancer.ServerList;
 import com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList;
 import com.netflix.niws.loadbalancer.DiscoveryEnabledServer;
 
-@Configuration
+// 注释@Configuration,不能被@ComponentScan自动扫描,但能被@RibbonClients或者@RibbonClient手动扫描
 @AutoConfigureAfter(EurekaRibbonClientConfiguration.class)
 // 此类是为了演示如何覆盖Spring Cloud的自动装配
 public class EurekaLoadBalanceConfigurer {
