@@ -1,6 +1,9 @@
 Feign client 负载均衡:
 https://my.oschina.net/wecanweup/blog/3238261
 
+Ribbon实现客户端负载均衡:
+https://blog.csdn.net/lzxlfly/article/details/87895630
+
 Ribbon源码必备知识:
 https://zhuanlan.zhihu.com/p/141653137
 
