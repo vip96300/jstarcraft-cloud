@@ -4,3 +4,6 @@ https://blog.csdn.net/skyesx/article/details/82834439
 Seata 是一款开源的分布式事务解决方案，致力于在微服务架构下提供高性能和简单易用的分布式事务服务:
 https://seata.io/zh-cn/
 https://github.com/seata
+
+终于有人把“TCC分布式事务”实现原理讲明白了！:
+https://www.cnblogs.com/jajian/p/10014145.html
