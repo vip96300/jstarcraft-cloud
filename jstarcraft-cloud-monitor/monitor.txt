@@ -1,3 +1,9 @@
+OpenTracing文档中文版:
+https://wu-sheng.gitbooks.io/opentracing-io/content/
+
+OpenTracing语义规范:
+https://segmentfault.com/a/1190000008895129
+
 APM 原理与框架选型:
 https://www.cnblogs.com/xiaoqi/p/apm.html
 
