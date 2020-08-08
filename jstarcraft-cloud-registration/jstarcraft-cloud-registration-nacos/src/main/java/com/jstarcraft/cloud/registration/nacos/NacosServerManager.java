@@ -20,7 +20,7 @@ public class NacosServerManager extends AbstractServerManager<NacosServer> {
     }
 
     @Override
-    protected Map<String, String> getMatadata(NacosServer server) {
+    protected Map<String, String> getMetadata(NacosServer server) {
         return server.getMetadata();
     }
 

@@ -21,7 +21,7 @@ public class ConsulServerManager extends AbstractServerManager<ConsulServer> {
     }
 
     @Override
-    protected Map<String, String> getMatadata(ConsulServer server) {
+    protected Map<String, String> getMetadata(ConsulServer server) {
         return server.getMetadata();
     }
 

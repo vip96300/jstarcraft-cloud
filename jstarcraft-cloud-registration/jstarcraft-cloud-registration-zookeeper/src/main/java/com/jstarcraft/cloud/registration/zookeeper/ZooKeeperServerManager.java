@@ -21,7 +21,7 @@ public class ZooKeeperServerManager extends AbstractServerManager<ZookeeperServe
     }
 
     @Override
-    protected Map<String, String> getMatadata(ZookeeperServer server) {
+    protected Map<String, String> getMetadata(ZookeeperServer server) {
         return server.getInstance().getPayload().getMetadata();
     }
 

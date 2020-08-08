@@ -26,8 +26,10 @@ public class DiscoveryManager implements DiscoveryClient {
 
     private DiscoveryClient springDiscovery;
 
+    /** 实例筛选器 */
     private Predicate<ServiceInstance> instancePredicate;
 
+    /** 服务筛选器 */
     private Predicate<String> servicePredicate;
 
     public DiscoveryManager(DiscoveryClient springDiscovery, Predicate<ServiceInstance> instancePredicate, Predicate<String> servicePredicate) {

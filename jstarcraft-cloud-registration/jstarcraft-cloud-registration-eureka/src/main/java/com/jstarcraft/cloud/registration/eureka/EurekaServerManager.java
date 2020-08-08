@@ -20,7 +20,7 @@ public class EurekaServerManager extends AbstractServerManager<DiscoveryEnabledS
     }
 
     @Override
-    protected Map<String, String> getMatadata(DiscoveryEnabledServer server) {
+    protected Map<String, String> getMetadata(DiscoveryEnabledServer server) {
         return server.getInstanceInfo().getMetadata();
     }
 

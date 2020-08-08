@@ -1,7 +1,12 @@
 package com.jstarcraft.cloud.registration;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
+
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerClient.RibbonServer;
 
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.Server;
@@ -27,6 +32,9 @@ public abstract class AbstractServerManager<T extends Server> implements ServerM
     /** 服务集合 */
     protected ServerList<T> serverList;
 
+    /** 实例筛选器 */
+    protected Predicate<ServiceInstance> instancePredicate;
+
     protected AbstractServerManager(IClientConfig clientConfig, ServerList<T> serverList) {
         this.serviceId = clientConfig.getClientName();
         this.serverList = serverList;
@@ -43,14 +51,20 @@ public abstract class AbstractServerManager<T extends Server> implements ServerM
      * @param server
      * @return
      */
-    protected abstract Map<String, String> getMatadata(T server);
+    protected abstract Map<String, String> getMetadata(T server);
 
     @Override
     public List<T> getInitialListOfServers() {
         List<T> servers = serverList.getInitialListOfServers();
-        for (T server : servers) {
+        Iterator<T> iterator = servers.iterator();
+        while (iterator.hasNext()) {
+            T server = iterator.next();
             // TODO 获取指定服务元数据,用于服务筛选
-            Map<String, String> metadata = getMatadata(server);
+            Map<String, String> metadata = getMetadata(server);
+            RibbonServer instance = new RibbonServer(serviceId, server, false, metadata);
+            if (!instancePredicate.test(instance)) {
+                iterator.remove();
+            }
         }
         return servers;
     }
@@ -58,9 +72,15 @@ public abstract class AbstractServerManager<T extends Server> implements ServerM
     @Override
     public List<T> getUpdatedListOfServers() {
         List<T> servers = serverList.getUpdatedListOfServers();
-        for (T server : servers) {
+        Iterator<T> iterator = servers.iterator();
+        while (iterator.hasNext()) {
+            T server = iterator.next();
             // TODO 获取指定服务元数据,用于服务筛选
-            Map<String, String> metadata = getMatadata(server);
+            Map<String, String> metadata = getMetadata(server);
+            RibbonServer instance = new RibbonServer(serviceId, server, false, metadata);
+            if (!instancePredicate.test(instance)) {
+                iterator.remove();
+            }
         }
         return servers;
     }
