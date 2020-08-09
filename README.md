@@ -14,9 +14,9 @@
 
 目标是提供一个通用的中间件抽象层,作为微服务项目的基础.
 
-使得研发人员能够在各种实现层(配置中心/注册中心/任务调度/网关/云服务)之间无缝切换.
+使得研发人员能够在各种中间件实现层之间无缝切换.
 
-涵盖了配置管理,注册管理,灰度隔离,链路追踪,任务调度,网关和云服务7个方面.
+涵盖了网关,治理,链路和配置4个方面.
 
 |作者|洪钊桦|
 |---|---
@@ -44,24 +44,27 @@ JStarCraft Cloud框架各个模块之间的关系:
 
 ## JStarCraft Cloud教程
 
-* 配置管理(cloud-configuration)
-    * Apollo
-    * Config
-    * Consul
-    * Nacos
-    * Redis
-    * ZooKeeper
-* 注册管理(cloud-registration)
+* 网关中间件(cloud-gate)
+    * Gateway
+    * Zuul
+* 治理中间件(cloud-governance)
     * Consul
     * Eureka
     * Kubernetes
     * Nacos
     * Redis
     * ZooKeeper
-
-* 节流(throttle)
-* 路由(route)
-* 统计(statistics)
-* 追踪(trace)
+* 链路中间件(cloud-link)
+    * Jaeger
+    * Pinpoint
+    * SkyWalking
+    * Zipkin
+* 配置中间件(cloud-profile)
+    * Apollo
+    * Config
+    * Consul
+    * Nacos
+    * Redis
+    * ZooKeeper
 
 ****
