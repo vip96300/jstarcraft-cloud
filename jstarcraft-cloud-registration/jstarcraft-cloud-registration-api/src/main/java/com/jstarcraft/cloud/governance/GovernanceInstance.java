@@ -1,6 +1,5 @@
 package com.jstarcraft.cloud.governance;
 
-import java.net.URI;
 import java.util.Map;
 
 /**
@@ -26,13 +25,6 @@ public interface GovernanceInstance {
     String getName();
 
     /**
-     * 获取实例协议
-     * 
-     * @return
-     */
-    String getScheme();
-
-    /**
      * 获取实例域名
      * 
      * @return
@@ -45,13 +37,6 @@ public interface GovernanceInstance {
      * @return
      */
     int getPort();
-
-    /**
-     * 获取实例URI
-     * 
-     * @return
-     */
-    URI getUri();
 
     /**
      * 获取实例元信息
