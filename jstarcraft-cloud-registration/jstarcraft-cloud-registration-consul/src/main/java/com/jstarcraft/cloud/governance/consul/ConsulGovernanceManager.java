@@ -79,9 +79,11 @@ public class ConsulGovernanceManager implements GovernanceManager {
         List<HealthService> services = response.getValue();
         List<GovernanceInstance> instances = new ArrayList<>(services.size());
         for (HealthService service : services) {
+            String id = service.getService().getId();
             String host = getHost(service);
+            int port = service.getService().getPort();
             Map<String, String> metadata = service.getService().getMeta();
-            GovernanceInstance instance = new DefaultGovernanceInstance(service.getService().getId(), category, host, service.getService().getPort(), metadata);
+            GovernanceInstance instance = new DefaultGovernanceInstance(id, category, host, port, metadata);
             instances.add(instance);
         }
         return instances;
