@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.jstarcraft.cloud.governance.GovernanceInstance;
 import com.jstarcraft.cloud.governance.GovernanceManager;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
 
 /**
  * Consul治理管理器
@@ -12,6 +14,8 @@ import com.jstarcraft.cloud.governance.GovernanceManager;
  *
  */
 public class EurekaGovernanceManager implements GovernanceManager {
+
+    private EurekaClient eureka;
 
     @Override
     public void registerInstance(GovernanceInstance instance) {
@@ -26,8 +30,14 @@ public class EurekaGovernanceManager implements GovernanceManager {
     }
 
     @Override
-    public List<GovernanceInstance> discoverInstances(String name) {
+    public List<String> discoverCategories() {
         // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<GovernanceInstance> discoverInstances(String category) {
+        InstanceInfo serverInfo = eureka.getNextServerFromEureka(category, false);
         return null;
     }
 

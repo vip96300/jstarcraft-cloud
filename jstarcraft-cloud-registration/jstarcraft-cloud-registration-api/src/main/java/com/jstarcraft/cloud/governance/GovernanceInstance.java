@@ -18,11 +18,11 @@ public interface GovernanceInstance {
     String getId();
 
     /**
-     * 获取实例名称
+     * 获取实例类别
      * 
      * @return
      */
-    String getName();
+    String getCategory();
 
     /**
      * 获取实例域名

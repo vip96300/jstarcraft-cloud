@@ -13,6 +13,7 @@ import com.ecwid.consul.v1.ConsulClient;
 import com.ecwid.consul.v1.QueryParams;
 import com.ecwid.consul.v1.Response;
 import com.ecwid.consul.v1.agent.model.NewService;
+import com.ecwid.consul.v1.catalog.CatalogServicesRequest;
 import com.ecwid.consul.v1.health.HealthServicesRequest;
 import com.ecwid.consul.v1.health.model.HealthService;
 import com.jstarcraft.cloud.governance.DefaultGovernanceInstance;
@@ -39,7 +40,7 @@ public class ConsulGovernanceManager implements GovernanceManager {
     public void registerInstance(GovernanceInstance instance) {
         NewService service = new NewService();
         service.setId(instance.getId());
-        service.setName(instance.getName());
+        service.setName(instance.getCategory());
         service.setAddress(instance.getHost());
         service.setPort(instance.getPort());
         service.setMeta(instance.getMetadata());
@@ -63,17 +64,24 @@ public class ConsulGovernanceManager implements GovernanceManager {
     }
 
     @Override
-    public List<GovernanceInstance> discoverInstances(String name) {
+    public List<String> discoverCategories() {
+        CatalogServicesRequest request = CatalogServicesRequest.newBuilder().setQueryParams(QueryParams.DEFAULT).build();
+        Response<Map<String, List<String>>> response = this.consul.getCatalogServices(request);
+        return new ArrayList<>(response.getValue().keySet());
+    }
+
+    @Override
+    public List<GovernanceInstance> discoverInstances(String category) {
         ConsistencyMode mode = ConsistencyMode.DEFAULT;
         QueryParams query = new QueryParams(mode);
         HealthServicesRequest request = HealthServicesRequest.newBuilder().setQueryParams(query).build();
-        Response<List<HealthService>> response = this.consul.getHealthServices(name, request);
+        Response<List<HealthService>> response = this.consul.getHealthServices(category, request);
         List<HealthService> services = response.getValue();
         List<GovernanceInstance> instances = new ArrayList<>(services.size());
         for (HealthService service : services) {
             String host = getHost(service);
             Map<String, String> metadata = service.getService().getMeta();
-            GovernanceInstance instance = new DefaultGovernanceInstance(service.getService().getId(), name, host, service.getService().getPort(), metadata);
+            GovernanceInstance instance = new DefaultGovernanceInstance(service.getService().getId(), category, host, service.getService().getPort(), metadata);
             instances.add(instance);
         }
         return instances;

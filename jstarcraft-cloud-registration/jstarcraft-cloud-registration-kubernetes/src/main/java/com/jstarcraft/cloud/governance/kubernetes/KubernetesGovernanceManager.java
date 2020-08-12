@@ -26,7 +26,13 @@ public class KubernetesGovernanceManager implements GovernanceManager {
     }
 
     @Override
-    public List<GovernanceInstance> discoverInstances(String name) {
+    public List<String> discoverCategories() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<GovernanceInstance> discoverInstances(String category) {
         // TODO Auto-generated method stub
         return null;
     }

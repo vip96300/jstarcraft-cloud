@@ -14,8 +14,8 @@ public class DefaultGovernanceInstance implements GovernanceInstance {
     /** 实例标识 */
     private String id;
 
-    /** 实例名称 */
-    private String name;
+    /** 实例类别 */
+    private String category;
 
     /** 实例域名 */
     private String host;
@@ -26,9 +26,9 @@ public class DefaultGovernanceInstance implements GovernanceInstance {
     /** 实例元信息 */
     private Map<String, String> metadata;
 
-    public DefaultGovernanceInstance(String id, String name, String host, int port, Map<String, String> metadata) {
+    public DefaultGovernanceInstance(String id, String category, String host, int port, Map<String, String> metadata) {
         this.id = id;
-        this.name = name;
+        this.category = category;
         this.host = host;
         this.port = port;
         this.metadata = metadata;
@@ -40,8 +40,8 @@ public class DefaultGovernanceInstance implements GovernanceInstance {
     }
 
     @Override
-    public String getName() {
-        return name;
+    public String getCategory() {
+        return category;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class DefaultGovernanceInstance implements GovernanceInstance {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, host, port);
+        return Objects.hash(id, category, host, port);
     }
 
     @Override
@@ -73,12 +73,12 @@ public class DefaultGovernanceInstance implements GovernanceInstance {
         if (getClass() != object.getClass())
             return false;
         DefaultGovernanceInstance that = (DefaultGovernanceInstance) object;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(host, that.host) && port == that.port;
+        return Objects.equals(id, that.id) && Objects.equals(category, that.category) && Objects.equals(host, that.host) && port == that.port;
     }
 
     @Override
     public String toString() {
-        return "DefaultGovernanceInstance [id=" + id + ", name=" + name + ", host=" + host + ", port=" + port + ", metadata=" + metadata + "]";
+        return "DefaultGovernanceInstance [id=" + id + ", name=" + category + ", host=" + host + ", port=" + port + ", metadata=" + metadata + "]";
     }
 
 }

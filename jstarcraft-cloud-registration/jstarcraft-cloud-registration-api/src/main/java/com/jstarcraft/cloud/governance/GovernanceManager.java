@@ -25,11 +25,18 @@ public interface GovernanceManager {
     void deregisterInstance(GovernanceInstance instance);
 
     /**
-     * 发现实例
+     * 发现类别
      * 
-     * @param name
      * @return
      */
-    List<GovernanceInstance> discoverInstances(String name);
+    List<String> discoverCategories();
+
+    /**
+     * 发现实例
+     * 
+     * @param category
+     * @return
+     */
+    List<GovernanceInstance> discoverInstances(String category);
 
 }
