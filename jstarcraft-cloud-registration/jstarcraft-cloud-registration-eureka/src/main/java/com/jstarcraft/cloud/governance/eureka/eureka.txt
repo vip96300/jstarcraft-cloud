@@ -1,3 +1,7 @@
+享学Eureka:
+https://blog.csdn.net/f641385712/category_9831549.html
+https://cloud.tencent.com/developer/user/6158873
+
 Eureka 源码解析:
 http://www.iocoder.cn/Eureka
 
