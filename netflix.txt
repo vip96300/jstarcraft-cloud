@@ -1,6 +1,9 @@
 Netflix OSS套件一站式学习驿站:
 https://fangshixiang.blog.csdn.net/article/details/105610114
 
+享学Archaius:
+https://blog.csdn.net/f641385712/category_9911741.html
+
 享学Eureka:
 https://blog.csdn.net/f641385712/category_9831549.html
 
