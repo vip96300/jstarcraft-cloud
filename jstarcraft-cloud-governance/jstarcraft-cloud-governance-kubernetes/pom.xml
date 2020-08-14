@@ -4,23 +4,23 @@
 
     <parent>
         <groupId>com.jstarcraft</groupId>
-        <artifactId>jstarcraft-cloud-registration</artifactId>
+        <artifactId>jstarcraft-cloud-governance</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>jstarcraft-cloud-registration-zookeeper</artifactId>
+    <artifactId>jstarcraft-cloud-governance-kubernetes</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.jstarcraft</groupId>
-            <artifactId>jstarcraft-cloud-registration-api</artifactId>
+            <artifactId>jstarcraft-cloud-governance-api</artifactId>
             <version>1.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+            <artifactId>spring-cloud-kubernetes-discovery</artifactId>
         </dependency>
 
         <!-- 测试框架依赖 -->

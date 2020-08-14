@@ -4,17 +4,17 @@
 
     <parent>
         <groupId>com.jstarcraft</groupId>
-        <artifactId>jstarcraft-cloud-registration</artifactId>
+        <artifactId>jstarcraft-cloud-governance</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>jstarcraft-cloud-registration-consul</artifactId>
+    <artifactId>jstarcraft-cloud-governance-consul</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.jstarcraft</groupId>
-            <artifactId>jstarcraft-cloud-registration-api</artifactId>
+            <artifactId>jstarcraft-cloud-governance-api</artifactId>
             <version>1.0</version>
         </dependency>
 
