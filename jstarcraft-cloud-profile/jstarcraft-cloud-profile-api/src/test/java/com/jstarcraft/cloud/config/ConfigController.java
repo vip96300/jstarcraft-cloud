@@ -1,4 +1,4 @@
-package com.jstarcraft.cloud.configuration.config;
+package com.jstarcraft.cloud.config;
 
 import java.io.File;
 import java.io.IOException;
