@@ -1,4 +1,4 @@
-package com.jstarcraft.cloud.registration.eureka;
+package com.jstarcraft.cloud.eureka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.context.annotation.PropertySource;
 @EnableEurekaServer
 @PropertySource(value = { "classpath:application.yml" })
 @SpringBootApplication
-public class MockEureka {
+public class EurekaApplication {
 
     public static void main(String[] arguments) {
-        SpringApplication.run(MockEureka.class, arguments);
+        SpringApplication.run(EurekaApplication.class, arguments);
     }
 
 }
