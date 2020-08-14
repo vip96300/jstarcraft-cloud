@@ -4,26 +4,23 @@
 
     <parent>
         <groupId>com.jstarcraft</groupId>
-        <artifactId>jstarcraft-cloud-configuration</artifactId>
+        <artifactId>jstarcraft-cloud-profile</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>jstarcraft-cloud-configuration-api</artifactId>
+    <artifactId>jstarcraft-cloud-profile-consul</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- 核心框架依赖 -->
         <dependency>
             <groupId>com.jstarcraft</groupId>
-            <artifactId>jstarcraft-core-common</artifactId>
+            <artifactId>jstarcraft-cloud-profile-api</artifactId>
             <version>1.0</version>
         </dependency>
 
-        <!-- 测试框架依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-server</artifactId>
-            <scope>test</scope>
+            <artifactId>spring-cloud-starter-consul-config</artifactId>
         </dependency>
     </dependencies>
 </project>

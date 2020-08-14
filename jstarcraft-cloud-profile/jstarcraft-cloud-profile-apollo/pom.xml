@@ -4,17 +4,17 @@
 
     <parent>
         <groupId>com.jstarcraft</groupId>
-        <artifactId>jstarcraft-cloud-configuration</artifactId>
+        <artifactId>jstarcraft-cloud-profile</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>jstarcraft-cloud-configuration-apollo</artifactId>
+    <artifactId>jstarcraft-cloud-profile-apollo</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.jstarcraft</groupId>
-            <artifactId>jstarcraft-cloud-configuration-api</artifactId>
+            <artifactId>jstarcraft-cloud-profile-api</artifactId>
             <version>1.0</version>
         </dependency>
 

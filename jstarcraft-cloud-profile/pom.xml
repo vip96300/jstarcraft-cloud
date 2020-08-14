@@ -8,16 +8,16 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>jstarcraft-cloud-configuration</artifactId>
+    <artifactId>jstarcraft-cloud-profile</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>jstarcraft-cloud-configuration-api</module>
-        <module>jstarcraft-cloud-configuration-apollo</module>
-        <module>jstarcraft-cloud-configuration-config</module>
-        <module>jstarcraft-cloud-configuration-consul</module>
-        <module>jstarcraft-cloud-configuration-nacos</module>
-        <module>jstarcraft-cloud-configuration-redis</module>
-        <module>jstarcraft-cloud-configuration-zookeeper</module>
+        <module>jstarcraft-cloud-profile-api</module>
+        <module>jstarcraft-cloud-profile-apollo</module>
+        <module>jstarcraft-cloud-profile-config</module>
+        <module>jstarcraft-cloud-profile-consul</module>
+        <module>jstarcraft-cloud-profile-nacos</module>
+        <module>jstarcraft-cloud-profile-redis</module>
+        <module>jstarcraft-cloud-profile-zookeeper</module>
     </modules>
 </project>

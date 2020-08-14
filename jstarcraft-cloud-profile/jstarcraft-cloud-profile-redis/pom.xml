@@ -4,23 +4,24 @@
 
     <parent>
         <groupId>com.jstarcraft</groupId>
-        <artifactId>jstarcraft-cloud-configuration</artifactId>
+        <artifactId>jstarcraft-cloud-profile</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>jstarcraft-cloud-configuration-consul</artifactId>
+    <artifactId>jstarcraft-cloud-profile-redis</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.jstarcraft</groupId>
-            <artifactId>jstarcraft-cloud-configuration-api</artifactId>
+            <artifactId>jstarcraft-cloud-profile-api</artifactId>
             <version>1.0</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-consul-config</artifactId>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.10.7</version>
         </dependency>
     </dependencies>
 </project>
