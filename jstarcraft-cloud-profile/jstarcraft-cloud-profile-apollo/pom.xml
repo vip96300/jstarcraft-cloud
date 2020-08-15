@@ -23,5 +23,12 @@
             <artifactId>apollo-client</artifactId>
             <version>1.4.0</version>
         </dependency>
+
+        <!-- 测试框架依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>

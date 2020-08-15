@@ -4,6 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ecwid.consul.v1.ConsulClient;
+import com.ecwid.consul.v1.QueryParams;
+import com.ecwid.consul.v1.Response;
+import com.ecwid.consul.v1.kv.model.GetValue;
 import com.jstarcraft.cloud.profile.ProfileManager;
 import com.jstarcraft.cloud.profile.ProfileMonitor;
 import com.jstarcraft.core.common.configuration.Configurator;
@@ -22,7 +25,9 @@ public class ConsulProfileManager implements ProfileManager {
     
     @Override
     public Configurator getConfiguration(String name) {
-        // TODO Auto-generated method stub
+        Response<GetValue> response = consul.getKVValue(name, QueryParams.DEFAULT);
+        GetValue keyValue = response.getValue();
+        keyValue.getDecodedValue();
         return null;
     }
 

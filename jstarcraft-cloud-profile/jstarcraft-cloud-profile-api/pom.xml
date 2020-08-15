@@ -16,7 +16,6 @@
         <dependency>
             <groupId>com.jstarcraft</groupId>
             <artifactId>jstarcraft-core-common</artifactId>
-            <version>1.0</version>
         </dependency>
 
         <!-- 测试框架依赖 -->
