@@ -12,8 +12,8 @@ public class ConfigProfileManagerTestCase {
     public void test() {
         RestTemplate config = new RestTemplate();
         ConfigProfileManager manager = new ConfigProfileManager(config, "http://localhost:8888", "test", "master");
-        Configurator configurator = manager.getConfiguration("config");
-        Assert.assertTrue(configurator.getKeys().contains("mock.config"));
+        Configurator configurator = manager.getConfiguration("jstarcraft");
+        Assert.assertEquals("random", configurator.getString("race"));
     }
 
 }
