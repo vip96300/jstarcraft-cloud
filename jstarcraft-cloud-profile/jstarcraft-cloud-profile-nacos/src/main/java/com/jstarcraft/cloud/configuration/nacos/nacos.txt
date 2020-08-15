@@ -6,3 +6,6 @@ https://www.cnblogs.com/isunsine/p/11951247.html
 
 Nacos配置管理:
 https://blog.csdn.net/u010634066/category_9300707.html
+
+Nacos配置中心 多环境、多维度、可共享 配置方案:
+https://www.jianshu.com/p/a245ee4ef89e
