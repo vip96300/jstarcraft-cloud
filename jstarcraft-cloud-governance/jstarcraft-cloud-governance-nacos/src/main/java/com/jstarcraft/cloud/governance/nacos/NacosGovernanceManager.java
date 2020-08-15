@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import com.jstarcraft.cloud.governance.DefaultGovernanceInstance;
@@ -18,6 +21,8 @@ import com.jstarcraft.cloud.governance.GovernanceManager;
  */
 // 注意:Nacos必须保证IP+端口唯一
 public class NacosGovernanceManager implements GovernanceManager {
+    
+    private static final Logger logger = LoggerFactory.getLogger(NacosGovernanceManager.class);
 
     private NamingService nacos;
 

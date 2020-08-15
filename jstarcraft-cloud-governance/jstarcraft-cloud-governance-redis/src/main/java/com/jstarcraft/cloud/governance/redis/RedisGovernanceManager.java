@@ -2,16 +2,21 @@ package com.jstarcraft.cloud.governance.redis;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jstarcraft.cloud.governance.GovernanceInstance;
 import com.jstarcraft.cloud.governance.GovernanceManager;
 
 /**
- * Consul治理管理器
+ * Redis治理管理器
  * 
  * @author Birdy
  *
  */
 public class RedisGovernanceManager implements GovernanceManager {
+    
+    private static final Logger logger = LoggerFactory.getLogger(RedisGovernanceManager.class);
 
     @Override
     public void registerInstance(GovernanceInstance instance) {

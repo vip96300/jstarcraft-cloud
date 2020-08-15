@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jstarcraft.cloud.governance.DefaultGovernanceInstance;
 import com.jstarcraft.cloud.governance.GovernanceInstance;
 import com.jstarcraft.cloud.governance.GovernanceManager;
@@ -16,13 +19,15 @@ import com.netflix.discovery.shared.Applications;
 import com.netflix.discovery.shared.transport.EurekaHttpClient;
 
 /**
- * Consul治理管理器
+ * Eureka治理管理器
  * 
  * @author Birdy
  *
  */
 // TODO 考虑如何保持租约
 public class EurekaGovernanceManager implements GovernanceManager {
+
+    private static final Logger logger = LoggerFactory.getLogger(EurekaGovernanceManager.class);
 
     private EurekaHttpClient eureka;
 

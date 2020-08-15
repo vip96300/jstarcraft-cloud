@@ -2,16 +2,21 @@ package com.jstarcraft.cloud.governance.zookeeper;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jstarcraft.cloud.governance.GovernanceInstance;
 import com.jstarcraft.cloud.governance.GovernanceManager;
 
 /**
- * Consul治理管理器
+ * ZooKeeper治理管理器
  * 
  * @author Birdy
  *
  */
 public class ZooKeeperGovernanceManager implements GovernanceManager {
+
+    private static final Logger logger = LoggerFactory.getLogger(ZooKeeperGovernanceManager.class);
 
     @Override
     public void registerInstance(GovernanceInstance instance) {
