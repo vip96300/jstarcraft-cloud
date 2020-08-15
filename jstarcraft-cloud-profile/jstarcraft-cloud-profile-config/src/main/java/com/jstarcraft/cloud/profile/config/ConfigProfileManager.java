@@ -21,7 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import com.jstarcraft.cloud.profile.ProfileManager;
 import com.jstarcraft.cloud.profile.ProfileMonitor;
 import com.jstarcraft.core.common.configuration.Configurator;
-import com.jstarcraft.core.common.configuration.PropertySourceConfigurator;
+import com.jstarcraft.core.common.configuration.SpringConfigurator;
 import com.jstarcraft.core.utility.StringUtility;
 
 /**
@@ -70,7 +70,7 @@ public class ConfigProfileManager implements ProfileManager {
         for (PropertySource property : environment.getPropertySources()) {
             properties.addPropertySource(new MapPropertySource(property.getName(), (Map<String, Object>) property.getSource()));
         }
-        PropertySourceConfigurator configurator = new PropertySourceConfigurator(properties);
+        SpringConfigurator configurator = new SpringConfigurator(properties);
         return configurator;
     }
 
