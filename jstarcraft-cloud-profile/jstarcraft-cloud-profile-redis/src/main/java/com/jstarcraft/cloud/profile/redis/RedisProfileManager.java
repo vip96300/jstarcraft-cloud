@@ -1,5 +1,8 @@
 package com.jstarcraft.cloud.profile.redis;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jstarcraft.cloud.profile.ProfileManager;
 import com.jstarcraft.cloud.profile.ProfileMonitor;
 import com.jstarcraft.core.common.configuration.Configurator;
@@ -11,6 +14,8 @@ import com.jstarcraft.core.common.configuration.Configurator;
  *
  */
 public class RedisProfileManager implements ProfileManager {
+    
+    private static final Logger logger = LoggerFactory.getLogger(RedisProfileManager.class);
 
     @Override
     public Configurator getConfiguration(String name) {
