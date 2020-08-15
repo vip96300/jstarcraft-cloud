@@ -36,7 +36,7 @@
 
 让相关领域的研发人员能够在各种实现层之间无缝切换.
 
-涵盖了配置中间件,治理中间件,链路中间件,网关中间件和云服务5个方面.
+涵盖了配置中间件,治理中间件,监控中间件,网关中间件和云服务5个方面.
 
 ****
 
@@ -48,7 +48,7 @@ JStarCraft Cloud框架各个模块之间的关系:
 | :----: | :----: | :----: |
 | cloud-gate | 提供各种网关中间件适配 | core-common |
 | cloud-governance | 提供各种治理中间件适配 | core-common |
-| cloud-link | 提供各种链路中间件适配 | core-common |
+| cloud-monitor | 提供各种监控中间件适配 | core-common |
 | cloud-profile | 提供各种配置中间件适配 | core-common |
 
 ****
@@ -65,7 +65,7 @@ JStarCraft Cloud框架各个模块之间的关系:
     * Nacos
     * Redis
     * ZooKeeper
-* 链路中间件(cloud-link)
+* 监控中间件(cloud-monitor)
     * Jaeger
     * Pinpoint
     * SkyWalking
