@@ -14,6 +14,7 @@
     <modules>
         <module>jstarcraft-cloud-profile-api</module>
         <module>jstarcraft-cloud-profile-apollo</module>
+        <module>jstarcraft-cloud-profile-archaius</module>
         <module>jstarcraft-cloud-profile-config</module>
         <module>jstarcraft-cloud-profile-consul</module>
         <module>jstarcraft-cloud-profile-nacos</module>
