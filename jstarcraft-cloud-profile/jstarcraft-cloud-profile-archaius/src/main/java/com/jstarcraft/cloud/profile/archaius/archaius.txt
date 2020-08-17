@@ -1,0 +1,2 @@
+使用Netflix Archaius进行配置管理:
+https://www.jianshu.com/p/f9d7500920a9
