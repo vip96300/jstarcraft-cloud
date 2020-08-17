@@ -10,6 +10,10 @@ import com.ecwid.consul.v1.kv.model.GetValue;
 import com.jstarcraft.cloud.profile.ProfileManager;
 import com.jstarcraft.cloud.profile.ProfileMonitor;
 import com.jstarcraft.core.common.configuration.Configurator;
+import com.jstarcraft.core.common.configuration.JsonConfigurator;
+import com.jstarcraft.core.common.configuration.PropertyConfigurator;
+import com.jstarcraft.core.common.configuration.XmlConfigurator;
+import com.jstarcraft.core.common.configuration.YamlConfigurator;
 
 /**
  * Consul配置管理器
@@ -22,13 +26,30 @@ public class ConsulProfileManager implements ProfileManager {
     private static final Logger logger = LoggerFactory.getLogger(ConsulProfileManager.class);
 
     private ConsulClient consul;
-    
+
+    private String format;
+
+    public ConsulProfileManager(ConsulClient consul, String format) {
+        this.consul = consul;
+        this.format = format;
+    }
+
     @Override
     public Configurator getConfiguration(String name) {
         Response<GetValue> response = consul.getKVValue(name, QueryParams.DEFAULT);
         GetValue keyValue = response.getValue();
-        keyValue.getDecodedValue();
-        return null;
+        String value = keyValue.getDecodedValue();
+        switch (format) {
+        case "json":
+            return new JsonConfigurator(value);
+        case "properties":
+            return new PropertyConfigurator(value);
+        case "xml":
+            return new XmlConfigurator(value);
+        case "yaml":
+            return new YamlConfigurator(value);
+        }
+        throw new IllegalArgumentException();
     }
 
     @Override
