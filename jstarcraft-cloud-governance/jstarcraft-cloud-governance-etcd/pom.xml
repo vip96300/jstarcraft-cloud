@@ -8,7 +8,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>jstarcraft-cloud-governance-consul</artifactId>
+    <artifactId>jstarcraft-cloud-governance-etcd</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
