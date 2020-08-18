@@ -14,6 +14,7 @@
     <modules>
         <module>jstarcraft-cloud-governance-api</module>
         <module>jstarcraft-cloud-governance-consul</module>
+        <module>jstarcraft-cloud-governance-etcd</module>
         <module>jstarcraft-cloud-governance-eureka</module>
         <module>jstarcraft-cloud-governance-kubernetes</module>
         <module>jstarcraft-cloud-governance-nacos</module>

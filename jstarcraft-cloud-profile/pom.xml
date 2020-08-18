@@ -17,6 +17,7 @@
         <module>jstarcraft-cloud-profile-archaius</module>
         <module>jstarcraft-cloud-profile-config</module>
         <module>jstarcraft-cloud-profile-consul</module>
+        <module>jstarcraft-cloud-profile-disconf</module>
         <module>jstarcraft-cloud-profile-etcd</module>
         <module>jstarcraft-cloud-profile-nacos</module>
         <module>jstarcraft-cloud-profile-redis</module>
