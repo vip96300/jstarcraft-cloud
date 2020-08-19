@@ -39,16 +39,16 @@ public class ZooKeeperProfileManager implements ProfileManager {
     public Configurator getConfiguration(String name) {
         try {
             byte[] data = zookeeper.getData().forPath(path + "/" + name);
-            String value = new String(data, StringUtility.CHARSET);
+            String content = new String(data, StringUtility.CHARSET);
             switch (format) {
             case "json":
-                return new JsonConfigurator(value);
+                return new JsonConfigurator(content);
             case "properties":
-                return new PropertyConfigurator(value);
+                return new PropertyConfigurator(content);
             case "xml":
-                return new XmlConfigurator(value);
+                return new XmlConfigurator(content);
             case "yaml":
-                return new YamlConfigurator(value);
+                return new YamlConfigurator(content);
             }
             throw new IllegalArgumentException();
         } catch (Exception exception) {

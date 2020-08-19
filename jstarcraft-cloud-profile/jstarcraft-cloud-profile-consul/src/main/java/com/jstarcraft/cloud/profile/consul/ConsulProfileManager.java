@@ -38,16 +38,16 @@ public class ConsulProfileManager implements ProfileManager {
     public Configurator getConfiguration(String name) {
         Response<GetValue> response = consul.getKVValue(name, QueryParams.DEFAULT);
         GetValue keyValue = response.getValue();
-        String value = keyValue.getDecodedValue();
+        String content = keyValue.getDecodedValue();
         switch (format) {
         case "json":
-            return new JsonConfigurator(value);
+            return new JsonConfigurator(content);
         case "properties":
-            return new PropertyConfigurator(value);
+            return new PropertyConfigurator(content);
         case "xml":
-            return new XmlConfigurator(value);
+            return new XmlConfigurator(content);
         case "yaml":
-            return new YamlConfigurator(value);
+            return new YamlConfigurator(content);
         }
         throw new IllegalArgumentException();
     }

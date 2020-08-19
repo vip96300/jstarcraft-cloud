@@ -35,16 +35,16 @@ public class NacosProfileManager implements ProfileManager {
     @Override
     public Configurator getConfiguration(String name) {
         try {
-            String value = nacos.getConfig(name, "group", 1000L);
+            String content = nacos.getConfig(name, "group", 1000L);
             switch (format) {
             case "json":
-                return new JsonConfigurator(value);
+                return new JsonConfigurator(content);
             case "properties":
-                return new PropertyConfigurator(value);
+                return new PropertyConfigurator(content);
             case "xml":
-                return new XmlConfigurator(value);
+                return new XmlConfigurator(content);
             case "yaml":
-                return new YamlConfigurator(value);
+                return new YamlConfigurator(content);
             }
             throw new IllegalArgumentException();
         } catch (NacosException exception) {
