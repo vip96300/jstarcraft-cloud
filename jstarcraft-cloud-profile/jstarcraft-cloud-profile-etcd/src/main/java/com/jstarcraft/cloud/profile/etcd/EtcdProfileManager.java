@@ -19,7 +19,7 @@ import io.etcd.jetcd.Client;
 import io.etcd.jetcd.KeyValue;
 
 /**
- * Nacos配置管理器
+ * etcd配置管理器
  * 
  * @author Birdy
  *
