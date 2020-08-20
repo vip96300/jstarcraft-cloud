@@ -60,6 +60,7 @@ JStarCraft Cloud框架各个模块之间的关系:
     * Zuul
 * 治理中间件(cloud-governance)
     * Consul
+    * etcd
     * Eureka
     * Kubernetes
     * Nacos
@@ -72,8 +73,10 @@ JStarCraft Cloud框架各个模块之间的关系:
     * Zipkin
 * 配置中间件(cloud-profile)
     * Apollo
+    * Archaius
     * Config
     * Consul
+    * etcd
     * Nacos
     * Redis
     * ZooKeeper
