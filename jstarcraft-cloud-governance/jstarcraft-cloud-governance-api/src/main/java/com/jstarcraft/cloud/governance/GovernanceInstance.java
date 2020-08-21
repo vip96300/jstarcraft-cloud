@@ -45,4 +45,7 @@ public interface GovernanceInstance {
      */
     Map<String, String> getMetadata();
 
+    // TODO 准备支持获取实例状态
+    // getState();
+
 }
