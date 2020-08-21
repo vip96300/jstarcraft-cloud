@@ -11,7 +11,6 @@ import org.apache.curator.x.discovery.ServiceDiscovery;
 import org.apache.curator.x.discovery.ServiceDiscoveryBuilder;
 import org.apache.curator.x.discovery.ServiceInstance;
 import org.apache.curator.x.discovery.ServiceInstanceBuilder;
-import org.apache.logging.log4j.CloseableThreadContext.Instance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

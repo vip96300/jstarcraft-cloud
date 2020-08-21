@@ -26,6 +26,9 @@ public class DefaultGovernanceInstance implements GovernanceInstance {
     /** 实例元信息 */
     private Map<String, String> metadata;
 
+    DefaultGovernanceInstance() {
+    }
+
     public DefaultGovernanceInstance(String id, String category, String host, int port, Map<String, String> metadata) {
         this.id = id;
         this.category = category;
