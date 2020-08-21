@@ -10,9 +10,6 @@ https://blog.csdn.net/CharlesYooSky/article/details/103021510
 微服务架构模式系列文章:
 https://blog.csdn.net/xn_sung/category_6385510.html
  
-微服务架构中的服务发现:
-http://blog.leanote.com/post/proyang/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0
-
 深度剖析Spark分布式执行原理:
 https://zhuanlan.zhihu.com/p/25772054
 
