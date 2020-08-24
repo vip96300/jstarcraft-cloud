@@ -3,8 +3,10 @@ package com.jstarcraft.cloud.governance.zookeeper;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.x.discovery.ServiceDiscovery;
@@ -71,13 +73,13 @@ public class ZooKeeperGovernanceManager implements GovernanceManager {
     }
 
     @Override
-    public List<String> discoverCategories() {
+    public Set<String> discoverCategories() {
         try {
             Collection<String> categories = zookeeper.queryForNames();
             if (categories == null) {
-                return Collections.emptyList();
+                return Collections.emptySet();
             }
-            return new ArrayList<>(categories);
+            return new LinkedHashSet<>(categories);
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }

@@ -1,6 +1,7 @@
 package com.jstarcraft.cloud.governance.kubernetes;
 
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ public class KubernetesGovernanceManager implements GovernanceManager {
     }
 
     @Override
-    public List<String> discoverCategories() {
+    public Set<String> discoverCategories() {
         // TODO Auto-generated method stub
         return null;
     }

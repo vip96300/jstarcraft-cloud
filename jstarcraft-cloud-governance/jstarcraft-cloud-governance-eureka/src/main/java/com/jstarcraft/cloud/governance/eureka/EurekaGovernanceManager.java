@@ -2,8 +2,10 @@ package com.jstarcraft.cloud.governance.eureka;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,12 +59,12 @@ public class EurekaGovernanceManager implements GovernanceManager {
     }
 
     @Override
-    public List<String> discoverCategories() {
+    public Set<String> discoverCategories() {
         Applications applications = eureka.getApplications().getEntity();
         if (applications == null) {
-            return Collections.emptyList();
+            return Collections.emptySet();
         }
-        List<String> categories = new ArrayList<>();
+        Set<String> categories = new LinkedHashSet<>();
         for (Application application : applications.getRegisteredApplications()) {
             if (application.getInstances().isEmpty()) {
                 continue;

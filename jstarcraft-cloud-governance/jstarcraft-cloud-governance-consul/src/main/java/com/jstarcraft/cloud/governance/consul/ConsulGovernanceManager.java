@@ -3,6 +3,7 @@ package com.jstarcraft.cloud.governance.consul;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,10 +65,10 @@ public class ConsulGovernanceManager implements GovernanceManager {
     }
 
     @Override
-    public List<String> discoverCategories() {
+    public Set<String> discoverCategories() {
         CatalogServicesRequest request = CatalogServicesRequest.newBuilder().setQueryParams(QueryParams.DEFAULT).build();
         Response<Map<String, List<String>>> response = this.consul.getCatalogServices(request);
-        return new ArrayList<>(response.getValue().keySet());
+        return response.getValue().keySet();
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.jstarcraft.cloud.governance.nacos;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,9 +82,9 @@ public class NacosGovernanceManager implements GovernanceManager {
     }
 
     @Override
-    public List<String> discoverCategories() {
+    public Set<String> discoverCategories() {
         try {
-            return nacos.getServicesOfServer(1, Integer.MAX_VALUE).getData();
+            return new LinkedHashSet<>(nacos.getServicesOfServer(1, Integer.MAX_VALUE).getData());
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }

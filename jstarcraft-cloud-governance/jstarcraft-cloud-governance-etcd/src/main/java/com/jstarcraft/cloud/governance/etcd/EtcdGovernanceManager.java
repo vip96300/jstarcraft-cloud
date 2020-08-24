@@ -72,7 +72,7 @@ public class EtcdGovernanceManager implements GovernanceManager {
     }
 
     @Override
-    public List<String> discoverCategories() {
+    public Set<String> discoverCategories() {
         try {
             String path = this.path;
             GetOption option = GetOption.newBuilder().withPrefix(ByteSequence.from(path.getBytes(StringUtility.CHARSET))).build();
@@ -84,7 +84,7 @@ public class EtcdGovernanceManager implements GovernanceManager {
                 DefaultGovernanceInstance information = JsonUtility.string2Object(json, DefaultGovernanceInstance.class);
                 categories.add(information.getCategory());
             }
-            return new ArrayList<>(categories);
+            return categories;
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }

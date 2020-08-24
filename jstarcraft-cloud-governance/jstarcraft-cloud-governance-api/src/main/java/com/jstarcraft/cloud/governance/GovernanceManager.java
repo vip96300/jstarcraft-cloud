@@ -1,6 +1,7 @@
 package com.jstarcraft.cloud.governance;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 治理管理器
@@ -29,7 +30,7 @@ public interface GovernanceManager {
      * 
      * @return
      */
-    List<String> discoverCategories();
+    Set<String> discoverCategories();
 
     /**
      * 发现实例

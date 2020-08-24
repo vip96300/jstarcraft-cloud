@@ -67,14 +67,14 @@ public class RedisGovernanceManager implements GovernanceManager {
     }
 
     @Override
-    public List<String> discoverCategories() {
+    public Set<String> discoverCategories() {
         try {
             String path = this.path + StringUtility.ASTERISK;
             Set<String> categories = new LinkedHashSet<>();
             for (String category : this.redis.getKeys().getKeysByPattern(path, Integer.MAX_VALUE)) {
                 categories.add(category);
             }
-            return new ArrayList<>(categories);
+            return categories;
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
