@@ -54,6 +54,7 @@ public class EtcdGovernanceManagerTestCase {
         while (manager.discoverInstances(name).size() == 0) {
             Thread.sleep(1000L);
         }
+        Assert.assertEquals(1, manager.discoverCategories().size());
         Assert.assertEquals(3, manager.discoverInstances(name).size());
 
         for (GovernanceInstance instance : instances) {
@@ -62,6 +63,7 @@ public class EtcdGovernanceManagerTestCase {
         while (manager.discoverInstances(name).size() != 0) {
             Thread.sleep(1000L);
         }
+        Assert.assertEquals(0, manager.discoverCategories().size());
         Assert.assertEquals(0, manager.discoverInstances(name).size());
     }
 
