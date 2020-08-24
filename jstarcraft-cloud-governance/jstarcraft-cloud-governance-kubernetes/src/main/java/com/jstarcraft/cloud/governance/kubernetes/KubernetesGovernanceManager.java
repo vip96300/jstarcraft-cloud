@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import com.jstarcraft.cloud.governance.GovernanceInstance;
 import com.jstarcraft.cloud.governance.GovernanceManager;
 
+import io.fabric8.kubernetes.client.KubernetesClient;
+
 /**
  * Kubernetes治理管理器
  * 
@@ -18,6 +20,8 @@ import com.jstarcraft.cloud.governance.GovernanceManager;
 public class KubernetesGovernanceManager implements GovernanceManager {
 
     private static final Logger logger = LoggerFactory.getLogger(KubernetesGovernanceManager.class);
+
+    private KubernetesClient kubernetes;
 
     @Override
     public void registerInstance(GovernanceInstance instance) {
@@ -33,7 +37,6 @@ public class KubernetesGovernanceManager implements GovernanceManager {
 
     @Override
     public Set<String> discoverCategories() {
-        // TODO Auto-generated method stub
         return null;
     }
 
