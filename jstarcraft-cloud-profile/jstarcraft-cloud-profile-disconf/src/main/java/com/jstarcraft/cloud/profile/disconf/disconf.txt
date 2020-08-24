@@ -1,2 +1,0 @@
-SpringCloud系列：整合Disconf实现分布式配置中心:
-https://my.oschina.net/gengkangkang/blog/1593163
