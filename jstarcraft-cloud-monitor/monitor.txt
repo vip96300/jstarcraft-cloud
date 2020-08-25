@@ -1,8 +1,8 @@
 OpenTracing 详解:
-http://www.xuyasong.com/?p=1938
+https://pjw.io/articles/2018/05/08/opentracing-explanations
 
 OpenTracing文档中文版:
-https://wu-sheng.gitbooks.io/opentracing-io/content/
+https://wu-sheng.gitbooks.io/opentracing-io/content
 
 OpenTracing语义规范:
 https://segmentfault.com/a/1190000008895129
