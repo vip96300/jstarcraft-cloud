@@ -10,6 +10,9 @@ https://www.cnblogs.com/cjsblog/p/11556029.html
 Spring Boot Actuator:健康检查、审计、统计和监控:
 https://www.jianshu.com/p/d5943e303a1f
 
+强大的 Actuator 服务监控与管理:
+https://www.cnblogs.com/lywJ/p/10715191.html
+
 OpenTracing 详解:
 https://pjw.io/articles/2018/05/08/opentracing-explanations
 
