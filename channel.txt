@@ -7,6 +7,9 @@ https://space.bilibili.com/15265144
 U8Server——U8SDK服务器端（统一渠道SDK接入用户中心和支付中心）:
 https://github.com/uustory/U8Server
 
+开源手游渠道聚合TypeSDK:
+https://blog.csdn.net/kasimshi
+
 ***** 认证 *****
 
 史上最全的整合第三方登录的开源库:
