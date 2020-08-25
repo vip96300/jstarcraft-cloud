@@ -4,6 +4,9 @@ https://cloud.tencent.com/developer/article/1548584
 使用 Micrometer 记录 Java 应用性能指标:
 https://www.ibm.com/developerworks/cn/java/j-using-micrometer-to-record-java-metric/index.html
 
+Micrometer 快速入门:
+https://www.cnblogs.com/cjsblog/p/11556029.html
+
 OpenTracing 详解:
 https://pjw.io/articles/2018/05/08/opentracing-explanations
 
