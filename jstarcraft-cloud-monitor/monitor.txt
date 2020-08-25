@@ -1,3 +1,6 @@
+OpenTracing 详解:
+http://www.xuyasong.com/?p=1938
+
 OpenTracing文档中文版:
 https://wu-sheng.gitbooks.io/opentracing-io/content/
 
