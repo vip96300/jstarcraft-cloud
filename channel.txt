@@ -1,0 +1,29 @@
+U8SDK技术博客:
+http://www.uustory.com
+
+U8SDK官方教学视频:
+https://space.bilibili.com/15265144
+
+U8Server——U8SDK服务器端（统一渠道SDK接入用户中心和支付中心）:
+https://github.com/uustory/U8Server
+
+***** 认证 *****
+
+史上最全的整合第三方登录的开源库:
+https://github.com/justauth/JustAuth
+
+***** 支付 *****
+
+全能第三方支付对接Java开发工具包:
+https://github.com/egzosn/pay-java-parent
+
+IJPay 让支付触手可及，封装了微信支付、QQ支付、支付宝支付、京东支付、银联支付常用的支付方式以及各种常用的接口:
+https://github.com/Javen205/IJPay
+
+龙果支付系统（roncoo-pay）是国内首款开源的互联网支付系统，拥有独立的账户体系、用户体系、支付接入体系、支付交易体系、对账清结算体系。目标是打造一款集成主流支付方式且轻量易用的支付收款系统，满足互联网业务系统打通支付通道实现支付收款和业务资金管理等功能：
+https://github.com/roncoo/roncoo-pay
+
+***** 通知 *****
+
+专注批量推送的小而美的工具，目前支持：模板消息-公众号、模板消息-小程序、微信客服消息、微信企业号/企业微信消息、阿里云短信、阿里大于模板短信 、腾讯云短信、云片网短信、E-Mail、HTTP请求、钉钉、华为云短信、百度云短信、又拍云短信、七牛云短信:
+https://github.com/rememberber/WePush
