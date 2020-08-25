@@ -7,6 +7,9 @@ https://www.ibm.com/developerworks/cn/java/j-using-micrometer-to-record-java-met
 Micrometer 快速入门:
 https://www.cnblogs.com/cjsblog/p/11556029.html
 
+Spring Boot Actuator:健康检查、审计、统计和监控:
+https://www.jianshu.com/p/d5943e303a1f
+
 OpenTracing 详解:
 https://pjw.io/articles/2018/05/08/opentracing-explanations
 
