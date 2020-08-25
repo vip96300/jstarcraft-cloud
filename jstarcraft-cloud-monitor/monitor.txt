@@ -1,3 +1,9 @@
+APM体系概述:
+https://www.jianshu.com/p/05b75d81de6f
+
+APM 原理与框架选型:
+https://www.cnblogs.com/xiaoqi/p/apm.html
+
 这么多监控组件，总有一款适合你:
 https://mp.weixin.qq.com/s/rdD54-zyapjlubM5K1jUeQ
 
@@ -24,9 +30,6 @@ https://wu-sheng.gitbooks.io/opentracing-io/content
 
 OpenTracing语义规范:
 https://segmentfault.com/a/1190000008895129
-
-APM 原理与框架选型:
-https://www.cnblogs.com/xiaoqi/p/apm.html
 
 技术选型Sentinel vs Hystrix:
 https://www.jianshu.com/p/d1f22a555065
