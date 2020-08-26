@@ -16,18 +16,6 @@ https://database.51cto.com/art/201909/603070.htm
 OpenTelemetry-可观察性的新时代:
 https://www.jianshu.com/p/4c19591bd7d2
 
-使用 Micrometer 记录 Java 应用性能指标:
-https://www.ibm.com/developerworks/cn/java/j-using-micrometer-to-record-java-metric/index.html
-
-Micrometer 快速入门:
-https://www.cnblogs.com/cjsblog/p/11556029.html
-
-Spring Boot Actuator:健康检查、审计、统计和监控:
-https://www.jianshu.com/p/d5943e303a1f
-
-强大的 Actuator 服务监控与管理:
-https://www.cnblogs.com/lywJ/p/10715191.html
-
 OpenTracing 详解:
 https://pjw.io/articles/2018/05/08/opentracing-explanations
 
@@ -42,6 +30,18 @@ https://blog.csdn.net/shuai_wy/article/details/107743925
 
 OpenTracing的使用实例（Java）:
 https://developer.aliyun.com/article/746760
+
+使用 Micrometer 记录 Java 应用性能指标:
+https://www.ibm.com/developerworks/cn/java/j-using-micrometer-to-record-java-metric/index.html
+
+Micrometer 快速入门:
+https://www.cnblogs.com/cjsblog/p/11556029.html
+
+Spring Boot Actuator:健康检查、审计、统计和监控:
+https://www.jianshu.com/p/d5943e303a1f
+
+强大的 Actuator 服务监控与管理:
+https://www.cnblogs.com/lywJ/p/10715191.html
 
 技术选型Sentinel vs Hystrix:
 https://www.jianshu.com/p/d1f22a555065
