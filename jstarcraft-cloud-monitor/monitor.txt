@@ -37,6 +37,9 @@ https://wu-sheng.gitbooks.io/opentracing-io/content
 OpenTracing语义规范:
 https://segmentfault.com/a/1190000008895129
 
+OpenTracing-Java实现的灵魂十问:
+https://blog.csdn.net/shuai_wy/article/details/107743925
+
 技术选型Sentinel vs Hystrix:
 https://www.jianshu.com/p/d1f22a555065
 
