@@ -13,8 +13,8 @@ https://mp.weixin.qq.com/s/rdD54-zyapjlubM5K1jUeQ
 基于时序数据库做监控，这里有超流行的开源方案:
 https://database.51cto.com/art/201909/603070.htm
 
-OpenTelemetry简史（至今）:
-https://cloud.tencent.com/developer/article/1548584
+OpenTelemetry-可观察性的新时代:
+https://www.jianshu.com/p/4c19591bd7d2
 
 使用 Micrometer 记录 Java 应用性能指标:
 https://www.ibm.com/developerworks/cn/java/j-using-micrometer-to-record-java-metric/index.html
