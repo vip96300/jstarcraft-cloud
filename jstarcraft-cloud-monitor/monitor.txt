@@ -16,8 +16,8 @@ https://database.51cto.com/art/201909/603070.htm
 OpenTelemetry-可观察性的新时代:
 https://www.jianshu.com/p/4c19591bd7d2
 
-OpenTracing 详解:
-https://pjw.io/articles/2018/05/08/opentracing-explanations
+OpenTracing 链路追踪:
+https://www.cnblogs.com/linguoguo/p/12311225.html
 
 OpenTracing文档中文版:
 https://wu-sheng.gitbooks.io/opentracing-io/content
