@@ -1,11 +1,5 @@
-APM体系概述:
-https://www.jianshu.com/p/05b75d81de6f
-
 APM 原理与框架选型:
 https://www.cnblogs.com/xiaoqi/p/apm.html
-
-这么多监控组件，总有一款适合你:
-https://mp.weixin.qq.com/s/rdD54-zyapjlubM5K1jUeQ
 
 基于时序数据库做监控，这里有超流行的开源方案:
 https://database.51cto.com/art/201909/603070.htm
@@ -21,6 +15,9 @@ https://www.cnblogs.com/linguoguo/p/12311225.html
 
 OpenTracing文档中文版:
 https://wu-sheng.gitbooks.io/opentracing-io/content
+
+分布式系统跟踪标准OpenTracing介绍 (中文版文档的补充）:
+https://zhuanlan.zhihu.com/p/48715204
 
 OpenTracing语义规范:
 https://segmentfault.com/a/1190000008895129
