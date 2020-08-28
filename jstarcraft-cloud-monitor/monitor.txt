@@ -46,6 +46,9 @@ https://www.cnblogs.com/hanjun0612/p/12510854.html
 关于Micrometer的基础概念:
 https://blog.csdn.net/dongcheng_2015/article/details/103059035
 
+使用 Micrometer 来测量系统指标:
+https://www.jianshu.com/p/ae199242709c
+
 使用 Micrometer 记录 Java 应用性能指标:
 https://www.ibm.com/developerworks/cn/java/j-using-micrometer-to-record-java-metric/index.html
 
