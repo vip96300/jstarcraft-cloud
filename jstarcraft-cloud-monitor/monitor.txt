@@ -64,6 +64,9 @@ https://www.jianshu.com/p/d5943e303a1f
 强大的 Actuator 服务监控与管理:
 https://www.cnblogs.com/lywJ/p/10715191.html
 
+实战：Micrometer+Prometheus+Grafana搭建Java程序的监控系统:
+https://blog.csdn.net/weixin_38569499/article/details/85344317
+
 技术选型Sentinel vs Hystrix:
 https://www.jianshu.com/p/d1f22a555065
 
