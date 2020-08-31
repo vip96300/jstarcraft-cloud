@@ -43,6 +43,9 @@ https://segmentfault.com/a/1190000019273553
 SkyWalking 配置和使用（Windows）:
 https://www.cnblogs.com/hanjun0612/p/12510854.html
 
+Micrometer介绍:
+http://www.heartthinkdo.com/?p=2457
+
 关于Micrometer的基础概念:
 https://blog.csdn.net/dongcheng_2015/article/details/103059035
 
