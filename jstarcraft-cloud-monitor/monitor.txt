@@ -43,6 +43,16 @@ https://segmentfault.com/a/1190000019273553
 SkyWalking 配置和使用（Windows）:
 https://www.cnblogs.com/hanjun0612/p/12510854.html
 
+***** Actuator *****
+
+Spring Boot Actuator:健康检查、审计、统计和监控:
+https://www.jianshu.com/p/d5943e303a1f
+
+强大的 Actuator 服务监控与管理:
+https://www.cnblogs.com/lywJ/p/10715191.html
+
+***** Micrometer *****
+
 Micrometer介绍:
 http://www.heartthinkdo.com/?p=2457
 
@@ -60,12 +70,6 @@ https://www.cnblogs.com/cjsblog/p/11556029.html
 
 给你的SpringBoot做埋点监控--JVM应用度量框架Micrometer:
 https://www.cnblogs.com/rolandlee/p/11343848.html
-
-Spring Boot Actuator:健康检查、审计、统计和监控:
-https://www.jianshu.com/p/d5943e303a1f
-
-强大的 Actuator 服务监控与管理:
-https://www.cnblogs.com/lywJ/p/10715191.html
 
 通过Micrometer实时监控线程池的各项指标:
 https://www.cnblogs.com/throwable/p/10708351.html
