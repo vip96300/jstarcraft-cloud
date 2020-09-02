@@ -84,8 +84,13 @@ https://blog.csdn.net/aixiaoyang168/article/details/100866159
 通过Micrometer实时监控线程池的各项指标:
 https://www.cnblogs.com/throwable/p/10708351.html
 
+***** Dropwizard Metrics *****
+
 Metrics教程:
 https://www.jianshu.com/p/effe8e259d25
+
+Dropwizard 之 application metrics:
+https://www.jianshu.com/p/070f615dfb57
 
 技术选型Sentinel vs Hystrix:
 https://www.jianshu.com/p/d1f22a555065
