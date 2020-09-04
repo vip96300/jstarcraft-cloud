@@ -12,5 +12,6 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>jstarcraft-cloud-monitor-api</module>
     </modules>
 </project>
