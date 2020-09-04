@@ -28,6 +28,9 @@ https://segmentfault.com/a/1190000008895129
 OpenTracing-Java实现的灵魂十问:
 https://blog.csdn.net/shuai_wy/article/details/107743925
 
+OpenTracing的Java-API详解:
+https://blog.csdn.net/wanxiaoderen/article/details/107214981
+
 OpenTracing的使用实例（Java）:
 https://developer.aliyun.com/article/746760
 
