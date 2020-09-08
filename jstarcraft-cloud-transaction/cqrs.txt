@@ -1,0 +1,5 @@
+Axon Framework 从入门、深入到放弃:
+https://www.jianshu.com/p/4a7854e4b8f2
+
+Axon入门系列:
+http://edisonxu.com/tags/axon
