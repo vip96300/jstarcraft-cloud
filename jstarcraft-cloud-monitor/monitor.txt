@@ -19,6 +19,9 @@ https://www.cnblogs.com/linguoguo/p/12311225.html
 OpenTracing文档中文版:
 https://wu-sheng.gitbooks.io/opentracing-io/content
 
+OpenTracing官方标准-中文版:
+https://github.com/opentracing-contrib/opentracing-specification-zh
+
 分布式系统跟踪标准OpenTracing介绍 (中文版文档的补充）:
 https://zhuanlan.zhihu.com/p/48715204
 
