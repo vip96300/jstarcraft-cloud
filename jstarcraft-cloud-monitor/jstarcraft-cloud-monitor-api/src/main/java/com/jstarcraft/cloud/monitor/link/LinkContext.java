@@ -7,6 +7,10 @@ import java.util.Map;
 /**
  * 追踪上下文
  * 
+ * <pre>
+ * 用于传递
+ * </pre>
+ * 
  * @author Birdy
  *
  */

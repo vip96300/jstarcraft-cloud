@@ -1,5 +1,8 @@
 package com.jstarcraft.cloud.monitor.link;
 
+import java.util.Map;
+import java.util.concurrent.Callable;
+
 /**
  * 追踪管理器
  * 
@@ -9,12 +12,26 @@ package com.jstarcraft.cloud.monitor.link;
 public interface LinkManager {
 
     /**
-     * 开启追踪单元
+     * 执行追踪单元
      * 
+     * @param <V>
+     * @param name
      * @param context
+     * @param properties
+     * @param task
      * @return
      */
-    LinkSpan openSpan(LinkContext context);
+    <V> V doSpan(String name, LinkContext context, Map<String, String> properties, Callable<V> task);
+
+    /**
+     * 执行追踪单元
+     * 
+     * @param name
+     * @param context
+     * @param properties
+     * @param task
+     */
+    void doSpan(String name, LinkContext context, Map<String, String> properties, Runnable task);
 
     /**
      * 获取追踪单元
@@ -22,12 +39,5 @@ public interface LinkManager {
      * @return
      */
     LinkSpan getSpan();
-
-    /**
-     * 关闭追踪单元
-     * 
-     * @param span
-     */
-    void closeSpan(LinkSpan span);
 
 }

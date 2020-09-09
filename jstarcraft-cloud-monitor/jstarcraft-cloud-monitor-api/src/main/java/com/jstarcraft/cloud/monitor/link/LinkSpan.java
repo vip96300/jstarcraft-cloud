@@ -10,6 +10,7 @@ import com.jstarcraft.core.common.lifecycle.LifecycleState;
  * @author Birdy
  *
  */
+// TODO 考虑是否需要Closeable
 public interface LinkSpan {
 
     /**
@@ -67,21 +68,5 @@ public interface LinkSpan {
      * @return
      */
     LinkContext getContext();
-
-    /**
-     * 获取单元属性
-     * 
-     * @param key
-     * @return
-     */
-    String getProperty(String key);
-
-    /**
-     * 设置单元属性
-     * 
-     * @param key
-     * @param value
-     */
-    void setProperty(String key, String value);
 
 }
