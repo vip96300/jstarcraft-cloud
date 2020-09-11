@@ -1,0 +1,2 @@
+Open Tracestate API for custom info propagation:
+https://github.com/census-instrumentation/opencensus-java/issues/1465
