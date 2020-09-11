@@ -17,36 +17,8 @@
             <artifactId>jstarcraft-core-monitor</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>io.opentracing.contrib</groupId>
-            <artifactId>opentracing-spring-cloud-starter</artifactId>
-            <version>0.5.7</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.opentracing</groupId>
-            <artifactId>opentracing-mock</artifactId>
-            <version>0.33.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jaegertracing</groupId>
-            <artifactId>jaeger-client</artifactId>
-            <version>1.4.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.skywalking</groupId>
-            <artifactId>apm-toolkit-opentracing</artifactId>
-            <version>8.1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.opentracing.brave</groupId>
-            <artifactId>brave-opentracing</artifactId>
-            <version>0.37.2</version>
-        </dependency>
-
+        <!-- 追踪框架依赖 -->
+        <!-- OpenCensus -->
         <dependency>
             <groupId>io.opencensus</groupId>
             <artifactId>opencensus-api</artifactId>
@@ -78,6 +50,7 @@
             <version>0.27.0</version>
         </dependency>
 
+        <!-- OpenTelemetry -->
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-api</artifactId>
@@ -89,6 +62,38 @@
             <artifactId>opentelemetry-sdk</artifactId>
             <version>0.8.0</version>
         </dependency>
+
+        <!-- OpenTracing -->
+        <dependency>
+            <groupId>io.opentracing.contrib</groupId>
+            <artifactId>opentracing-spring-cloud-starter</artifactId>
+            <version>0.5.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.opentracing</groupId>
+            <artifactId>opentracing-mock</artifactId>
+            <version>0.33.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jaegertracing</groupId>
+            <artifactId>jaeger-client</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-opentracing</artifactId>
+            <version>8.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.opentracing.brave</groupId>
+            <artifactId>brave-opentracing</artifactId>
+            <version>0.37.2</version>
+        </dependency>
+
 
         <!-- 测试框架依赖 -->
         <dependency>
