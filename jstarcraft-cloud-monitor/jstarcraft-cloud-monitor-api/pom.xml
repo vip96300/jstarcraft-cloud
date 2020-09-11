@@ -62,6 +62,12 @@
 
         <dependency>
             <groupId>io.opencensus</groupId>
+            <artifactId>opencensus-contrib-spring-starter</artifactId>
+            <version>0.27.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.opencensus</groupId>
             <artifactId>opencensus-exporter-trace-jaeger</artifactId>
             <version>0.27.0</version>
         </dependency>
@@ -72,10 +78,22 @@
             <version>0.27.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-api</artifactId>
+            <version>0.8.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-sdk</artifactId>
+            <version>0.8.0</version>
+        </dependency>
+
         <!-- 测试框架依赖 -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

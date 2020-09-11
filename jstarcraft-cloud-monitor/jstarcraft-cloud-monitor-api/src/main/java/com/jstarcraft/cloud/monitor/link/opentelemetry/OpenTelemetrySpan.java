@@ -1,4 +1,4 @@
-package com.jstarcraft.cloud.monitor.link.opencensus;
+package com.jstarcraft.cloud.monitor.link.opentelemetry;
 
 import java.time.Instant;
 
@@ -6,21 +6,21 @@ import com.jstarcraft.cloud.monitor.link.LinkContext;
 import com.jstarcraft.cloud.monitor.link.LinkSpan;
 import com.jstarcraft.core.common.lifecycle.LifecycleState;
 
-import io.opencensus.trace.Span;
+import io.opentelemetry.trace.Span;
 
-public class OpenCensusSpan implements LinkSpan, AutoCloseable {
+public class OpenTelemetrySpan implements LinkSpan, AutoCloseable {
 
     private String name;
 
     private String parent;
 
-    private Span span;
+    private Instant begin;
 
-    public OpenCensusSpan(String name, String parent, Span span) {
-        this.name = name;
-        this.parent = parent;
-        this.span = span;
-    }
+    private Instant end;
+
+    private LifecycleState state;
+
+    private Span span;
 
     @Override
     public String getRoot() {
