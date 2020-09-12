@@ -24,6 +24,7 @@ public class OpenCensusManager implements LinkManager {
 
     private final ThreadLocal<LinkedList<OpenCensusSpan>> spans = new ThreadLocal<LinkedList<OpenCensusSpan>>() {
 
+        @Override
         protected LinkedList<OpenCensusSpan> initialValue() {
             return new LinkedList<>();
         }

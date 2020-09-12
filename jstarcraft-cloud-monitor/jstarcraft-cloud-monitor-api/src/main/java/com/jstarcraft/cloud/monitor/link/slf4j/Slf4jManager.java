@@ -1,4 +1,4 @@
-package com.jstarcraft.cloud.monitor.link.opentrace;
+package com.jstarcraft.cloud.monitor.link.slf4j;
 
 import java.util.LinkedList;
 import java.util.Map;
@@ -8,12 +8,12 @@ import com.jstarcraft.cloud.monitor.link.LinkContext;
 import com.jstarcraft.cloud.monitor.link.LinkManager;
 import com.jstarcraft.cloud.monitor.link.LinkSpan;
 
-public class OpenTraceManager implements LinkManager {
+public class Slf4jManager implements LinkManager {
 
-    private final ThreadLocal<LinkedList<OpenTraceSpan>> spans = new ThreadLocal<LinkedList<OpenTraceSpan>>() {
+    private final ThreadLocal<LinkedList<Slf4jSpan>> spans = new ThreadLocal<LinkedList<Slf4jSpan>>() {
 
         @Override
-        protected LinkedList<OpenTraceSpan> initialValue() {
+        protected LinkedList<Slf4jSpan> initialValue() {
             return new LinkedList<>();
         }
 

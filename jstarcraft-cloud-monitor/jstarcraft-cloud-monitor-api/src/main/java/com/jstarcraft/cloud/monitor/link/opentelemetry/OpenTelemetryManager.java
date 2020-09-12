@@ -12,6 +12,7 @@ public class OpenTelemetryManager implements LinkManager {
 
     private final ThreadLocal<LinkedList<OpenTelemetrySpan>> spans = new ThreadLocal<LinkedList<OpenTelemetrySpan>>() {
 
+        @Override
         protected LinkedList<OpenTelemetrySpan> initialValue() {
             return new LinkedList<>();
         }
