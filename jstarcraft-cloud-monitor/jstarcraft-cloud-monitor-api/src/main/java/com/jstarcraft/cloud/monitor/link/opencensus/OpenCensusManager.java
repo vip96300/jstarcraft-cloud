@@ -59,7 +59,7 @@ public class OpenCensusManager implements LinkManager {
             }
             parent = SpanContext.create(traceId, spanId, traceOption, builder.build());
         }
-        // TODO 注意:按照目前逻辑,只要想携带信息,无论如何OpenCensus都会
+        // TODO 注意:按照目前逻辑,只要想携带信息,无论如何OpenCensus的Span都只能为非根
         Span span = tracer.spanBuilderWithRemoteParent(name, parent).startSpan();
         try {
             spans.get().addLast(new OpenCensusSpan(name, context == null ? null : context.getId(), span));
