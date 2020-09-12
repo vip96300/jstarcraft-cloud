@@ -1,8 +1,11 @@
 package com.jstarcraft.cloud.monitor.link;
 
 import java.util.Collection;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.invocation.MockHandler;
 
 import com.jstarcraft.core.utility.RandomUtility;
 
@@ -18,6 +21,7 @@ import io.opencensus.trace.Tracing;
 import io.opencensus.trace.config.TraceConfig;
 import io.opencensus.trace.config.TraceParams;
 import io.opencensus.trace.export.SpanData;
+import io.opencensus.trace.export.SpanExporter;
 import io.opencensus.trace.export.SpanExporter.Handler;
 import io.opencensus.trace.samplers.Samplers;
 
@@ -33,49 +37,41 @@ public class OpenCensusTestCase {
         traceParams = traceParams.toBuilder().setSampler(Samplers.alwaysSample()).build();
         // 设置最总参数
         traceConfig.updateActiveTraceParams(traceParams);
+        AtomicInteger counter = new AtomicInteger();
+        SpanExporter exporter = Tracing.getExportComponent().getSpanExporter();
         // 注册追踪单元处理器
-        Tracing.getExportComponent().getSpanExporter().registerHandler("mock", new Handler() {
+        exporter.registerHandler("mock", new Handler() {
 
             @Override
             public void export(Collection<SpanData> datas) {
-                System.out.println("export");
-                System.out.println(datas);
+                counter.addAndGet(datas.size());
             }
 
         });
-
+        // 获取追踪器
         Tracer tracer = Tracing.getTracer();
+
         TraceId traceId = TraceId.generateRandomId(RandomUtility.getRandom());
         SpanId spanId = SpanId.generateRandomId(RandomUtility.getRandom());
         TraceOptions traceOption = TraceOptions.builder().build();
-        Tracestate tracestate = Tracestate.builder().set("key", "value").build();
-        SpanContext spanContext = SpanContext.create(traceId, spanId, traceOption, tracestate);
-        System.out.println(traceId);
-        System.out.println(spanId);
+        Tracestate traceState = Tracestate.builder().set("key", "value").build();
+        SpanContext spanContext = SpanContext.create(traceId, spanId, traceOption, traceState);
 
+        // TODO 注意:按照目前OpenCensus逻辑,只要想携带上下文信息,无论如何都无法构建根Span
         Span span = tracer.spanBuilderWithRemoteParent("root", spanContext).startSpan();
-        System.out.println(span.getContext().getTraceId());
-        System.out.println(span.getContext().getSpanId());
+        Assert.assertEquals(traceId, span.getContext().getTraceId());
+        Assert.assertNotEquals(spanId, span.getContext().getSpanId());
         for (Entry term : span.getContext().getTracestate().getEntries()) {
-            System.out.println(term.getKey() + ":" + term.getValue());
+            Assert.assertEquals("key", term.getKey());
+            Assert.assertEquals("value", term.getValue());
         }
-
         span.end();
-        Thread.sleep(10000L);
 
-//      
-//      if (context == null) {
-//          spanContext = SpanContext.;
-//          SpanContext.create(traceId, spanId, traceOptions, tracestate)
-//      } else {
-//          TraceId traceId = TraceId.fromLowerBase16(context.getRoot());
-//          SpanId spanId = SpanId.fromLowerBase16(context.getId());
-//          TraceOptions traceOption = TraceOptions.builder().build();
-//          Tracestate.builder().set(key, value)
-//          spanContext = SpanContext.create(traceId, spanId, traceOption, tracestate)
-//      }
-//      tracer.spanBuilderWithExplicitParent(spanName, parent)
-//      tracer.spanBuilderWithRemoteParent(name, spanContext);
+        Thread.sleep(5000L);
+
+        Assert.assertEquals(1, counter.get());
+        // 注销追踪单元处理器
+        exporter.unregisterHandler("mock");
     }
 
 }
