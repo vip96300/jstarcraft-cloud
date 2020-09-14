@@ -63,6 +63,12 @@
             <version>0.8.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-contrib-trace-propagators</artifactId>
+            <version>0.5.0</version>
+        </dependency>
+
         <!-- OpenTracing -->
         <dependency>
             <groupId>io.opentracing.contrib</groupId>
