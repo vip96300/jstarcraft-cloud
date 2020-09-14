@@ -1,13 +1,21 @@
 package com.jstarcraft.cloud.monitor.link;
 
+import java.util.Collection;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.jstarcraft.core.utility.RandomUtility;
 
-import io.opentelemetry.OpenTelemetry;
+import io.opentelemetry.sdk.common.CompletableResultCode;
+import io.opentelemetry.sdk.trace.Samplers;
+import io.opentelemetry.sdk.trace.TracerSdkProvider;
+import io.opentelemetry.sdk.trace.config.TraceConfig;
+import io.opentelemetry.sdk.trace.data.SpanData;
+import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor;
+import io.opentelemetry.sdk.trace.export.SpanExporter;
 import io.opentelemetry.trace.Span;
 import io.opentelemetry.trace.SpanContext;
 import io.opentelemetry.trace.SpanId;
@@ -16,15 +24,40 @@ import io.opentelemetry.trace.TraceId;
 import io.opentelemetry.trace.TraceState;
 import io.opentelemetry.trace.TraceState.Entry;
 import io.opentelemetry.trace.Tracer;
-import io.opentelemetry.trace.TracerProvider;
 
 public class OpenTelemetryTestCase {
 
     @Test
     public void test() throws Exception {
         Random random = RandomUtility.getRandom();
-        TracerProvider provider = OpenTelemetry.getTracerProvider();
+//        TracerProvider provider = OpenTelemetry.getTracerProvider();
+        // 设置采样率为100%
+        TracerSdkProvider provider = TracerSdkProvider.builder().build();
+        TraceConfig traceConfig = provider.getActiveTraceConfig();
+        traceConfig = traceConfig.toBuilder().setSampler(Samplers.alwaysOn()).build();
+        provider.updateActiveTraceConfig(traceConfig);
+        AtomicInteger counter = new AtomicInteger();
+        provider.addSpanProcessor(SimpleSpanProcessor.newBuilder(new SpanExporter() {
+
+            @Override
+            public CompletableResultCode export(Collection<SpanData> datas) {
+                counter.addAndGet(datas.size());
+                return CompletableResultCode.ofSuccess();
+            }
+
+            @Override
+            public CompletableResultCode flush() {
+                return CompletableResultCode.ofSuccess();
+            }
+
+            @Override
+            public CompletableResultCode shutdown() {
+                return CompletableResultCode.ofSuccess();
+            }
+
+        }).build());
         Tracer tracer = provider.get("sdk");
+
         TraceId traceId = new TraceId(random.nextLong(), random.nextLong());
         SpanId spanId = new SpanId(random.nextLong());
         TraceFlags traceFlag = TraceFlags.getDefault();
@@ -40,6 +73,10 @@ public class OpenTelemetryTestCase {
             Assert.assertEquals("value", term.getValue());
         }
         span.end();
+
+        Thread.sleep(5000L);
+
+        Assert.assertEquals(1, counter.get());
     }
 
 }
