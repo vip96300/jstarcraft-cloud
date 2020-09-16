@@ -1,0 +1,2 @@
+Baggage Specification:
+https://github.com/w3c/baggage
