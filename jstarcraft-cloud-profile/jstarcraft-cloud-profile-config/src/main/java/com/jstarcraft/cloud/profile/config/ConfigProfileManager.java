@@ -1,14 +1,7 @@
 package com.jstarcraft.cloud.profile.config;
 
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.env.OriginTrackedMapPropertySource;
-import org.springframework.cloud.config.environment.Environment;
-import org.springframework.cloud.config.environment.PropertySource;
-import org.springframework.core.env.CompositePropertySource;
-import org.springframework.core.env.MapPropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,8 +14,9 @@ import org.springframework.web.client.RestTemplate;
 import com.jstarcraft.cloud.profile.ProfileManager;
 import com.jstarcraft.cloud.profile.ProfileMonitor;
 import com.jstarcraft.core.common.configuration.Configurator;
-import com.jstarcraft.core.common.configuration.SpringConfigurator;
-import com.jstarcraft.core.utility.StringUtility;
+import com.jstarcraft.core.common.configuration.JsonConfigurator;
+import com.jstarcraft.core.common.configuration.PropertyConfigurator;
+import com.jstarcraft.core.common.configuration.YamlConfigurator;
 
 /**
  * Config配置管理器
@@ -36,25 +30,28 @@ public class ConfigProfileManager implements ProfileManager {
 
     private RestTemplate config;
 
+    private String format;
+
     private String address;
 
     private Object[] arguments;
 
-    public ConfigProfileManager(RestTemplate config, String address, String profile, String label) {
+    public ConfigProfileManager(RestTemplate config, String format, String address, String profile, String label) {
         this.config = config;
-        this.address = address + "/{name}/{profile}/{label}";
-        this.arguments = new String[] { null, profile, label };
+        this.format = format;
+        this.address = address + "/{label}/{name}-{profile}.{format}";
+        this.arguments = new String[] { label, null, profile, format };
     }
 
     @Override
     public Configurator getConfiguration(String name) {
-        arguments[0] = name;
-        ResponseEntity<Environment> response = null;
+        arguments[1] = name;
+        ResponseEntity<String> response = null;
         try {
             HttpHeaders headers = new HttpHeaders();
 //            headers.setAccept(Collections.singletonList(MediaType.parseMediaType(V2_JSON)));
             final HttpEntity<Void> entity = new HttpEntity<>((Void) null, headers);
-            response = config.exchange(address, HttpMethod.GET, entity, Environment.class, arguments);
+            response = config.exchange(address, HttpMethod.GET, entity, String.class, arguments);
         } catch (HttpClientErrorException exception) {
             if (exception.getStatusCode() != HttpStatus.NOT_FOUND) {
                 throw exception;
@@ -65,13 +62,16 @@ public class ConfigProfileManager implements ProfileManager {
         if (response == null || response.getStatusCode() != HttpStatus.OK) {
             return null;
         }
-        Environment environment = response.getBody();
-        CompositePropertySource properties = new CompositePropertySource(name);
-        for (PropertySource property : environment.getPropertySources()) {
-            properties.addPropertySource(new MapPropertySource(property.getName(), (Map<String, Object>) property.getSource()));
+        String content = response.getBody();
+        switch (format) {
+        case "json":
+            return new JsonConfigurator(content);
+        case "properties":
+            return new PropertyConfigurator(content);
+        case "yaml":
+            return new YamlConfigurator(content);
         }
-        SpringConfigurator configurator = new SpringConfigurator(properties);
-        return configurator;
+        throw new IllegalArgumentException();
     }
 
     @Override
