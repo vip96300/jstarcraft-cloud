@@ -50,8 +50,8 @@ public class ConfigProfileManager implements ProfileManager {
         try {
             HttpHeaders headers = new HttpHeaders();
 //            headers.setAccept(Collections.singletonList(MediaType.parseMediaType(V2_JSON)));
-            final HttpEntity<Void> entity = new HttpEntity<>((Void) null, headers);
-            response = config.exchange(address, HttpMethod.GET, entity, String.class, arguments);
+            HttpEntity<Void> request = new HttpEntity<>((Void) null, headers);
+            response = config.exchange(address, HttpMethod.GET, request, String.class, arguments);
         } catch (HttpClientErrorException exception) {
             if (exception.getStatusCode() != HttpStatus.NOT_FOUND) {
                 throw exception;
