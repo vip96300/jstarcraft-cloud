@@ -86,6 +86,12 @@ public class ZooKeeperGovernanceManager implements GovernanceManager {
     }
 
     @Override
+    public void leaseInstance(GovernanceInstance instance) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
     public List<GovernanceInstance> discoverInstances(String category) {
         try {
             Collection<ServiceInstance<Map>> informations = zookeeper.queryForInstances(category);

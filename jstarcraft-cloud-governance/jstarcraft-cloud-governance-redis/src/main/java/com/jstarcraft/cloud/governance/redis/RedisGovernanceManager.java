@@ -50,7 +50,6 @@ public class RedisGovernanceManager implements GovernanceManager {
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
-
     }
 
     @Override
@@ -64,6 +63,12 @@ public class RedisGovernanceManager implements GovernanceManager {
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
+    }
+
+    @Override
+    public void leaseInstance(GovernanceInstance instance) {
+        // TODO Auto-generated method stub
+
     }
 
     @Override

@@ -19,6 +19,13 @@ public interface GovernanceManager {
     void registerInstance(GovernanceInstance instance);
 
     /**
+     * 续租实例
+     * 
+     * @param instance
+     */
+    void leaseInstance(GovernanceInstance instance);
+
+    /**
      * 注销实例
      * 
      * @param instance

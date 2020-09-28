@@ -36,6 +36,12 @@ public class KubernetesGovernanceManager implements GovernanceManager {
     }
 
     @Override
+    public void leaseInstance(GovernanceInstance instance) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
     public Set<String> discoverCategories() {
         return null;
     }

@@ -23,7 +23,7 @@ import com.jstarcraft.cloud.governance.GovernanceManager;
  */
 // 注意:Nacos必须保证IP+端口唯一
 public class NacosGovernanceManager implements GovernanceManager {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(NacosGovernanceManager.class);
 
     private NamingService nacos;
@@ -78,6 +78,11 @@ public class NacosGovernanceManager implements GovernanceManager {
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
+    }
+
+    @Override
+    public void leaseInstance(GovernanceInstance instance) {
+        // TODO Auto-generated method stub
 
     }
 

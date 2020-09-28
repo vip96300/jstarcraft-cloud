@@ -59,6 +59,12 @@ public class EurekaGovernanceManager implements GovernanceManager {
     }
 
     @Override
+    public void leaseInstance(GovernanceInstance instance) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
     public Set<String> discoverCategories() {
         Applications applications = eureka.getApplications().getEntity();
         if (applications == null) {

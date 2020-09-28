@@ -53,6 +53,12 @@ public class ConsulGovernanceManager implements GovernanceManager {
         this.consul.agentServiceDeregister(instance.getId());
     }
 
+    @Override
+    public void leaseInstance(GovernanceInstance instance) {
+        // TODO Auto-generated method stub
+
+    }
+
     private static String getHost(HealthService health) {
         HealthService.Service service = health.getService();
         HealthService.Node node = health.getNode();

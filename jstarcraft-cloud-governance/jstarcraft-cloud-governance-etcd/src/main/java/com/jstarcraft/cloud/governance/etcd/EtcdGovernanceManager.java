@@ -72,6 +72,12 @@ public class EtcdGovernanceManager implements GovernanceManager {
     }
 
     @Override
+    public void leaseInstance(GovernanceInstance instance) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
     public Set<String> discoverCategories() {
         try {
             String path = this.path;
