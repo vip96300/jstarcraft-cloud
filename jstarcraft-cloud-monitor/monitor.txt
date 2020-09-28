@@ -1,3 +1,6 @@
+Metrics, tracing, and logging:
+http://peter.bourgon.org/blog/2017/02/21/metrics-tracing-and-logging.html
+
 OneAPM大讲堂 | Metrics, Tracing 和 Logging 的关系:
 http://blog.oneapm.com/apm-tech/811.html
 
