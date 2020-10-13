@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.jstarcraft.core.common.configuration.Configurator;
+import com.jstarcraft.core.common.option.Option;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,7 +29,7 @@ public class ConfigConfigurationManagerTestCase {
     public void testRefresh() {
         Assert.assertEquals("old-config", properties.getConfig());
         {
-            Configurator configuration = configurationManager.getConfiguration("config");
+            Option configuration = configurationManager.getOption("config");
             Assert.assertEquals("old-config", configuration.getString("mock.config"));
         }
 
@@ -49,7 +49,7 @@ public class ConfigConfigurationManagerTestCase {
 
         Assert.assertEquals("new-config", properties.getConfig());
         {
-            Configurator configuration = configurationManager.getConfiguration("config");
+            Option configuration = configurationManager.getOption("config");
             Assert.assertEquals("new-config", configuration.getString("mock.config"));
         }
 

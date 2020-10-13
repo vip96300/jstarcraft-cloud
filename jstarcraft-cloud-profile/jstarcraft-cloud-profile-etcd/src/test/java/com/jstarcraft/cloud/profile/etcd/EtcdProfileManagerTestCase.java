@@ -3,7 +3,7 @@ package com.jstarcraft.cloud.profile.etcd;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.jstarcraft.core.common.configuration.Configurator;
+import com.jstarcraft.core.common.option.Option;
 import com.jstarcraft.core.utility.StringUtility;
 
 import io.etcd.jetcd.ByteSequence;
@@ -20,7 +20,7 @@ public class EtcdProfileManagerTestCase {
         ByteSequence value = ByteSequence.from("race=random".getBytes(StringUtility.CHARSET));
         keyValue.put(key, value).get();
         EtcdProfileManager manager = new EtcdProfileManager(etcd, "properties");
-        Configurator configurator = manager.getConfiguration("jstarcraft");
+        Option configurator = manager.getOption("jstarcraft");
         Assert.assertEquals("random", configurator.getString("race"));
         keyValue.delete(key);
         etcd.close();

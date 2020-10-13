@@ -4,7 +4,7 @@ import org.apache.curator.framework.CuratorFramework;
 
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
-import com.jstarcraft.core.common.configuration.Configurator;
+import com.jstarcraft.core.common.option.Option;
 
 /**
  * ZooKeeper配置管理器
@@ -19,7 +19,7 @@ public class ZooKeeperConfigurationManager implements ConfigurationManager {
     private CuratorFramework curator;
 
     @Override
-    public Configurator getConfiguration(String name) {
+    public Option getOption(String name) {
         // TODO Auto-generated method stub
         return null;
     }

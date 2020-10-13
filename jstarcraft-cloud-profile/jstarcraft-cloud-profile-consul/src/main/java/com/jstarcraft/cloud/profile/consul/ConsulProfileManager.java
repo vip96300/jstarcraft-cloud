@@ -9,11 +9,11 @@ import com.ecwid.consul.v1.Response;
 import com.ecwid.consul.v1.kv.model.GetValue;
 import com.jstarcraft.cloud.profile.ProfileManager;
 import com.jstarcraft.cloud.profile.ProfileMonitor;
-import com.jstarcraft.core.common.configuration.Configurator;
-import com.jstarcraft.core.common.configuration.JsonConfigurator;
-import com.jstarcraft.core.common.configuration.PropertyConfigurator;
-import com.jstarcraft.core.common.configuration.XmlConfigurator;
-import com.jstarcraft.core.common.configuration.YamlConfigurator;
+import com.jstarcraft.core.common.option.JsonOption;
+import com.jstarcraft.core.common.option.Option;
+import com.jstarcraft.core.common.option.PropertyOption;
+import com.jstarcraft.core.common.option.XmlOption;
+import com.jstarcraft.core.common.option.YamlOption;
 
 /**
  * Consul配置管理器
@@ -35,19 +35,19 @@ public class ConsulProfileManager implements ProfileManager {
     }
 
     @Override
-    public Configurator getConfiguration(String name) {
+    public Option getOption(String name) {
         Response<GetValue> response = consul.getKVValue(name, QueryParams.DEFAULT);
         GetValue keyValue = response.getValue();
         String content = keyValue.getDecodedValue();
         switch (format) {
         case "json":
-            return new JsonConfigurator(content);
+            return new JsonOption(content);
         case "properties":
-            return new PropertyConfigurator(content);
+            return new PropertyOption(content);
         case "xml":
-            return new XmlConfigurator(content);
+            return new XmlOption(content);
         case "yaml":
-            return new YamlConfigurator(content);
+            return new YamlOption(content);
         }
         throw new IllegalArgumentException();
     }

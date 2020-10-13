@@ -1,6 +1,6 @@
 package com.jstarcraft.cloud.configuration;
 
-import com.jstarcraft.core.common.configuration.Configurator;
+import com.jstarcraft.core.common.option.Option;
 
 /**
  * 配置监控器
@@ -17,6 +17,6 @@ public interface ConfigurationMonitor {
      * @param from
      * @param to
      */
-    void change(String name, Configurator from, Configurator to);
+    void change(String name, Option from, Option to);
 
 }

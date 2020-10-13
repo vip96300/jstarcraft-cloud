@@ -1,6 +1,6 @@
 package com.jstarcraft.cloud.profile;
 
-import com.jstarcraft.core.common.configuration.Configurator;
+import com.jstarcraft.core.common.option.Option;
 
 /**
  * 配置监控器
@@ -17,6 +17,6 @@ public interface ProfileMonitor {
      * @param from
      * @param to
      */
-    void changeProfile(String name, Configurator from, Configurator to);
+    void changeProfile(String name, Option from, Option to);
 
 }

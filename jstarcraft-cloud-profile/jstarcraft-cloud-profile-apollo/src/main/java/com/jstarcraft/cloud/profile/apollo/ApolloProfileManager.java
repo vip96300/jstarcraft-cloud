@@ -8,11 +8,11 @@ import com.ctrip.framework.apollo.ConfigService;
 import com.ctrip.framework.apollo.core.enums.ConfigFileFormat;
 import com.jstarcraft.cloud.profile.ProfileManager;
 import com.jstarcraft.cloud.profile.ProfileMonitor;
-import com.jstarcraft.core.common.configuration.Configurator;
-import com.jstarcraft.core.common.configuration.JsonConfigurator;
-import com.jstarcraft.core.common.configuration.PropertyConfigurator;
-import com.jstarcraft.core.common.configuration.XmlConfigurator;
-import com.jstarcraft.core.common.configuration.YamlConfigurator;
+import com.jstarcraft.core.common.option.JsonOption;
+import com.jstarcraft.core.common.option.Option;
+import com.jstarcraft.core.common.option.PropertyOption;
+import com.jstarcraft.core.common.option.XmlOption;
+import com.jstarcraft.core.common.option.YamlOption;
 
 /**
  * Apollo配置管理器
@@ -31,18 +31,18 @@ public class ApolloProfileManager implements ProfileManager {
     }
 
     @Override
-    public Configurator getConfiguration(String name) {
+    public Option getOption(String name) {
         ConfigFile config = ConfigService.getConfigFile(name, format);
         String content = config.getContent();
         switch (format) {
         case JSON:
-            return new JsonConfigurator(content);
+            return new JsonOption(content);
         case Properties:
-            return new PropertyConfigurator(content);
+            return new PropertyOption(content);
         case XML:
-            return new XmlConfigurator(content);
+            return new XmlOption(content);
         case YAML:
-            return new YamlConfigurator(content);
+            return new YamlOption(content);
         default:
             throw new IllegalArgumentException();
         }

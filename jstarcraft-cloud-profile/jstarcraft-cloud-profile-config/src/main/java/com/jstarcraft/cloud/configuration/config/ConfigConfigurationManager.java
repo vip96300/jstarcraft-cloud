@@ -32,8 +32,8 @@ import org.springframework.web.context.support.StandardServletEnvironment;
 
 import com.jstarcraft.cloud.configuration.ConfigurationManager;
 import com.jstarcraft.cloud.configuration.ConfigurationMonitor;
-import com.jstarcraft.core.common.configuration.Configurator;
-import com.jstarcraft.core.common.configuration.MapConfigurator;
+import com.jstarcraft.core.common.option.MapOption;
+import com.jstarcraft.core.common.option.Option;
 
 /**
  * Spring Cloud Config配置管理器
@@ -56,7 +56,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
 
     private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
-    private HashMap<String, Configurator> configurations = new HashMap<>();
+    private HashMap<String, Option> configurations = new HashMap<>();
 
     private HashSet<ConfigurationMonitor> monitors = new HashSet<>();
 
@@ -83,7 +83,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
             String key = term.getKey();
             key = getName(key);
             HashMap<String, String> value = term.getValue();
-            configurations.put(key, new MapConfigurator(value));
+            configurations.put(key, new MapOption(value));
         }
     }
 
@@ -239,15 +239,15 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
                 HashMap<String, String> before = term.getValue();
                 HashMap<String, String> after = afters.get(key);
                 if (after == null) {
-                    Configurator from = new MapConfigurator(term.getValue());
-                    Configurator to = null;
+                    Option from = new MapOption(term.getValue());
+                    Option to = null;
                     configurations.remove(key);
                     for (ConfigurationMonitor monitor : monitors) {
                         monitor.change(key, from, to);
                     }
                 } else if (!equal(before, after)) {
-                    Configurator from = new MapConfigurator(before);
-                    Configurator to = new MapConfigurator(after);
+                    Option from = new MapOption(before);
+                    Option to = new MapOption(after);
                     configurations.put(key, to);
                     for (ConfigurationMonitor monitor : monitors) {
                         monitor.change(key, from, to);
@@ -261,8 +261,8 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
                 HashMap<String, String> before = befores.get(key);
                 HashMap<String, String> after = term.getValue();
                 if (before == null) {
-                    Configurator from = null;
-                    Configurator to = new MapConfigurator(after);
+                    Option from = null;
+                    Option to = new MapOption(after);
                     configurations.put(key, to);
                     for (ConfigurationMonitor monitor : monitors) {
                         monitor.change(key, from, to);
@@ -294,7 +294,7 @@ public class ConfigConfigurationManager extends ContextRefresher implements Conf
     }
 
     @Override
-    public Configurator getConfiguration(String name) {
+    public Option getOption(String name) {
         Lock read = lock.readLock();
         try {
             read.lock();

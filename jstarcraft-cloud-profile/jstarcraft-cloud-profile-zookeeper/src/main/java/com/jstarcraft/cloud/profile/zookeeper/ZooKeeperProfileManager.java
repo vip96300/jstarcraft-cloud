@@ -6,11 +6,11 @@ import org.slf4j.LoggerFactory;
 
 import com.jstarcraft.cloud.profile.ProfileManager;
 import com.jstarcraft.cloud.profile.ProfileMonitor;
-import com.jstarcraft.core.common.configuration.Configurator;
-import com.jstarcraft.core.common.configuration.JsonConfigurator;
-import com.jstarcraft.core.common.configuration.PropertyConfigurator;
-import com.jstarcraft.core.common.configuration.XmlConfigurator;
-import com.jstarcraft.core.common.configuration.YamlConfigurator;
+import com.jstarcraft.core.common.option.JsonOption;
+import com.jstarcraft.core.common.option.Option;
+import com.jstarcraft.core.common.option.PropertyOption;
+import com.jstarcraft.core.common.option.XmlOption;
+import com.jstarcraft.core.common.option.YamlOption;
 import com.jstarcraft.core.utility.StringUtility;
 
 /**
@@ -36,19 +36,19 @@ public class ZooKeeperProfileManager implements ProfileManager {
     }
 
     @Override
-    public Configurator getConfiguration(String name) {
+    public Option getOption(String name) {
         try {
             byte[] data = zookeeper.getData().forPath(path + "/" + name);
             String content = new String(data, StringUtility.CHARSET);
             switch (format) {
             case "json":
-                return new JsonConfigurator(content);
+                return new JsonOption(content);
             case "properties":
-                return new PropertyConfigurator(content);
+                return new PropertyOption(content);
             case "xml":
-                return new XmlConfigurator(content);
+                return new XmlOption(content);
             case "yaml":
-                return new YamlConfigurator(content);
+                return new YamlOption(content);
             }
             throw new IllegalArgumentException();
         } catch (Exception exception) {

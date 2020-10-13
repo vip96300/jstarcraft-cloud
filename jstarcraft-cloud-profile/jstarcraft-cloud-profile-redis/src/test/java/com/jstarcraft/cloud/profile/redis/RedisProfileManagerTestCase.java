@@ -11,7 +11,7 @@ import org.redisson.client.codec.Codec;
 import org.redisson.client.codec.StringCodec;
 import org.redisson.config.Config;
 
-import com.jstarcraft.core.common.configuration.Configurator;
+import com.jstarcraft.core.common.option.Option;
 
 public class RedisProfileManagerTestCase {
 
@@ -44,7 +44,7 @@ public class RedisProfileManagerTestCase {
         RBucket<String> bucket = redis.getBucket(name);
         bucket.set("race=random");
         RedisProfileManager manager = new RedisProfileManager(redis, "properties");
-        Configurator configurator = manager.getConfiguration("jstarcraft");
+        Option configurator = manager.getOption("jstarcraft");
         Assert.assertEquals("random", configurator.getString("race"));
         bucket.delete();
     }

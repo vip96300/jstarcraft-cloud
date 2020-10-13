@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.ecwid.consul.v1.ConsulClient;
 import com.ecwid.consul.v1.ConsulRawClient;
 import com.ecwid.consul.v1.QueryParams;
-import com.jstarcraft.core.common.configuration.Configurator;
+import com.jstarcraft.core.common.option.Option;
 
 public class ConsulProfileManagerTestCase {
 
@@ -28,7 +28,7 @@ public class ConsulProfileManagerTestCase {
     public void test() {
         consul.setKVValue("jstarcraft", "race=random", QueryParams.DEFAULT);
         ConsulProfileManager manager = new ConsulProfileManager(consul, "properties");
-        Configurator configurator = manager.getConfiguration("jstarcraft");
+        Option configurator = manager.getOption("jstarcraft");
         Assert.assertEquals("random", configurator.getString("race"));
         consul.deleteKVValue("jstarcraft", QueryParams.DEFAULT);
     }

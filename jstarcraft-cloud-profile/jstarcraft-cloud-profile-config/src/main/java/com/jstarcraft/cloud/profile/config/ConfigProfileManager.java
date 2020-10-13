@@ -13,10 +13,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.jstarcraft.cloud.profile.ProfileManager;
 import com.jstarcraft.cloud.profile.ProfileMonitor;
-import com.jstarcraft.core.common.configuration.Configurator;
-import com.jstarcraft.core.common.configuration.JsonConfigurator;
-import com.jstarcraft.core.common.configuration.PropertyConfigurator;
-import com.jstarcraft.core.common.configuration.YamlConfigurator;
+import com.jstarcraft.core.common.option.JsonOption;
+import com.jstarcraft.core.common.option.Option;
+import com.jstarcraft.core.common.option.PropertyOption;
+import com.jstarcraft.core.common.option.YamlOption;
 
 /**
  * Config配置管理器
@@ -44,7 +44,7 @@ public class ConfigProfileManager implements ProfileManager {
     }
 
     @Override
-    public Configurator getConfiguration(String name) {
+    public Option getOption(String name) {
         arguments[1] = name;
         ResponseEntity<String> response = null;
         try {
@@ -65,11 +65,11 @@ public class ConfigProfileManager implements ProfileManager {
         String content = response.getBody();
         switch (format) {
         case "json":
-            return new JsonConfigurator(content);
+            return new JsonOption(content);
         case "properties":
-            return new PropertyConfigurator(content);
+            return new PropertyOption(content);
         case "yaml":
-            return new YamlConfigurator(content);
+            return new YamlOption(content);
         }
         throw new IllegalArgumentException();
     }

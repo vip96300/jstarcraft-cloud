@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.alibaba.nacos.api.config.ConfigFactory;
 import com.alibaba.nacos.api.config.ConfigService;
-import com.jstarcraft.core.common.configuration.Configurator;
+import com.jstarcraft.core.common.option.Option;
 
 public class NacosProfileManagerTestCase {
 
@@ -27,7 +27,7 @@ public class NacosProfileManagerTestCase {
         nacos.publishConfig("jstarcraft", "group", "race=random");
         Thread.sleep(5000L);
         NacosProfileManager manager = new NacosProfileManager(nacos, "properties");
-        Configurator configurator = manager.getConfiguration("jstarcraft");
+        Option configurator = manager.getOption("jstarcraft");
         Assert.assertEquals("random", configurator.getString("race"));
         nacos.removeConfig("jstarcraft", "group");
     }
