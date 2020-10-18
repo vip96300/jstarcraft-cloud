@@ -13,6 +13,9 @@ https://www.cnblogs.com/skyesx/p/10041923.html
 分布式事务框架Seata及EasyTransaction架构的比对思考:
 https://www.cnblogs.com/skyesx/p/10674700.html
 
+LCN解决分布式事务原理解析+项目实战（原创精华版）:
+https://www.cnblogs.com/lmyupupblogs/p/12499815.html
+
 Seata 是一款开源的分布式事务解决方案，致力于在微服务架构下提供高性能和简单易用的分布式事务服务:
 https://seata.io/zh-cn/
 https://github.com/seata
