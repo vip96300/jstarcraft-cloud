@@ -5,5 +5,10 @@ Seata 是一款开源的分布式事务解决方案，致力于在微服务架�
 https://seata.io/zh-cn/
 https://github.com/seata
 
+分布式事务 Seata(一) 理解什么是XA 2PC、3PC:
+https://www.jianshu.com/p/0659417fb864
+分布式事务 Seata(二) 理解什么是AT、TCC、Saga:
+https://www.jianshu.com/p/f2caa8737b7b
+
 终于有人把“TCC分布式事务”实现原理讲明白了！:
 https://www.cnblogs.com/jajian/p/10014145.html
