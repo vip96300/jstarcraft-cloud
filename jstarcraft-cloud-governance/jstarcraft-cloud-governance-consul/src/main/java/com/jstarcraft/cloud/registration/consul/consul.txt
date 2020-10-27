@@ -12,3 +12,6 @@ https://www.cnblogs.com/duanxz/p/9663582.html
 
 服务注册发现、配置中心集一体的 Spring Cloud Consul:
 https://www.cnblogs.com/fengzheng/p/11421110.html
+
+Consul配置参数大全、详解、总结:
+https://www.cnblogs.com/sunsky303/p/9209024.html
