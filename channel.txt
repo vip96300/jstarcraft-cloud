@@ -17,6 +17,12 @@ https://github.com/justauth/JustAuth
 
 ***** 支付 *****
 
+一文读懂：完整的支付系统整体架构！:
+https://www.jianshu.com/p/3a010ea02d33
+
+从0到1设计聚合支付系统:
+https://www.zhihu.com/column/juhezhifu
+
 全能第三方支付对接Java开发工具包:
 https://github.com/egzosn/pay-java-parent
 
