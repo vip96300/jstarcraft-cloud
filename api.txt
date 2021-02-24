@@ -1,14 +1,14 @@
-�й���Ʒ��Ϣ����ƽ̨:
+中国商品信息服务平台:
 http://search.anccnet.com/searchResult2.aspx
 
-���API,Ϊ���ռ���ѵĽӿڷ�����һ��api�İ��˹���ÿ�¸����µĽӿ�:
+免费API,为您收集免费的接口服务，做一个api的搬运工，每月更新新的接口:
 https://www.free-api.com/
 
-���ʵ�õ�API�ӿ�:
+免费实用的API接口:
 https://zhuanlan.zhihu.com/p/21320392
 
-����Щ�������ѵ�API�ӿ�?:
+有哪些好玩的免费的API接口?:
 https://www.zhihu.com/question/32225726
 
-����һЩ��ȫ��ѿ��ŵ�API�ӿ�:
+整理一些完全免费开放的API接口:
 https://blog.csdn.net/qq_41856814/article/details/89290195
