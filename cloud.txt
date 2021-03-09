@@ -1,3 +1,6 @@
+The Java Multi-Cloud Toolkit:
+http://jclouds.apache.org
+
 你懂什么是云原生吗？:
 https://zhuanlan.zhihu.com/p/110421613
 
@@ -37,6 +40,12 @@ https://github.com/hujingshuang/MTrans
 https://github.com/jtsinghua/multitranslation
 
 ***** 存储 *****
+
+Cloud-enabled backup and restore tool for Apache Cassandra:
+https://github.com/instaclustr/esop
+
+Access other storage backends via the S3 API:
+https://github.com/gaul/s3proxy
 
 全称：minsx-common-cloud-storge 公共云存储，主要用于统一阿里云、百度云、腾讯云、七牛云等云存储及本地存储，提供一套简单通用的标准:
 https://github.com/MinsxCloud/minsx-ccs
