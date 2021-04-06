@@ -1,18 +1,18 @@
-Netflix OSS套件一站式学习驿站:
+Netflix OSS濂椾欢涓�绔欏紡瀛︿範椹跨珯:
 https://fangshixiang.blog.csdn.net/article/details/105610114
 https://cloud.tencent.com/developer/user/6158873
 
-享学Archaius:
+浜Archaius:
 https://blog.csdn.net/f641385712/category_9911741.html
 
-享学Eureka:
+浜Eureka:
 https://blog.csdn.net/f641385712/category_9831549.html
 
-享学Feign:
+浜Feign:
 https://blog.csdn.net/f641385712/category_9708549.html
 
-享学Hystrix:
+浜Hystrix:
 https://blog.csdn.net/f641385712/category_9921991.html
 
-享学Ribbon:
+浜Ribbon:
 https://blog.csdn.net/f641385712/category_9922216.html
