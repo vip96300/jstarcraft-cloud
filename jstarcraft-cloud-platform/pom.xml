@@ -23,6 +23,7 @@
         <module>jstarcraft-cloud-platform-min</module>
         <module>jstarcraft-cloud-platform-openstack</module>
         <module>jstarcraft-cloud-platform-qiniu</module>
+        <module>jstarcraft-cloud-platform-rackspace</module>
         <module>jstarcraft-cloud-platform-tencent</module>
         <module>jstarcraft-cloud-platform-upyun</module>
     </modules>
