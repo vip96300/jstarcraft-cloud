@@ -8,7 +8,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>jstarcraft-cloud-platform-aws</artifactId>
+    <artifactId>jstarcraft-cloud-platform-upyun</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -16,6 +16,12 @@
             <groupId>com.jstarcraft</groupId>
             <artifactId>jstarcraft-cloud-platform-api</artifactId>
             <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.upyun</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>4.2.3</version>
         </dependency>
 
         <!-- 测试框架依赖 -->

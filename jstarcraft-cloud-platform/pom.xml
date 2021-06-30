@@ -15,9 +15,13 @@
         <module>jstarcraft-cloud-platform-api</module>
         <module>jstarcraft-cloud-platform-aliyun</module>
         <module>jstarcraft-cloud-platform-aws</module>
+        <module>jstarcraft-cloud-platform-backblaze</module>
         <module>jstarcraft-cloud-platform-baidu</module>
+        <module>jstarcraft-cloud-platform-google</module>
         <module>jstarcraft-cloud-platform-huawei</module>
+        <module>jstarcraft-cloud-platform-microsoft</module>
         <module>jstarcraft-cloud-platform-min</module>
+        <module>jstarcraft-cloud-platform-openstack</module>
         <module>jstarcraft-cloud-platform-qiniu</module>
         <module>jstarcraft-cloud-platform-tencent</module>
         <module>jstarcraft-cloud-platform-upyun</module>
