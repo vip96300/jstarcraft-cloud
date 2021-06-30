@@ -8,7 +8,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>jstarcraft-cloud-platform-aws</artifactId>
+    <artifactId>jstarcraft-cloud-platform-amazon</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

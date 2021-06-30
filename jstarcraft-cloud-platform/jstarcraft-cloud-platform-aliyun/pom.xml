@@ -8,7 +8,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>jstarcraft-cloud-platform-aliyun</artifactId>
+    <artifactId>jstarcraft-cloud-platform-alibaba</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

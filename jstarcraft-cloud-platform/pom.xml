@@ -13,8 +13,8 @@
 
     <modules>
         <module>jstarcraft-cloud-platform-api</module>
-        <module>jstarcraft-cloud-platform-aliyun</module>
-        <module>jstarcraft-cloud-platform-aws</module>
+        <module>jstarcraft-cloud-platform-alibaba</module>
+        <module>jstarcraft-cloud-platform-amazon</module>
         <module>jstarcraft-cloud-platform-backblaze</module>
         <module>jstarcraft-cloud-platform-baidu</module>
         <module>jstarcraft-cloud-platform-google</module>
