@@ -18,6 +18,7 @@
         <module>jstarcraft-cloud-gate</module>
         <module>jstarcraft-cloud-governance</module>
         <module>jstarcraft-cloud-monitor</module>
+        <module>jstarcraft-cloud-platform</module>
         <module>jstarcraft-cloud-profile</module>
         <module>jstarcraft-cloud-transaction</module>
     </modules>
