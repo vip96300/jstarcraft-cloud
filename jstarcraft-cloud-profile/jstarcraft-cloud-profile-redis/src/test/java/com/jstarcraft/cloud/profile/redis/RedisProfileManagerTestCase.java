@@ -13,37 +13,44 @@ import org.redisson.config.Config;
 
 import com.jstarcraft.core.common.option.Option;
 
+import redis.embedded.RedisServer;
+
 public class RedisProfileManagerTestCase {
 
-    private static Redisson redis;
+    private static Redisson client;
 
     private static RKeys keys;
 
+    private static RedisServer server;
+
     @BeforeClass
     public static void start() throws Exception {
+        server = RedisServer.builder().port(6379).setting("maxmemory 1024M").build();
+        server.start();
         // 注意此处的编解码器
         Codec codec = new StringCodec();
         Config configuration = new Config();
         configuration.setCodec(codec);
         configuration.useSingleServer().setAddress("redis://127.0.0.1:6379");
 
-        redis = (Redisson) Redisson.create(configuration);
-        keys = redis.getKeys();
+        client = (Redisson) Redisson.create(configuration);
+        keys = client.getKeys();
         keys.flushdb();
     }
 
     @AfterClass
     public static void stop() throws Exception {
         keys.flushdb();
-        redis.shutdown();
+        client.shutdown();
+        server.stop();
     }
 
     @Test
     public void test() {
         String name = "jstarcraft";
-        RBucket<String> bucket = redis.getBucket(name);
+        RBucket<String> bucket = client.getBucket(name);
         bucket.set("race=random");
-        RedisProfileManager manager = new RedisProfileManager(redis, "properties");
+        RedisProfileManager manager = new RedisProfileManager(client, "properties");
         Option configurator = manager.getOption("jstarcraft");
         Assert.assertEquals("random", configurator.getString("race"));
         bucket.delete();

@@ -1,6 +1,8 @@
 package com.jstarcraft.cloud.registration.redis;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import redis.embedded.RedisServer;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -25,6 +29,19 @@ public class RedisServerManagerTestCase {
 
     @Autowired
     private DiscoveryClient discovery;
+
+    private static RedisServer redis;
+
+    @BeforeClass
+    public static void startRedis() {
+        redis = RedisServer.builder().port(6379).setting("maxmemory 1024M").build();
+        redis.start();
+    }
+
+    @AfterClass
+    public static void stopRedis() {
+        redis.stop();
+    }
 
     @Test
     public void testChoose() throws Exception {
