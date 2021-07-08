@@ -25,7 +25,7 @@ public class RedisProfileManagerTestCase {
 
     @BeforeClass
     public static void start() throws Exception {
-        server = RedisServer.builder().port(6379).setting("maxmemory 1024M").build();
+        server = RedisServer.builder().port(6379).setting("maxmemory 64M").build();
         server.start();
         // 注意此处的编解码器
         Codec codec = new StringCodec();
