@@ -1,4 +1,4 @@
-package com.jstarcraft.cloud.platform.min;
+package com.jstarcraft.cloud.platform.openstack;
 
 import java.util.Iterator;
 
@@ -6,41 +6,18 @@ import com.jstarcraft.cloud.platform.StorageMetadata;
 import com.jstarcraft.cloud.platform.StorageResource;
 import com.jstarcraft.cloud.platform.StorageService;
 
-import io.minio.MinioClient;
-import io.minio.messages.ObjectMetadata;
-
-/**
- * 仓库服务
- * 
- * @author Birdy
- *
- */
-public class MinStorageService implements StorageService {
-
-    private MinioClient io;
-
-    public MinStorageService(MinioClient io) {
-        this.io = io;
-    }
+public class OpenStackStorageService implements StorageService {
 
     @Override
     public void createStorage(String name) {
-        // TODO
+        // TODO Auto-generated method stub
+
     }
 
     @Override
     public void deleteStorage(String name) {
-        // TODO
-    }
+        // TODO Auto-generated method stub
 
-    private ObjectMetadata getMinMetadata(StorageMetadata metadata) {
-        // TODO
-        return null;
-    }
-
-    private StorageMetadata getStorageMetadata(ObjectMetadata metadata) {
-        // TODO
-        return null;
     }
 
     @Override

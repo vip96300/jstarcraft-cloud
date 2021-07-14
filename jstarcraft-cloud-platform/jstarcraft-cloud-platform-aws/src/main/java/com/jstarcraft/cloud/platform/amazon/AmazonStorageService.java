@@ -1,6 +1,7 @@
 package com.jstarcraft.cloud.platform.amazon;
 
 import java.io.InputStream;
+import java.util.Iterator;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -58,6 +59,12 @@ public class AmazonStorageService implements StorageService {
     @Override
     public boolean haveResource(String storage, String key) {
         return s3.doesObjectExist(storage, key);
+    }
+
+    @Override
+    public Iterator<StorageResource> iterateResources(String storage) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override

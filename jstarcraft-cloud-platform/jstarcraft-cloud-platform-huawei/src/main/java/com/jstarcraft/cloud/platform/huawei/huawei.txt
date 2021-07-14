@@ -1,0 +1,2 @@
+对象存储服务 OBS:
+https://www.huaweicloud.com/product/obs.html

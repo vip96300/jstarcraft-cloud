@@ -1,5 +1,7 @@
 package com.jstarcraft.cloud.platform.backblaze;
 
+import java.util.Iterator;
+
 import com.backblaze.b2.client.B2StorageClient;
 import com.backblaze.b2.client.exceptions.B2Exception;
 import com.backblaze.b2.client.structures.B2FileVersion;
@@ -57,19 +59,25 @@ public class BackblazeStorageService implements StorageService {
     @Override
     public void saveResource(String storage, String key, StorageResource resource) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void waiveResource(String storage, String key) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public boolean haveResource(String storage, String key) {
         // TODO Auto-generated method stub
         return false;
+    }
+
+    @Override
+    public Iterator<StorageResource> iterateResources(String storage) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
@@ -83,7 +91,5 @@ public class BackblazeStorageService implements StorageService {
         // TODO Auto-generated method stub
         return null;
     }
-
-    
 
 }

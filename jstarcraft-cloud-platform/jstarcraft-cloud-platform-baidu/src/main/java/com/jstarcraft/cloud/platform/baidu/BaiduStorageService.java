@@ -1,6 +1,7 @@
 package com.jstarcraft.cloud.platform.baidu;
 
 import java.io.InputStream;
+import java.util.Iterator;
 
 import com.baidubce.services.bos.BosClient;
 import com.baidubce.services.bos.model.BosObject;
@@ -58,6 +59,12 @@ public class BaiduStorageService implements StorageService {
     @Override
     public boolean haveResource(String storage, String key) {
         return bos.doesObjectExist(storage, key);
+    }
+
+    @Override
+    public Iterator<StorageResource> iterateResources(String storage) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.jstarcraft.cloud.platform.aliyun;
 
 import java.io.InputStream;
+import java.util.Iterator;
 
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.OSSObject;
@@ -58,6 +59,12 @@ public class AliyunStorageService implements StorageService {
     @Override
     public boolean haveResource(String storage, String key) {
         return oss.doesObjectExist(storage, key);
+    }
+
+    @Override
+    public Iterator<StorageResource> iterateResources(String storage) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override

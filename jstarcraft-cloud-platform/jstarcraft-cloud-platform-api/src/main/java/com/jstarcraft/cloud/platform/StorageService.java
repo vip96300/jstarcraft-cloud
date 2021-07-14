@@ -1,5 +1,7 @@
 package com.jstarcraft.cloud.platform;
 
+import java.util.Iterator;
+
 /**
  * 仓库服务
  * 
@@ -47,6 +49,8 @@ public interface StorageService {
      * @return
      */
     public boolean haveResource(String storage, String key);
+
+    public Iterator<StorageResource> iterateResources(String storage);
 
     /**
      * 获取资源

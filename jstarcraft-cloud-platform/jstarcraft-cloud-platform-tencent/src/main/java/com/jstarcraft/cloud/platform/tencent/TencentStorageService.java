@@ -1,6 +1,7 @@
 package com.jstarcraft.cloud.platform.tencent;
 
 import java.io.InputStream;
+import java.util.Iterator;
 
 import com.jstarcraft.cloud.platform.StorageMetadata;
 import com.jstarcraft.cloud.platform.StorageResource;
@@ -58,6 +59,12 @@ public class TencentStorageService implements StorageService {
     @Override
     public boolean haveResource(String storage, String key) {
         return cos.doesObjectExist(storage, key);
+    }
+
+    @Override
+    public Iterator<StorageResource> iterateResources(String storage) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
