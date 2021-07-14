@@ -3,28 +3,41 @@ package com.jstarcraft.cloud.profile.zookeeper;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryOneTime;
+import org.apache.curator.test.TestingServer;
 import org.apache.zookeeper.CreateMode;
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.jstarcraft.core.common.option.Option;
 import com.jstarcraft.core.utility.StringUtility;
 
 public class ZooKeeperProfileManagerTestCase {
+    
+    private TestingServer zookeeper;
 
-    private static CuratorFramework zookeeper;
+    private CuratorFramework curator;
 
-    @BeforeClass
-    public static void start() throws Exception {
-        zookeeper = CuratorFrameworkFactory.builder().connectString("127.0.0.1:2181").retryPolicy(new RetryOneTime(2000)).build();
-        zookeeper.start();
+    @Before
+    public void testBefore() throws Exception {
+        zookeeper = new TestingServer();
+        curator = CuratorFrameworkFactory.builder()
+
+                .namespace("ZooKeeperAtomicIdentityFactoryTestCase")
+
+                .connectString(zookeeper.getConnectString())
+
+                .retryPolicy(new RetryOneTime(2000))
+
+                .build();
+        curator.start();
     }
 
-    @AfterClass
-    public static void stop() throws Exception {
-        zookeeper.close();
+    @After
+    public void testAfter() throws Exception {
+        curator.close();
+        zookeeper.stop();
     }
 
     @Test
@@ -32,11 +45,11 @@ public class ZooKeeperProfileManagerTestCase {
         String path = "/group";
         String name = "jstarcraft";
         byte[] data = "race=random".getBytes(StringUtility.CHARSET);
-        zookeeper.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(path + "/" + name, data);
-        ZooKeeperProfileManager manager = new ZooKeeperProfileManager(zookeeper, "properties", path);
+        curator.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(path + "/" + name, data);
+        ZooKeeperProfileManager manager = new ZooKeeperProfileManager(curator, "properties", path);
         Option configurator = manager.getOption("jstarcraft");
         Assert.assertEquals("random", configurator.getString("race"));
-        zookeeper.delete().forPath(path + "/" + name);
+        curator.delete().forPath(path + "/" + name);
     }
 
 }

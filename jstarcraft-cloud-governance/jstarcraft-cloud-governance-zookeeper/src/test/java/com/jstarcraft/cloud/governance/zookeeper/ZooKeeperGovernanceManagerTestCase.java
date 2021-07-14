@@ -8,9 +8,10 @@ import java.util.Map;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryOneTime;
-import org.junit.AfterClass;
+import org.apache.curator.test.TestingServer;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.jstarcraft.cloud.governance.DefaultGovernanceInstance;
@@ -19,22 +20,34 @@ import com.jstarcraft.cloud.governance.GovernanceManager;
 
 public class ZooKeeperGovernanceManagerTestCase {
 
-    private static CuratorFramework zookeeper;
+    private TestingServer zookeeper;
 
-    @BeforeClass
-    public static void start() throws Exception {
-        zookeeper = CuratorFrameworkFactory.builder().connectString("127.0.0.1:2181").retryPolicy(new RetryOneTime(2000)).build();
-        zookeeper.start();
+    private CuratorFramework curator;
+
+    @Before
+    public void testBefore() throws Exception {
+        zookeeper = new TestingServer();
+        curator = CuratorFrameworkFactory.builder()
+
+                .namespace("ZooKeeperAtomicIdentityFactoryTestCase")
+
+                .connectString(zookeeper.getConnectString())
+
+                .retryPolicy(new RetryOneTime(2000))
+
+                .build();
+        curator.start();
     }
 
-    @AfterClass
-    public static void stop() throws Exception {
-        zookeeper.close();
+    @After
+    public void testAfter() throws Exception {
+        curator.close();
+        zookeeper.stop();
     }
 
     protected GovernanceManager getManager() {
         String path = "/path";
-        ZooKeeperGovernanceManager manager = new ZooKeeperGovernanceManager(zookeeper, path);
+        ZooKeeperGovernanceManager manager = new ZooKeeperGovernanceManager(curator, path);
         return manager;
     }
 
