@@ -1,4 +1,4 @@
-package com.jstarcraft.cloud.platform.aliyun;
+package com.jstarcraft.cloud.platform.alibaba;
 
 import java.io.InputStream;
 import java.util.Iterator;
@@ -16,11 +16,11 @@ import com.jstarcraft.cloud.platform.StorageService;
  * @author Birdy
  *
  */
-public class AliyunStorageService implements StorageService {
+public class AlibabaStorageService implements StorageService {
 
     private OSSClient oss;
 
-    public AliyunStorageService(OSSClient oss) {
+    public AlibabaStorageService(OSSClient oss) {
         this.oss = oss;
     }
 
