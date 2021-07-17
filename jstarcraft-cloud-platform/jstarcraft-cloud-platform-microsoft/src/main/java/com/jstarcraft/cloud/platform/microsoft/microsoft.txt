@@ -1,0 +1,15 @@
+使用 v12 Java 客户端库的 Azure 存储示例:
+https://docs.microsoft.com/zh-cn/azure/storage/common/storage-samples-java
+https://docs.microsoft.com/en-us/azure/storage/common/storage-samples-java
+
+Azure 基础：Table storage:
+https://www.cnblogs.com/sparkdev/p/6441217.html
+
+Azure 基础：Blob Storage:
+https://www.cnblogs.com/sparkdev/p/6441421.html
+
+Azure 基础：File Storage:
+https://www.cnblogs.com/sparkdev/p/6501297.html
+
+Azure 基础：Queue Storage:
+https://www.cnblogs.com/sparkdev/p/6505431.html
