@@ -19,6 +19,7 @@
         <module>jstarcraft-cloud-platform-baidu</module>
         <module>jstarcraft-cloud-platform-google</module>
         <module>jstarcraft-cloud-platform-huawei</module>
+        <module>jstarcraft-cloud-platform-kingsoft</module>
         <module>jstarcraft-cloud-platform-microsoft</module>
         <module>jstarcraft-cloud-platform-min</module>
         <module>jstarcraft-cloud-platform-openstack</module>
