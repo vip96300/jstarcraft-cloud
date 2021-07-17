@@ -13,10 +13,6 @@ import com.jstarcraft.cloud.platform.StorageService;
 /**
  * 仓库服务
  * 
- * <pre>
- * https://github.com/Backblaze/b2-sdk-java/tree/master/samples/src/main/java/com/backblaze/b2/sample
- * </pre>
- * 
  * @author Birdy
  *
  */
