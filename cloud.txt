@@ -38,35 +38,3 @@ https://github.com/hujingshuang/MTrans
 
 集成包括Google翻译，百度翻译，有道翻译，必应翻译，搜狗翻译:
 https://github.com/jtsinghua/multitranslation
-
-***** 存储 *****
-
-"rsync for cloud storage" - Google Drive, S3, Dropbox, Backblaze B2, One Drive, Swift, Hubic, Wasabi, Google Cloud Storage, Yandex Files:
-https://github.com/rclone/rclone
-
-Cloud-enabled backup and restore tool for Apache Cassandra:
-https://github.com/instaclustr/esop
-
-Access other storage backends via the S3 API:
-https://github.com/gaul/s3proxy
-
-在 SpringBoot 中通过简单的方式将文件存储到 本地、阿里云OSS、华为云OBS、七牛云Kodo、腾讯云COS、百度云 BOS、又拍云USS、MinIO、 AWS S3、金山云 KS3、美团云 MSS、京东云 OSS、天翼云 OOS、移动云 EOS、沃云 OSS、 网易数帆 NOS、Ucloud US3、青云 QingStor、平安云 OBS、首云 OSS、IBM COS、其它兼容 S3 协议的平台。后续即将支持 谷歌云存储、FTP、SFTP、WebDAV、Samba、NFS:
-https://github.com/1171736840/spring-file-storage
-
-全称：minsx-common-cloud-storge 公共云存储，主要用于统一阿里云、百度云、腾讯云、七牛云等云存储及本地存储，提供一套简单通用的标准:
-https://github.com/MinsxCloud/minsx-ccs
-
-七牛云、又拍云、阿里云对象存储OSS、腾讯云对象存储服务COS - Java客户端:
-https://github.com/wucao/java-cloud-storage-service
-
-百度BOS、阿里OSS、腾讯COS、京东OSS、华为OBS、又拍云、七牛云的数据迁移工具:
-https://github.com/chocotan/osm
-
-文件服务(七牛、阿里云OSS、fastDFS):
-https://gitee.com/vakinge/jeesuite-libs
-
-OSS直传结合STS使用流程—— 授权您的客户端直接访问云存储:
-https://www.pianshen.com/article/4250691065
-
-STS临时授权访问OSS:
-https://help.aliyun.com/document_detail/100624.html
