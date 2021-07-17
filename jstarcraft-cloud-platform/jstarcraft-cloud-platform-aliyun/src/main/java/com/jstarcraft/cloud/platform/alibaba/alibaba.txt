@@ -1,2 +1,8 @@
 对象存储 OSS:
 https://help.aliyun.com/product/31815.html
+
+OSS直传结合STS使用流程—— 授权您的客户端直接访问云存储:
+https://www.pianshen.com/article/4250691065
+
+STS临时授权访问OSS:
+https://help.aliyun.com/document_detail/100624.html

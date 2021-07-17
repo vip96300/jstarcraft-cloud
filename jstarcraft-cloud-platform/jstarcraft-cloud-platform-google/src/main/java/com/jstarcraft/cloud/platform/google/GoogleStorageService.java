@@ -2,12 +2,19 @@ package com.jstarcraft.cloud.platform.google;
 
 import java.util.Iterator;
 
+import com.google.api.services.storage.Storage;
 import com.jstarcraft.cloud.platform.StorageMetadata;
 import com.jstarcraft.cloud.platform.StorageResource;
 import com.jstarcraft.cloud.platform.StorageService;
 
 public class GoogleStorageService implements StorageService {
 
+    private Storage storage;
+    
+    public GoogleStorageService(Storage storage) {
+        this.storage = storage;
+    }
+    
     @Override
     public void createStorage(String name) {
         // TODO Auto-generated method stub
