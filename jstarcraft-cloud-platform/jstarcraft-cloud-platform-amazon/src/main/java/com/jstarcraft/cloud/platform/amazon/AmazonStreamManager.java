@@ -66,15 +66,7 @@ public class AmazonStreamManager extends CloudStreamManager {
 
     @Override
     public boolean haveResource(String path) {
-        GetObjectRequest request=new GetObjectRequest(bucketName,path);
-        S3Object object=null;
-        try{
-            object= this.getClient().getObject(request);
-        }catch (AmazonS3Exception e){
-            e.printStackTrace();
-            return false;
-        }
-        return object!=null;
+        return this.retrieveResource(path)!=null;
     }
 
     @Override
@@ -83,9 +75,6 @@ public class AmazonStreamManager extends CloudStreamManager {
         S3Object object=null;
         try{
             object= this.getClient().getObject(request);
-            if(object==null){
-                return null;
-            }
         }catch (AmazonS3Exception e){
             e.printStackTrace();
             return null;
