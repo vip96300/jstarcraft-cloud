@@ -18,20 +18,20 @@ import java.io.InputStream;
  */
 public class AmazonStreamManagerTestsCase {
 
-    private static final String accessKey="1";
+    private static final String accessKey = "1";
 
-    private static final String secretKey="1";
+    private static final String secretKey = "1";
 
-    private static final String bucketName="test";
+    private static final String bucketName = "test";
 
     protected StreamManager getStreamManager() {
-        AmazonStreamManager manager = new AmazonStreamManager(accessKey,secretKey,bucketName);
+        AmazonStreamManager manager = new AmazonStreamManager(accessKey, secretKey, bucketName);
         return manager;
     }
 
     @Before
-    public void setUp(){
-        S3Mock mockServer=S3Mock.create(8080);
+    public void setUp() {
+        S3Mock mockServer = S3Mock.create(8080);
         mockServer.start();
     }
 
