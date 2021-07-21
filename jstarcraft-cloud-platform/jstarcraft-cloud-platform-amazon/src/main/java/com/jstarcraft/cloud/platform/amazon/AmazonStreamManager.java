@@ -1,5 +1,12 @@
 package com.jstarcraft.cloud.platform.amazon;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -8,17 +15,16 @@ import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.model.AmazonS3Exception;
+import com.amazonaws.services.s3.model.CreateBucketRequest;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.ListObjectsRequest;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.jstarcraft.cloud.platform.CloudStreamManager;
-import org.apache.commons.collections.iterators.CollatingIterator;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class AmazonStreamManager extends CloudStreamManager {
 
@@ -66,20 +72,18 @@ public class AmazonStreamManager extends CloudStreamManager {
 
     @Override
     public boolean haveResource(String path) {
-        return this.retrieveResource(path) != null;
+        return this.getClient().doesObjectExist(bucketName, path);
     }
 
     @Override
     public InputStream retrieveResource(String path) {
         GetObjectRequest request = new GetObjectRequest(bucketName, path);
-        S3Object object = null;
         try {
-            object = this.getClient().getObject(request);
-        } catch (AmazonS3Exception e) {
-            e.printStackTrace();
+            S3Object object = this.getClient().getObject(request);
+            return object.getObjectContent().getDelegateStream();
+        } catch (AmazonS3Exception exception) {
             return null;
         }
-        return object.getObjectContent().getDelegateStream();
     }
 
     @Override
