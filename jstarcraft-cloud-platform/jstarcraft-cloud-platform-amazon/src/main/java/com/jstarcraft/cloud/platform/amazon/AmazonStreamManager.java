@@ -4,8 +4,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
@@ -39,6 +37,8 @@ public class AmazonStreamManager extends CloudStreamManager {
 
     private String bucketName;
 
+    private AmazonS3 s3;
+
     public AmazonStreamManager(String accessKey, String secretKey, String bucketName) {
         super(storage);
         this.credentials = new BasicAWSCredentials(accessKey, secretKey);
@@ -48,6 +48,12 @@ public class AmazonStreamManager extends CloudStreamManager {
         this.configuration.setSignerOverride("S3SignerType");
         // 访问协议
         this.configuration.setProtocol(Protocol.HTTP);
+        // 设置要用于请求的端点配置（服务端点和签名区域）
+        AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(OSS_URL, Regions.CN_NORTH_1.toString());
+        s3 = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials)).withClientConfiguration(configuration).withEndpointConfiguration(endpointConfiguration).withPathStyleAccessEnabled(true).build();
+        // 创建桶(已存在会忽略)
+        CreateBucketRequest createBucketRequest = new CreateBucketRequest(bucketName);
+        s3.createBucket(createBucketRequest);
     }
 
     public AmazonStreamManager(BasicAWSCredentials credentials, ClientConfiguration configuration, String bucketName) {
@@ -61,25 +67,25 @@ public class AmazonStreamManager extends CloudStreamManager {
     public void saveResource(String path, InputStream stream) {
         ObjectMetadata metadata = new ObjectMetadata();
         PutObjectRequest request = new PutObjectRequest(bucketName, path, stream, metadata);
-        this.getClient().putObject(request);
+        s3.putObject(request);
     }
 
     @Override
     public void waiveResource(String path) {
         DeleteObjectRequest request = new DeleteObjectRequest(bucketName, path);
-        this.getClient().deleteObject(request);
+        s3.deleteObject(request);
     }
 
     @Override
     public boolean haveResource(String path) {
-        return this.getClient().doesObjectExist(bucketName, path);
+        return s3.doesObjectExist(bucketName, path);
     }
 
     @Override
     public InputStream retrieveResource(String path) {
         GetObjectRequest request = new GetObjectRequest(bucketName, path);
         try {
-            S3Object object = this.getClient().getObject(request);
+            S3Object object = s3.getObject(request);
             return object.getObjectContent().getDelegateStream();
         } catch (AmazonS3Exception exception) {
             return null;
@@ -89,7 +95,7 @@ public class AmazonStreamManager extends CloudStreamManager {
     @Override
     public Iterator<String> iterateResources(String path) {
         ListObjectsRequest request = new ListObjectsRequest(bucketName, path, null, null, Integer.MAX_VALUE);
-        Iterator<S3ObjectSummary> objectSummaryList = this.getClient().listObjects(request).getObjectSummaries().listIterator();
+        Iterator<S3ObjectSummary> objectSummaryList = s3.listObjects(request).getObjectSummaries().listIterator();
         List<String> keys = new ArrayList<>();
         while (objectSummaryList.hasNext()) {
             String key = objectSummaryList.next().getKey();
@@ -98,31 +104,4 @@ public class AmazonStreamManager extends CloudStreamManager {
         return keys.iterator();
     }
 
-    /**
-     * 支持创建多个实例，多配置，多桶
-     */
-    private static volatile Map<String, AmazonS3> INSTANCE_POOL = new ConcurrentHashMap<>();
-
-    /**
-     * 获取amazon oss客户端工具
-     * 
-     * @return
-     */
-    private synchronized AmazonS3 getClient() {
-        String key = this.toString();
-        AmazonS3 client = INSTANCE_POOL.get(key);
-        if (client == null) {
-            synchronized (this) {
-                // 设置要用于请求的端点配置（服务端点和签名区域）
-                AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(OSS_URL, Regions.CN_NORTH_1.toString());
-                client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials)).withClientConfiguration(configuration).withEndpointConfiguration(endpointConfiguration).withPathStyleAccessEnabled(true).build();
-                // 创建桶(已存在会忽略)
-                CreateBucketRequest createBucketRequest = new CreateBucketRequest(bucketName);
-                client.createBucket(createBucketRequest);
-                // 放入实例池
-                INSTANCE_POOL.put(key, client);
-            }
-        }
-        return client;
-    }
 }
