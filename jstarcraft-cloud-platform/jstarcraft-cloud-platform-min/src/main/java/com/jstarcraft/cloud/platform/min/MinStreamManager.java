@@ -1,12 +1,10 @@
 package com.jstarcraft.cloud.platform.min;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
 
 import com.jstarcraft.cloud.platform.CloudStreamManager;
+import com.jstarcraft.core.io.exception.StreamException;
 
 import io.minio.GetObjectArgs;
 import io.minio.GetObjectResponse;
@@ -15,7 +13,9 @@ import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.RemoveObjectArgs;
 import io.minio.Result;
-import io.minio.errors.MinioException;
+import io.minio.StatObjectArgs;
+import io.minio.StatObjectResponse;
+import io.minio.errors.ErrorResponseException;
 import io.minio.messages.Item;
 
 /**
@@ -33,52 +33,57 @@ public class MinStreamManager extends CloudStreamManager {
     }
 
     @Override
-    public void saveResource(String s, InputStream inputStream) {
-        PutObjectArgs args = null;
+    public void saveResource(String path, InputStream inputStream) {
+        PutObjectArgs request = PutObjectArgs.builder().bucket(storage).object(path).stream(inputStream, -1, PutObjectArgs.MIN_MULTIPART_SIZE).build();
         try {
-            args = PutObjectArgs.builder().stream(inputStream, inputStream.available(), -1).bucket(storage).object(s).build();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            io.putObject(args);
-        } catch (MinioException | InvalidKeyException | IOException | NoSuchAlgorithmException e) {
-            throw new RuntimeException(e.getCause());
+            io.putObject(request);
+        } catch (Exception exception) {
+            throw new StreamException(exception);
         }
     }
 
     @Override
-    public void waiveResource(String s) {
-        RemoveObjectArgs args = RemoveObjectArgs.builder().bucket(storage).object(s).build();
+    public void waiveResource(String path) {
+        RemoveObjectArgs request = RemoveObjectArgs.builder().bucket(storage).object(path).build();
         try {
-            io.removeObject(args);
-        } catch (MinioException | InvalidKeyException | IOException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            io.removeObject(request);
+        } catch (Exception exception) {
+            throw new StreamException(exception);
         }
     }
 
     @Override
-    public boolean haveResource(String s) {
-        GetObjectArgs args = GetObjectArgs.builder().bucket(storage).object(s).build();
+    public boolean haveResource(String path) {
+        StatObjectArgs request = StatObjectArgs.builder().bucket(storage).object(path).build();
         try {
-            GetObjectResponse response = io.getObject(args);
+            StatObjectResponse response = io.statObject(request);
             return response != null;
-        } catch (MinioException | InvalidKeyException | IOException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+        } catch (ErrorResponseException exception) {
+            String code = exception.errorResponse().code();
+            if (code.equals("NoSuchKey")) {
+                return false;
+            }
+            throw new StreamException(exception);
+        } catch (Exception exception) {
+            throw new StreamException(exception);
         }
-        return false;
     }
 
     @Override
-    public InputStream retrieveResource(String s) {
-        GetObjectArgs args = GetObjectArgs.builder().bucket(storage).object(s).build();
+    public InputStream retrieveResource(String path) {
+        GetObjectArgs request = GetObjectArgs.builder().bucket(storage).object(path).build();
         try {
-            GetObjectResponse response = io.getObject(args);
+            GetObjectResponse response = io.getObject(request);
             return response;
-        } catch (MinioException | InvalidKeyException | IOException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+        } catch (ErrorResponseException exception) {
+            String code = exception.errorResponse().code();
+            if (code.equals("NoSuchKey")) {
+                return null;
+            }
+            throw new StreamException(exception);
+        } catch (Exception exception) {
+            throw new StreamException(exception);
         }
-        return null;
     }
 
     private class MinioStreamIterator implements Iterator<String> {
@@ -99,10 +104,9 @@ public class MinStreamManager extends CloudStreamManager {
             Result<Item> object = iterator.next();
             try {
                 return object.get().objectName();
-            } catch (MinioException | InvalidKeyException | IOException | NoSuchAlgorithmException e) {
-                e.printStackTrace();
+            } catch (Exception exception) {
+                throw new StreamException(exception);
             }
-            return null;
         }
 
         @Override
@@ -113,9 +117,10 @@ public class MinStreamManager extends CloudStreamManager {
     }
 
     @Override
-    public Iterator<String> iterateResources(String s) {
-        ListObjectsArgs args = ListObjectsArgs.builder().bucket(storage).prefix(s).recursive(true).build();
-        Iterator<Result<Item>> results = io.listObjects(args).iterator();
-        return new MinioStreamIterator(results);
+    public Iterator<String> iterateResources(String path) {
+        ListObjectsArgs request = ListObjectsArgs.builder().bucket(storage).prefix(path).recursive(true).build();
+        Iterable<Result<Item>> response = io.listObjects(request);
+        Iterator<Result<Item>> iterator = response.iterator();
+        return new MinioStreamIterator(iterator);
     }
 }
