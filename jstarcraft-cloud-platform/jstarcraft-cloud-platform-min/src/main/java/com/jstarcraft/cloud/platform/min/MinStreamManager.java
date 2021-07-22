@@ -86,11 +86,11 @@ public class MinStreamManager extends CloudStreamManager {
         }
     }
 
-    private class MinioStreamIterator implements Iterator<String> {
+    private class MinStreamIterator implements Iterator<String> {
 
         private Iterator<Result<Item>> iterator;
 
-        private MinioStreamIterator(Iterator<Result<Item>> iterator) {
+        private MinStreamIterator(Iterator<Result<Item>> iterator) {
             this.iterator = iterator;
         }
 
@@ -121,6 +121,6 @@ public class MinStreamManager extends CloudStreamManager {
         ListObjectsArgs request = ListObjectsArgs.builder().bucket(storage).prefix(path).recursive(true).build();
         Iterable<Result<Item>> response = io.listObjects(request);
         Iterator<Result<Item>> iterator = response.iterator();
-        return new MinioStreamIterator(iterator);
+        return new MinStreamIterator(iterator);
     }
 }
