@@ -114,7 +114,7 @@ public class MinStreamManager extends CloudStreamManager {
 
     @Override
     public Iterator<String> iterateResources(String s) {
-        ListObjectsArgs args = ListObjectsArgs.builder().bucket(storage).build();
+        ListObjectsArgs args = ListObjectsArgs.builder().bucket(storage).prefix(s).recursive(true).build();
         Iterator<Result<Item>> results = io.listObjects(args).iterator();
         return new MinioStreamIterator(results);
     }
