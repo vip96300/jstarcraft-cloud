@@ -8,6 +8,7 @@ import com.qcloud.cos.auth.AnonymousCOSCredentials;
 import com.qcloud.cos.auth.BasicCOSCredentials;
 import com.qcloud.cos.auth.COSCredentials;
 import com.qcloud.cos.auth.COSSigner;
+import com.qcloud.cos.model.CannedAccessControlList;
 import com.qcloud.cos.model.CreateBucketRequest;
 import com.qcloud.cos.model.DeleteBucketRequest;
 import com.qcloud.cos.region.Region;
@@ -27,7 +28,10 @@ import java.io.InputStream;
  */
 public class TencentStreamManagerTestCase {
 
-    private static final String storage = "tencent";
+    /**
+     * 规范:{bucketName}-{appid}
+     */
+    private static final String storage = "default-1306604551";
 
     private static final String ACCESS_KEY="AKIDf9RSDhuqVt0qPhiSw83h4AzWmlTt2uVq";
 
@@ -41,10 +45,12 @@ public class TencentStreamManagerTestCase {
         //COSCredentials credentials=new AnonymousCOSCredentials();
         ClientConfig config=new ClientConfig();
         config.setCosSigner(new COSSigner());
-        config.setRegion(new Region("ap-beijing"));
+        config.setRegion(new Region("ap-chongqing"));
         client=new COSClient(credentials,config);
         //创建bucket
         CreateBucketRequest createBucketRequest=new CreateBucketRequest(storage);
+        //共有
+        createBucketRequest.setCannedAcl(CannedAccessControlList.PublicReadWrite);
         client.createBucket(createBucketRequest);
     }
 

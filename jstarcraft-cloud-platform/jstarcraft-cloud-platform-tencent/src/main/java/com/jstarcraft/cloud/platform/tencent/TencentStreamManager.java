@@ -2,6 +2,7 @@ package com.jstarcraft.cloud.platform.tencent;
 
 import com.jstarcraft.cloud.platform.CloudStreamManager;
 import com.qcloud.cos.COSClient;
+import com.qcloud.cos.exception.CosServiceException;
 import com.qcloud.cos.model.*;
 
 import java.io.InputStream;
@@ -45,7 +46,12 @@ public class TencentStreamManager extends CloudStreamManager {
     @Override
     public InputStream retrieveResource(String s) {
         GetObjectRequest request=new GetObjectRequest(storage,s);
-        COSObject object=client.getObject(request);
+        COSObject object=null;
+        try {
+            object=client.getObject(request);
+        }catch (CosServiceException e){
+            return null;
+        }
         return object.getObjectContent();
     }
 
