@@ -6,3 +6,6 @@ https://www.pianshen.com/article/4250691065
 
 STS临时授权访问OSS:
 https://help.aliyun.com/document_detail/100624.html
+
+S3 API兼容性说明:
+https://help.aliyun.com/apsara/agile-data/v_2_5_0_20200506/oss/insight-developer-guide/s3-api-compatibility-instructions.html

@@ -1,0 +1,2 @@
+在兼容亚马逊S3的第三方应用中使用COS的通用配置:
+https://cloud.tencent.com/developer/article/1609495
