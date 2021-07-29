@@ -26,7 +26,11 @@ public class BaiduStreamManager extends CloudStreamManager {
 
     @Override
     public void waiveResource(String path) {
-        client.deleteObject(storage,path);
+        try {
+            client.deleteObject(storage,path);
+        }catch (BceServiceException e){
+            
+        }
     }
 
     @Override
