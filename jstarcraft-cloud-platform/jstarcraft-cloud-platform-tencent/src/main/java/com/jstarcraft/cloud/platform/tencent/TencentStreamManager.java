@@ -1,58 +1,54 @@
 package com.jstarcraft.cloud.platform.tencent;
 
-import com.jstarcraft.cloud.platform.CloudStreamManager;
-import com.qcloud.cos.COSClient;
-import com.qcloud.cos.exception.CosServiceException;
-import com.qcloud.cos.model.*;
-
 import java.io.InputStream;
 import java.util.Iterator;
 
+import com.jstarcraft.cloud.platform.CloudStreamManager;
+import com.qcloud.cos.COSClient;
+import com.qcloud.cos.exception.CosServiceException;
+import com.qcloud.cos.model.COSObject;
+import com.qcloud.cos.model.COSObjectSummary;
+import com.qcloud.cos.model.ObjectMetadata;
+
 /**
- * @author Huang Hong Fei
- * @createAt 2021/7/22
- * @description
+ * Huang Hong Fei
+ * 
+ * @author Birdy
+ *
  */
 public class TencentStreamManager extends CloudStreamManager {
 
-    private COSClient client;
+    private COSClient cos;
 
-    protected TencentStreamManager(String storage) {
+    public TencentStreamManager(String storage, COSClient cos) {
         super(storage);
-    }
-
-    public TencentStreamManager(String storage, COSClient client){
-        this(storage);
-        this.client=client;
+        this.cos = cos;
     }
 
     @Override
-    public void saveResource(String s, InputStream inputStream) {
-        PutObjectRequest request=new PutObjectRequest(storage,s,inputStream,new ObjectMetadata());
-        client.putObject(request);
+    public void saveResource(String path, InputStream stream) {
+        ObjectMetadata metadata = new ObjectMetadata();
+        cos.putObject(storage, path, stream, metadata);
     }
 
     @Override
-    public void waiveResource(String s) {
-        DeleteObjectRequest request=new DeleteObjectRequest(storage,s);
-        client.deleteObject(request);
+    public void waiveResource(String path) {
+        cos.deleteObject(storage, path);
     }
 
     @Override
-    public boolean haveResource(String s) {
-        return client.doesObjectExist(storage,s);
+    public boolean haveResource(String path) {
+        return cos.doesObjectExist(storage, path);
     }
 
     @Override
-    public InputStream retrieveResource(String s) {
-        GetObjectRequest request=new GetObjectRequest(storage,s);
-        COSObject object=null;
+    public InputStream retrieveResource(String path) {
         try {
-            object=client.getObject(request);
-        }catch (CosServiceException e){
+            COSObject object = cos.getObject(storage, path);
+            return object.getObjectContent();
+        } catch (CosServiceException exception) {
             return null;
         }
-        return object.getObjectContent();
     }
 
     private class TencentStreamIterator implements Iterator<String> {
@@ -82,8 +78,8 @@ public class TencentStreamManager extends CloudStreamManager {
     }
 
     @Override
-    public Iterator<String> iterateResources(String s) {
-        ObjectListing list=client.listObjects(storage,s);
-        return new TencentStreamIterator(list.getObjectSummaries().iterator());
+    public Iterator<String> iterateResources(String path) {
+        Iterator<COSObjectSummary> iterator = cos.listObjects(storage, path).getObjectSummaries().iterator();
+        return new TencentStreamIterator(iterator);
     }
 }
