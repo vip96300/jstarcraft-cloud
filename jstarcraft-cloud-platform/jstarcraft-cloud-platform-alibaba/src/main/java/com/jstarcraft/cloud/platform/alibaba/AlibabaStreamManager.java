@@ -7,6 +7,7 @@ import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.OSSObject;
 import com.aliyun.oss.model.OSSObjectSummary;
 import com.aliyun.oss.model.ObjectListing;
+import com.aliyun.oss.model.ObjectMetadata;
 import com.jstarcraft.cloud.platform.CloudStreamManager;
 
 public class AlibabaStreamManager extends CloudStreamManager {
@@ -71,6 +72,12 @@ public class AlibabaStreamManager extends CloudStreamManager {
         ObjectListing objects = oss.listObjects(storage, path);
         Iterator<OSSObjectSummary> iterator = objects.getObjectSummaries().iterator();
         return new AlibabaStreamIterator(iterator);
+    }
+
+    @Override
+    public long getUpdatedAt(String path) {
+        ObjectMetadata metadata = oss.getObjectMetadata(storage, path);
+        return metadata.getLastModified().getTime();
     }
 
 }

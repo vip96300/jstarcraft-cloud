@@ -76,5 +76,11 @@ public class AmazonStreamManager extends CloudStreamManager {
         Iterator<S3ObjectSummary> iterator = s3.listObjects(storage, path).getObjectSummaries().listIterator();
         return new AmazonStreamIterator(iterator);
     }
+    
+    @Override
+    public long getUpdatedAt(String path) {
+        ObjectMetadata metadata = s3.getObjectMetadata(storage, path);
+        return metadata.getLastModified().getTime();
+    }
 
 }
