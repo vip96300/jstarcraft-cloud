@@ -1,54 +1,53 @@
 package com.jstarcraft.cloud.platform.baidu;
 
+import java.io.InputStream;
+import java.util.Iterator;
+
 import com.baidubce.BceServiceException;
 import com.baidubce.services.bos.BosClient;
 import com.baidubce.services.bos.model.BosObject;
 import com.baidubce.services.bos.model.BosObjectSummary;
-import com.baidubce.services.bos.model.ListObjectsResponse;
 import com.jstarcraft.cloud.platform.CloudStreamManager;
-
-import java.io.InputStream;
-import java.util.Iterator;
 
 public class BaiduStreamManager extends CloudStreamManager {
 
-    private BosClient client;
+    private BosClient bos;
 
-    public BaiduStreamManager(String storage, BosClient client) {
+    public BaiduStreamManager(String storage, BosClient bos) {
         super(storage);
-        this.client = client;
+        this.bos = bos;
     }
 
     @Override
     public void saveResource(String path, InputStream stream) {
-        client.putObject(storage,path,stream);
+        bos.putObject(storage, path, stream);
     }
 
     @Override
     public void waiveResource(String path) {
         try {
-            client.deleteObject(storage,path);
-        }catch (BceServiceException e){
-            
+            bos.deleteObject(storage, path);
+        } catch (BceServiceException exception) {
         }
     }
 
     @Override
     public boolean haveResource(String path) {
-        return client.doesObjectExist(storage,path);
+        return bos.doesObjectExist(storage, path);
     }
 
     @Override
     public InputStream retrieveResource(String path) {
         try {
-            BosObject object=client.getObject(storage,path);
-            if(object!=null){
+            BosObject object = bos.getObject(storage, path);
+            if (object != null) {
                 return object.getObjectContent();
+            } else {
+                return null;
             }
-        }catch (BceServiceException e){
+        } catch (BceServiceException exception) {
             return null;
         }
-        return null;
     }
 
     private class BaiduStreamIterator implements Iterator<String> {
@@ -79,8 +78,8 @@ public class BaiduStreamManager extends CloudStreamManager {
 
     @Override
     public Iterator<String> iterateResources(String path) {
-        ListObjectsResponse response=client.listObjects(storage,path);
-        return new BaiduStreamIterator(response.getContents().iterator());
+        Iterator<BosObjectSummary> iterator = bos.listObjects(storage, path).getContents().iterator();
+        return new BaiduStreamIterator(iterator);
     }
 
 }

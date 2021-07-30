@@ -1,32 +1,32 @@
 package com.jstarcraft.cloud.platform.baidu;
 
-import com.baidubce.auth.DefaultBceCredentials;
-import com.baidubce.services.bos.BosClient;
-import com.baidubce.services.bos.BosClientConfiguration;
-import com.google.common.collect.Lists;
-import com.jstarcraft.core.io.StreamManager;
-import com.jstarcraft.core.utility.StringUtility;
-import org.apache.commons.io.IOUtils;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.io.IOUtils;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.baidubce.auth.BceCredentials;
+import com.baidubce.auth.DefaultBceCredentials;
+import com.baidubce.services.bos.BosClient;
+import com.baidubce.services.bos.BosClientConfiguration;
+import com.google.common.collect.Lists;
+import com.jstarcraft.core.io.StreamManager;
+import com.jstarcraft.core.utility.StringUtility;
+
 public class BaiduStreamManagerTestsCase {
 
     private static String storage;
 
-    private static BosClient client;
+    private static String accessKey;
 
-    private static String accessKeyId;
-
-    private static String secretAccessKey;
+    private static String secretKey;
 
     private static String domain;
 
@@ -35,30 +35,33 @@ public class BaiduStreamManagerTestsCase {
             Properties keyValues = new Properties();
             keyValues.load(new FileInputStream("bos.properties"));
             storage = keyValues.getProperty("storage");
-            accessKeyId = keyValues.getProperty("access_key_id");
-            secretAccessKey = keyValues.getProperty("secret_access_key");
-            domain=keyValues.getProperty("domain");
+            accessKey = keyValues.getProperty("access_key");
+            secretKey = keyValues.getProperty("secret_key");
+            domain = keyValues.getProperty("domain");
         } catch (Exception exception) {
         }
     }
 
+    private static BosClient bos;
+
     @BeforeClass
     public static void before() {
-        BosClientConfiguration configuration=new BosClientConfiguration();
+        BceCredentials credentials = new DefaultBceCredentials(accessKey, secretKey);
+        BosClientConfiguration configuration = new BosClientConfiguration();
+        configuration.setCredentials(credentials);
         configuration.setEndpoint(domain);
-        configuration.setCredentials(new DefaultBceCredentials(accessKeyId,secretAccessKey));
-        client=new BosClient(configuration);
-        client.createBucket(storage);
+        bos = new BosClient(configuration);
+        bos.createBucket(storage);
     }
 
     @AfterClass
     public static void after() {
-        client.deleteBucket(storage);
-        client.shutdown();
+        bos.deleteBucket(storage);
+        bos.shutdown();
     }
 
     protected StreamManager getStreamManager() {
-        BaiduStreamManager manager = new BaiduStreamManager(storage, client);
+        BaiduStreamManager manager = new BaiduStreamManager(storage, bos);
         return manager;
     }
 
@@ -86,7 +89,7 @@ public class BaiduStreamManagerTestsCase {
         manager.waiveResource(path);
         Assert.assertFalse(manager.haveResource(path));
     }
-    
+
     @Test
     public void testIterateResources() throws Exception {
         StreamManager manager = getStreamManager();
@@ -150,5 +153,5 @@ public class BaiduStreamManagerTestsCase {
         resources = Lists.newArrayList(manager.iterateResources("jstarcraft/"));
         Assert.assertEquals(0, resources.size());
     }
-    
+
 }
