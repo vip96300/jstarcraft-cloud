@@ -5,9 +5,12 @@ import java.util.Iterator;
 import com.jstarcraft.cloud.platform.StorageMetadata;
 import com.jstarcraft.cloud.platform.StorageResource;
 import com.jstarcraft.cloud.platform.StorageService;
+import com.upyun.RestManager;
 
 public class UpyunStorageService implements StorageService {
 
+    private RestManager uss;
+    
     @Override
     public void createStorage(String name) {
         // TODO Auto-generated method stub

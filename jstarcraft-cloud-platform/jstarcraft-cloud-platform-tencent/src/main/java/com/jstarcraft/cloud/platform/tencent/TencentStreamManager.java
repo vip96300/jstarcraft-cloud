@@ -82,4 +82,11 @@ public class TencentStreamManager extends CloudStreamManager {
         Iterator<COSObjectSummary> iterator = cos.listObjects(storage, path).getObjectSummaries().iterator();
         return new TencentStreamIterator(iterator);
     }
+    
+    @Override
+    public long getUpdatedAt(String path) {
+        ObjectMetadata metadata = cos.getObjectMetadata(storage, path);
+        return metadata.getLastModified().getTime();
+    }
+    
 }

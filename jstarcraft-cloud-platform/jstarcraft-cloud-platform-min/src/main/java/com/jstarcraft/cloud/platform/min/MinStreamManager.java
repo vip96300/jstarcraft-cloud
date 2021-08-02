@@ -123,4 +123,22 @@ public class MinStreamManager extends CloudStreamManager {
         Iterator<Result<Item>> iterator = response.iterator();
         return new MinStreamIterator(iterator);
     }
+
+    @Override
+    public long getUpdatedAt(String path) {
+        StatObjectArgs request = StatObjectArgs.builder().bucket(storage).object(path).build();
+        try {
+            StatObjectResponse response = io.statObject(request);
+            return response.lastModified().toInstant().getEpochSecond();
+        } catch (ErrorResponseException exception) {
+            String code = exception.errorResponse().code();
+            if (code.equals("NoSuchKey")) {
+                return 0;
+            }
+            throw new StreamException(exception);
+        } catch (Exception exception) {
+            throw new StreamException(exception);
+        }
+    }
+
 }

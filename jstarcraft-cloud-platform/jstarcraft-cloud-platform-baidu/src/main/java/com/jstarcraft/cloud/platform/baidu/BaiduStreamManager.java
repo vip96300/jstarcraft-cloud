@@ -7,6 +7,7 @@ import com.baidubce.BceServiceException;
 import com.baidubce.services.bos.BosClient;
 import com.baidubce.services.bos.model.BosObject;
 import com.baidubce.services.bos.model.BosObjectSummary;
+import com.baidubce.services.bos.model.ObjectMetadata;
 import com.jstarcraft.cloud.platform.CloudStreamManager;
 
 public class BaiduStreamManager extends CloudStreamManager {
@@ -80,6 +81,12 @@ public class BaiduStreamManager extends CloudStreamManager {
     public Iterator<String> iterateResources(String path) {
         Iterator<BosObjectSummary> iterator = bos.listObjects(storage, path).getContents().iterator();
         return new BaiduStreamIterator(iterator);
+    }
+    
+    @Override
+    public long getUpdatedAt(String path) {
+        ObjectMetadata metadata = bos.getObjectMetadata(storage, path);
+        return metadata.getLastModified().getTime();
     }
 
 }
